@@ -45,3 +45,4 @@ const buildSass = async function () {
 //     }
 //   }
 };
+buildSass();

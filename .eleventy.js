@@ -10,6 +10,10 @@ const {EngineConnector} = require("@dendronhq/engine-server");
 module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("liquid", liquidParser);
   eleventyConfig.setLibrary("md", md);
+  eleventyConfig.setTemplateFormats([
+    "css", 
+    "scss"
+  ]);
 
   // --- filters
   eleventyConfig.addFilter("absolute_url", function (variable) {
