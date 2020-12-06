@@ -11,14 +11,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("liquid", liquidParser);
   eleventyConfig.setLibrary("md", md);
   eleventyConfig.setTemplateFormats([
-    "css", 
-    "scss"
+    "scss",
+    "md"
   ]);
 
   // --- filters
   eleventyConfig.addFilter("absolute_url", function (variable) {
       const site = fs.readJSONSync("_data/site.json");
-      debugger;
+      console.log("bond", site);
       return path.join(site.url, variable)
   });
 

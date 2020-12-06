@@ -5,8 +5,9 @@ const fs = require('fs-extra');
 const util = require('util');
 
 const renderSass = util.promisify(sass.render);
-const inputFile = './assets/css/just-the-docs-default.scss';
+// const inputFile = './assets/css/just-the-docs-default.scss';
 // const inputFile = './src/assets/css/styles.scss';
+const inputFile = '_site/raw-assets/sass/just-the-docs-default.scss';
 const outputFile = './_site/assets/css/styles.css';
 const isProduction = process.env.ELEVENTY_ENV;
 
