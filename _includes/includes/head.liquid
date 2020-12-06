@@ -1,0 +1,11 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <title>{{ title }} - {{ site.title }}</title>
+  {% if description %}
+    <meta name="Description" content="{{ description }}" />
+  {% endif %}
+
+  <link rel="shortcut icon" href="{{ 'favicon.ico' | absolute_url }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ '/assets/css/just-the-docs-default.css' | absolute_url }}">
+</head>

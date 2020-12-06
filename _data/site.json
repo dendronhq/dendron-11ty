@@ -1,0 +1,8 @@
+{
+    "title": "Dendron",
+    "url": "https://www.dendron.so",
+    "pages": [{
+        "children": "",
+        "url": "node_url"
+    }]
+}

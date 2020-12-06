@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../proto/extension-workshop"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "/Users/kevinlin/projects/dendronv2/ref/eleventy-base-blog"
+		}
+	],
+	"settings": {}
+}

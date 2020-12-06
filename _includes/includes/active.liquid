@@ -1,0 +1,8 @@
+{%- if page.url == include.node.url -%}
+  {%- assign active = true -%}
+{%- else -%}
+  {%- assign activityChildren = hierarchy | where_exp:"item", "item.name == include.node.id" | map: "items" | first -%}
+  {%- for activityNode in activityChildren -%}
+    {%- include includes/active.liquid node=activityNode -%}
+  {%- endfor -%}
+{%- endif -%}
