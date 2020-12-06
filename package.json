@@ -10,6 +10,7 @@
   "dependencies": {
     "liquidjs": "^9.16.1",
     "lodash": "^4.17.20",
-    "markdown-it": "^12.0.2"
+    "markdown-it": "^12.0.2",
+    "node-sass": "^5.0.0"
   }
 }

@@ -1,5 +1,5 @@
 {%- assign hierarchy = site.pages %}
-{%- assign top_nodes = site.pages %}
+{%- assign top_nodes = domains %}
 <!DOCTYPE html>
 
 <html lang="{{ site.lang | default: 'en-US' }}">
@@ -46,25 +46,26 @@
           <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
         </a>
       </div>
+
       <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-        {%- include includes/nav.liquid nodes=top_nodes -%}
+        {%- include includes/nav.liquid, nodes: top_nodes -%}
       </nav>
       <footer class="site-footer">
         🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
       </footer>
     </div>
     <div class="main" id="top">
-      <div id="main-header" class="main-header">
-        {% if site.search_enabled != false %}
-          <div class="search">
-            <div class="search-input-wrap">
-              <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
-              <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+        <div id="main-header" class="main-header">
+          {% if site.search_enabled != false %}
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
             </div>
-            <div id="search-results" class="search-results"></div>
-          </div>
-        {% endif %}
-        {% if site.aux_links %}
+          {% endif %}
+          {% if site.aux_links %}
           <nav aria-label="Auxiliary" class="aux-nav">
             <ul class="aux-nav-list">
               {% for link in site.aux_links %}
@@ -81,19 +82,19 @@
             </ul>
           </nav>
         {% endif %}
-      </div>
-      <div id="main-content-wrap" class="main-content-wrap">
-        {% unless page.url == "/" %}
-          {% if page.parent %}
-            <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-              <ol class="breadcrumb-nav-list">
-                {%- include crumbs.html nodes=top_nodes -%}
-              </ol>
-            </nav>
-          {% endif %}
-        {% endunless %}
-        <div id="main-content" class="main-content" role="main">
-  
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      {% unless page.url == "/" %}
+        {% if page.parent %}
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+              {%- include crumbs.html nodes=top_nodes -%}
+            </ol>
+          </nav>
+        {% endif %}
+      {% endunless %}
+      <div id="main-content" class="main-content" role="main">
+
         {% if site.enable_mathjax %}
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -124,66 +125,63 @@
           })
         </script>
         {% endif %}
-  
-          {% if site.heading_anchors != false %}
-            {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" %}
-          {% else %}
-            {{ content }}
-          {% endif %}
-  
-  
-          {%- if page.has_collection -%}
-            {% include documents-collection.html sort_by=page.sort_by sort_order=page.sort_order type=page.entries_layout %}
-          {%- elsif page.has_toc != false -%}
-            {%- include toc.html -%}
-          {%- endif -%}
-  
-          {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
-            <hr>
-            <footer>
-              {% if site.back_to_top %}
-                <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
-              {% endif %}
-              {% if site.footer_content != nil %}
-                <p class="text-small text-grey-dk-000 mb-0">{{ site.footer_content }}</p>
-              {% endif %}
-  
-              {% if site.last_edit_timestamp or site.gh_edit_link %}
-                <div class="d-flex mt-2">
-                  {% if site.last_edit_timestamp and site.last_edit_time_format and page.last_modified_date %}
-                    <p class="text-small text-grey-dk-000 mb-0 mr-2">
-                      Page last modified: <span class="d-inline-block">{{ page.last_modified_date | date: site.last_edit_time_format }}</span>.
-                    </p>
-                  {% endif %}
-                  {% if
-                    site.gh_edit_link and
-                    site.gh_edit_link_text and
-                    site.gh_edit_repository and
-                    site.gh_edit_branch and
-                    site.gh_edit_view_mode
-                  %}
-                    <p class="text-small text-grey-dk-000 mb-0">
-                      <a href="{{ site.gh_edit_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}/{{ site.dendron_vault_path }}/{{ page.fname }}.md" id="edit-this-page">{{ site.gh_edit_link_text }}</a>
-                    </p>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </footer>
-          {% endif %}
-  
-        </div>
-      </div>
-  
-      {% if site.search_enabled != false %}
-        {% if site.search.button %}
-          <a href="#" id="search-button" class="search-button">
-            <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-search"></use></svg>
-          </a>
+
+        {% if site.heading_anchors != false %}
+            {% include includes/vendor/anchor_headings.liquid, html:content beforeHeading:"true" anchorBody:"<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass:"anchor-heading" %}
+        {% else %}
+          {{ content }}
         {% endif %}
-  
-        <div class="search-overlay"></div>
-      {% endif %}
+
+        {%- if page.has_collection -%}
+          {% include includes/documents-collection.liquid, sort_by:page.sort_by sort_order:page.sort_order type:page.entries_layout %}
+        {%- elsif page.has_toc != false -%}
+          {%- include includes/toc.liquid -%}
+        {%- endif -%}
+
+        {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
+          <hr>
+          <footer>
+            {% if site.back_to_top %}
+              <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
+            {% endif %}
+            {% if site.footer_content != nil %}
+              <p class="text-small text-grey-dk-000 mb-0">{{ site.footer_content }}</p>
+            {% endif %}
+
+            {% if site.last_edit_timestamp or site.gh_edit_link %}
+              <div class="d-flex mt-2">
+                {% if site.last_edit_timestamp and site.last_edit_time_format and page.last_modified_date %}
+                  <p class="text-small text-grey-dk-000 mb-0 mr-2">
+                    Page last modified: <span class="d-inline-block">{{ page.last_modified_date | date: site.last_edit_time_format }}</span>.
+                  </p>
+                {% endif %}
+                {% if
+                  site.gh_edit_link and
+                  site.gh_edit_link_text and
+                  site.gh_edit_repository and
+                  site.gh_edit_branch and
+                  site.gh_edit_view_mode
+                %}
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="{{ site.gh_edit_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}/{{ site.dendron_vault_path }}/{{ page.fname }}.md" id="edit-this-page">{{ site.gh_edit_link_text }}</a>
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </footer>
+        {% endif %}
     </div>
-  </body>
-  </html>
-  
+</div>
+
+{% if site.search_enabled != false %}
+  {% if site.search.button %}
+    <a href="#" id="search-button" class="search-button">
+      <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-search"></use></svg>
+    </a>
+  {% endif %}
+
+  <div class="search-overlay"></div>
+{% endif %}
+</div>
+</body>
+</html>

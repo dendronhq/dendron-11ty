@@ -1,4 +1,4 @@
-{%- if page.url == include.node.url -%}
+{%- if page.url == node.url -%}
   {%- assign active = true -%}
 {%- else -%}
   {%- assign activityChildren = hierarchy | where_exp:"item", "item.name == include.node.id" | map: "items" | first -%}
