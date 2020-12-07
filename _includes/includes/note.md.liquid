@@ -4,6 +4,8 @@ pagination:
     size: 1
     alias: note
 permalink: "docs/{{ note.id }}.html"
+templateEngineOverride: liquid,md 
+layout: layouts/default.liquid
 ---
 
 {{note.body}}
