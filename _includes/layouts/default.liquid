@@ -126,11 +126,14 @@
         </script>
         {% endif %}
 
+        {% comment %}
         {% if site.heading_anchors != false %}
             {% include includes/vendor/anchor_headings.liquid, html:content beforeHeading:"true" anchorBody:"<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass:"anchor-heading" %}
         {% else %}
           {{ content }}
         {% endif %}
+        {% endcomment %}
+        {{ content }}
 
         {%- if page.has_collection -%}
           {% include includes/documents-collection.liquid, sort_by:page.sort_by sort_order:page.sort_order type:page.entries_layout %}
