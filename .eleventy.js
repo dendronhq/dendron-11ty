@@ -16,10 +16,10 @@ module.exports = function (eleventyConfig) {
   ]);
 
   // --- filters
-  eleventyConfig.addFilter("absolute_url", function (variable) {
-      const site = fs.readJSONSync("_data/site.json");
-      console.log("bond", site);
-      return path.join(site.url, variable)
+  eleventyConfig.addFilter("absolute_url", async function (variable) {
+      const site = await require(`${__dirname}/_data/site.js`)();
+      const out = _.join([site.url, variable], "/")
+      return out;
   });
 
   eleventyConfig.addLiquidFilter("group_by", function(collection, groupByKey) {

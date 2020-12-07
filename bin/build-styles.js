@@ -8,7 +8,7 @@ const renderSass = util.promisify(sass.render);
 // const inputFile = './assets/css/just-the-docs-default.scss';
 // const inputFile = './src/assets/css/styles.scss';
 const inputFile = '_site/raw-assets/sass/just-the-docs-default.scss';
-const outputFile = './_site/assets/css/styles.css';
+const outputFile = './_site/assets/css/just-the-docs-default.css';
 const isProduction = process.env.ELEVENTY_ENV;
 
 const buildSass = async function () {
@@ -30,6 +30,7 @@ const buildSass = async function () {
   try {
     await fs.ensureFile(outputFile);
     await fs.writeFile(outputFile, css);
+    console.log("writing", outputFile)
   } catch (error) {
     console.error(`Error writing generated CSS: ${error}`);
   }
