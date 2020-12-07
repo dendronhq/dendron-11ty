@@ -5,6 +5,7 @@ date: 2018-05-01
 tags:
   - another-tag
 layout: layouts/default.liquid
+permalink: "/"
 ---
 
 Hello World
