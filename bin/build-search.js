@@ -13,7 +13,7 @@ async function buildSearch() {
   });
 
   const search_data = JSON.parse(noteData).map((note, idx) => {
-    const noteUrl = `/note/${note.id}.html`
+    const noteUrl = `/docs/${note.id}.html`
     return {
       doc: note.title,
       title: note.title,
