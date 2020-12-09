@@ -2,6 +2,7 @@ const { Liquid } = require("liquidjs");
 const fs = require("fs-extra");
 const path = require("path");
 const _ = require("lodash");
+const { buildSearch } = require("./bin/build-search.js")
 
 const md = require("./libs/markdown");
 const liquidParser = require("./libs/templates");
@@ -49,6 +50,10 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPairedShortcode("user2", async function(content, name, twitterUsername) {
         return await fetchAThing();
     });
+
+  eleventyConfig.on('afterBuild', () => {
+    buildSearch()
+  });
 
   return {
     dir: {
