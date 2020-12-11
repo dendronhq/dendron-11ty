@@ -1,14 +1,19 @@
 {
-	"folders": [
-		{
-			"path": "../proto/extension-workshop"
-		},
-		{
-			"path": "."
-		},
-		{
-			"path": "/Users/kevinlin/projects/dendronv2/ref/eleventy-base-blog"
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "../proto/extension-workshop"
+        },
+        {
+            "path": "."
+        },
+        {
+            "path": "../ref/eleventy-base-blog"
+        }
+    ],
+    "settings": {
+        "dendron.rootDir": ".",
+        "pasteImage.prefix": "/",
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggest.showSnippets": true
+    }
 }

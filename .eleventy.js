@@ -2,12 +2,13 @@ const { Liquid } = require("liquidjs");
 const fs = require("fs-extra");
 const path = require("path");
 const _ = require("lodash");
-
+const remark = require("./libs/remark");
 const md = require("./libs/markdown");
 const liquidParser = require("./libs/templates");
 const {EngineConnector} = require("@dendronhq/engine-server");
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(remark);
   eleventyConfig.setLibrary("liquid", liquidParser);
   eleventyConfig.setLibrary("md", md);
   eleventyConfig.setTemplateFormats([
