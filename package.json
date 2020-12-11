@@ -6,7 +6,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",
     "@fec/eleventy-plugin-remark": "^2.1.0",
-    "fs-extra": "^9.0.1"
+    "@dendronhq/engine-server": "0.19.2"
   },
   "dependencies": {
     "liquidjs": "^9.16.1",
