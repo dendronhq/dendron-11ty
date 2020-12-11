@@ -5,12 +5,13 @@ const _ = require("lodash");
 const remark = require("./libs/remark");
 const md = require("./libs/markdown");
 const liquidParser = require("./libs/templates");
+const eleventyRemark = require('./libs/remark2');
 const {EngineConnector} = require("@dendronhq/engine-server");
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPlugin(remark);
+  // eleventyConfig.addPlugin(remark);
+  eleventyConfig.addPlugin(eleventyRemark);
   eleventyConfig.setLibrary("liquid", liquidParser);
-  eleventyConfig.setLibrary("md", md);
   eleventyConfig.setTemplateFormats([
     "scss",
     "md"
