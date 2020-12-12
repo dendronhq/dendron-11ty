@@ -1,6 +1,7 @@
 const {EngineConnector} = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const path = require("path");
+const site = require(`${__dirname}/site`)
 
 async function getDomains() {
     // const ec = new EngineConnector({wsRoot: "/Users/kevinlin/projects/dendronv2/dendron-site"})
@@ -17,17 +18,8 @@ async function getDomains() {
 }
 
 function enhanceNodeForLiquid(node) {
-    node.url = path.join("docs", node.id + ".html");
+    node.url = path.join(site().notePrefix, node.id + ".html");
     return node;
-}
-
-let SITE_CACHE;
-
-function site() {
-    if (!SITE_CACHE) {
-        SITE_CACHE = fs.readJSONSync(path.join(__dirname, "site.json"));
-    }
-    return SITE_CACHE
 }
 
 module.exports = async function () {

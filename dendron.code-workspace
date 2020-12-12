@@ -8,6 +8,9 @@
         },
         {
             "path": "../ref/eleventy-base-blog"
+        },
+        {
+            "path": "_site/"
         }
     ],
     "settings": {

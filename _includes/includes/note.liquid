@@ -1,0 +1,13 @@
+---
+pagination:
+    data: notes
+    size: 1
+    alias: note
+permalink: "notes/{{ note.id }}.html"
+templateEngineOverride: liquid,md
+layout: layouts/default.liquid
+---
+
+{% markdown %}
+{{note.body}}
+{% endmarkdown %}

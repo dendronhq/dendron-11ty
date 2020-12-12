@@ -1,3 +1,3 @@
 ---
-layout: includes/note.md.liquid
+layout: includes/note.liquid
 ---
