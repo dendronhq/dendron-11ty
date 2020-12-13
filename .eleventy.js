@@ -1,11 +1,10 @@
 const _ = require("lodash");
 const shortcodes = require("./libs/shortcodes");
-const { EngineConnector, MDUtilsV4 } = require("@dendronhq/engine-server");
+const { EngineConnector } = require("@dendronhq/engine-server");
 const remark = require("remark");
 const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
-const { buildSearch } = require("./bin/build-search.js")
-const {EngineConnector} = require("@dendronhq/engine-server");
+const { buildSearch } = require("./bin/build-search.js");
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
