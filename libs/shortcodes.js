@@ -10,7 +10,8 @@ const {
   DendronASTDest,
 } = require("@dendronhq/engine-server");
 
-async function toMarkdown2(contents) {
+async function toMarkdown2(contents, vault) {
+  console.log("got vault", vault)
   const linkPrefix = "/notes/";
   const engineConnector = EngineConnector.getOrCreate({
     wsRoot: "/Users/kevinlin/projects/dendronv2/dendron-site",
@@ -22,6 +23,8 @@ async function toMarkdown2(contents) {
   const engine = engineConnector.engine;
   const proc = MDUtilsV4.procFull({
     engine,
+    dest: DendronASTDest.HTML,
+    vault,
     wikiLinksOpts: { dest: DendronASTDest.HTML, useId: true, prefix: linkPrefix },
   });
   return proc.process(contents);

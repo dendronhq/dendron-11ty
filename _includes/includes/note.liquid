@@ -6,8 +6,10 @@ pagination:
 permalink: "notes/{{ note.id }}.html"
 templateEngineOverride: liquid,md
 layout: layouts/default.liquid
+#templateEngineOverride: liquid
 ---
+{%- assign vault = {{note.vault}} -%}
 
-{% markdown %}
+{% markdown vault %}
 {{note.body}}
 {% endmarkdown %}
