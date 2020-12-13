@@ -6,10 +6,30 @@ dendron-11ty is currently a work in progress and is not meant to be used in prod
 
 # Setup
 
+1. clone the project
+
+```
+git clone https://github.com/dendronhq/dendron-11ty.git
 yarn
+```
+
+2. install the dendron-cli
+
+```
+npm install -g @dendronhq/dendron-cli
+```
+
+3. run the dendron-cli in a workspace to start the server. the below example uses the vault from the dendron site
 
 ```sh
-env WS_ROOT="" ENGINE_PORT=3006 npx eleventy --watch --serve
+git clone https://github.com/dendronhq/dendron-site
+cd dendron-site
+LOG_DST=/tmp/server.txt LOG_LEVEL=debug dendron-cli launchEngineServer --port 3006 --wsRoot .
+```
+
+4. run eleventy with the engine options
+```sh
+env WS_ROOT=/Users/kevinlin/projects/dendronv2/dendron-site ENGINE_PORT=3006 npx eleventy --watch --serve
 ```
 
 - open `http://localhost:8080/notes/b0fe6ef7-1553-4280-bc45-a71824c2ce36.html`
