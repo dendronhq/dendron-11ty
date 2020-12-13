@@ -34,17 +34,6 @@ const buildSass = async function () {
   } catch (error) {
     console.error(`Error writing generated CSS: ${error}`);
   }
-
-  // TODO
-//   if (!isProduction && fileExisted) {
-//     // Tell browserSync to reload.
-//     try {
-//       await fetch(
-//         'http://localhost:8081/__browser_sync__?method=reload&args=styles.css'
-//       );
-//     } catch (error) {
-//       console.error(`Couldn't communicate with browserSync!`);
-//     }
-//   }
 };
-buildSass();
+
+module.exports = { buildStyles: buildSass }

@@ -5,6 +5,7 @@ const remark = require("remark");
 const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
 const { buildSearch } = require("./bin/build-search.js");
+const { buildStyles } = require("./bin/build-styles.js");
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
@@ -68,7 +69,8 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.on('afterBuild', () => {
-    buildSearch()
+    buildSearch();
+    buildStyles();
   });
 
   return {
