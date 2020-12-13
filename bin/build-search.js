@@ -1,5 +1,5 @@
-fs = require('fs')
-path = require("path")
+const fs = require('fs-extra');
+const path = require("path");
 
 async function buildSearch() {
   // Inside the function for async/await functionality.
@@ -24,7 +24,9 @@ async function buildSearch() {
     }
   })
 
-  fs.writeFileSync('./_data/search-data.js', JSON.stringify(search_data))
+  const searchDataPath = path.join(__dirname, "..", "_site", "assets", "js", "search-data.json");
+  fs.ensureDirSync(path.dirname(searchDataPath));
+  fs.writeJSONSync(searchDataPath, search_data);
 
   // Create the assets/js directory if it hasn't already been created.
   if (!fs.existsSync(path.join(__dirname, "../_site/assets/js/"))) {
