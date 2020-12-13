@@ -9,15 +9,16 @@ dendron-11ty is currently a work in progress and is not meant to be used in prod
 yarn
 
 ```sh
-npx eleventy --watch --serve
-node bin/build-styles.js
+env WS_ROOT="" ENGINE_PORT=3006 npx eleventy --watch --serve
 ```
 
-- open `http://localhost:8080/`
+- open `http://localhost:8080/notes/b0fe6ef7-1553-4280-bc45-a71824c2ce36.html`
 
 # Tasks
 - [ ] make the arrows smaller on the nav
 - [ ] migrate search functionality 
-- [ ] load notes based on dynamic pages
-    https://www.11ty.dev/docs/pages-from-data/
+    - [x] build search data
+    - [ ] integrate search js fields
+- [x] load notes based on dynamic pages
+- [x] render dendron specific markdown 
 - [ ] restrict published notes based on dendron site configuration

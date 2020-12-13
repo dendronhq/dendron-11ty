@@ -1,16 +1,14 @@
 const _ = require("lodash");
 const shortcodes = require("./libs/shortcodes");
-const { EngineConnector } = require("@dendronhq/engine-server");
 const remark = require("remark");
 const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
 const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
+const env = require("./_data/processEnv");
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
-  // eleventyConfig.addPlugin(eleventyRemark);
-  // eleventyConfig.setLibrary("liquid", liquidParser);
   eleventyConfig.setTemplateFormats(["scss", "css", "liquid", "md"]);
   eleventyConfig.setLiquidOptions({
     dynamicPartials: false,
@@ -56,21 +54,10 @@ module.exports = function (eleventyConfig) {
 
   // --- shortcodes
   eleventyConfig.addPlugin(shortcodes);
-  eleventyConfig.addLiquidShortcode("domains", async function () {
-    const ec = new EngineConnector({
-      wsRoot: "/Users/kevinlin/projects/dendronv2/dendron-site",
-    });
-    await ec.init({ portOverride: 3006 });
-    const resp = await ec.engine.queryNotes({ qs: "root" });
-    const domains = resp.data[0].children.map((id) =>
-      JSON.stringify(ec.engine.notes[id])
-    );
-    return domains;
-  });
 
   eleventyConfig.on('afterBuild', () => {
-    buildSearch();
     buildStyles();
+    buildSearch();
   });
 
   return {
