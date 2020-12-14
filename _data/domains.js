@@ -1,19 +1,17 @@
-const {EngineConnector} = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const path = require("path");
 const site = require(`${__dirname}/site`)
+const {env, getEngine} = require(path.join(__dirname, "..", "libs", "utils.js"));
+const _ = require("lodash");
 
 async function getDomains() {
-    // const ec = new EngineConnector({wsRoot: "/Users/kevinlin/projects/dendronv2/dendron-site"})
-    // await ec.init({portOverride: 3006})
-    // const resp = await ec.engine.queryNotes({qs: "root"})
-    const noteList = fs.readJSONSync(path.join(__dirname, "notes.json"));
-    const notes = {}
-    noteList.forEach(n => {
-        notes[n.id] = n;
-    });
-    const root = notes['root'];
-    const domains = root.children.map(id => (enhanceNodeForLiquid(notes[id])));
+    const notes = await require("./notes.js")();
+    const root = _.find(notes, {fname: "root"});
+    let allChildren = root.children;
+    if (env.proto) {
+        allChildren = _.filter(allChildren, id => id in notes);
+    }
+    const domains = allChildren.map(id => (enhanceNodeForLiquid(notes[id])));
     return domains;
 }
 

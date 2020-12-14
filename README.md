@@ -34,6 +34,14 @@ env WS_ROOT=/Users/kevinlin/projects/dendronv2/dendron-site ENGINE_PORT=3006 npx
 
 - open `http://localhost:8080/notes/b0fe6ef7-1553-4280-bc45-a71824c2ce36.html`
 
+# Prototyping
+
+In order to test with less data, you can the following command. It will use only the first 10 notes as part of the data, allowing for quicker compile cycles
+
+```sh
+env PROTO=1 WS_ROOT=/Users/kevinlin/projects/dendronv2/dendron-site ENGINE_PORT=3006 npx eleventy --watch --serve
+```
+
 # Tasks
 - [ ] make the arrows smaller on the nav
 - [ ] migrate search functionality 

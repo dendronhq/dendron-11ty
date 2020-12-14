@@ -36,10 +36,6 @@ module.exports = function (eleventyConfig) {
     return _.sortBy(array, field);
   });
 
-  // eleventyConfig.addLiquidFilter("toMd", function(content) {
-  //   return MDUtilsV4.proc({wsRoot: "/Users/kevinlin/projects/dendronv2/dendron-site"}).process(content)
-  // });
-
   eleventyConfig.addLiquidFilter("toHTML", function (content) {
     let processor = remark().use(remarkRehype).use(rehypeStringify);
     return processor.process(content);

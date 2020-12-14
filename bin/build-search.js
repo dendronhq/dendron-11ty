@@ -4,15 +4,15 @@ const path = require("path");
 async function buildSearch() {
   // Inside the function for async/await functionality.
   const site = await require('../_data/site.js')();
+  const notes = await require("../_data/notes.js")();
+  // const noteData = fs.readFileSync(path.join(__dirname, "../_data/notes.json"), 'utf8', function (err, data) {
+  //   if (err) {
+  //     return console.log(err);
+  //   }
+  //   return data
+  // });
 
-  const noteData = fs.readFileSync(path.join(__dirname, "../_data/notes.json"), 'utf8', function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-    return data
-  });
-
-  const search_data = JSON.parse(noteData).map((note, idx) => {
+  const search_data = Object.values(notes).map((note, idx) => {
     const noteUrl = `/docs/${note.id}.html`
     return {
       doc: note.title,
