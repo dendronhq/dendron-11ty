@@ -1,6 +1,7 @@
 const path = require("path");
 const _ = require("lodash");
-const { env, getEngine } = require(path.join(
+const { SiteUtils } = require("@dendronhq/engine-server");
+const { env, getEngine, getDendronConfig } = require(path.join(
   __dirname,
   "..",
   "libs",
@@ -9,14 +10,16 @@ const { env, getEngine } = require(path.join(
 
 async function getNotes() {
   const engine = await getEngine();
-  let notes = engine.notes;
+  const config = getDendronConfig();
+  let notes = await SiteUtils.filterByConfig({ engine, config: config.site });
   if (env.proto) {
-    notes = {};
-    _.keys(engine.notes)
+    const _notes = {};
+    _.keys(notes)
       .slice(0, 10)
       .forEach((k) => {
-        notes[k] = engine.notes[k];
+        _notes[k] = notes[k];
       });
+    notes = _notes;
   }
   return notes;
 }

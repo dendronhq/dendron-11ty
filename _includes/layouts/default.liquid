@@ -1,5 +1,6 @@
 {%- assign hierarchy = site.pages %}
 {%- assign top_nodes = domains %}
+
 <!DOCTYPE html>
 
 <html lang="{{ site.lang | default: 'en-US' }}">
@@ -135,11 +136,13 @@
         {% endcomment %}
         {{ content }}
 
+        {% comment %}
         {%- if page.has_collection -%}
           {% include includes/documents-collection.liquid, sort_by:page.sort_by sort_order:page.sort_order type:page.entries_layout %}
         {%- elsif page.has_toc != false -%}
           {%- include includes/toc.liquid -%}
         {%- endif -%}
+        {% endcomment %}
 
         {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
           <hr>

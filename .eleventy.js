@@ -1,4 +1,5 @@
 const _ = require("lodash");
+const path = require("path");
 const shortcodes = require("./libs/shortcodes");
 const remark = require("remark");
 const remarkRehype = require("remark-rehype");
@@ -19,7 +20,7 @@ module.exports = function (eleventyConfig) {
 
   // --- filters
   eleventyConfig.addFilter("absolute_url", async function (variable) {
-    const site = require(`${__dirname}/_data/site.js`)();
+    const site = require(`${__dirname}/_data/site.js`);
     // TODO: this isn't right
     const out = _.join([site.url, variable], "/");
     return out;
@@ -34,6 +35,13 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addLiquidFilter("sort", function (array, field) {
     return _.sortBy(array, field);
+  });
+  // dendron specific
+  eleventyConfig.addLiquidFilter("noteURL", function (note) {
+    const site = require(`${__dirname}/_data/site.js`);
+    // TODO: only for proto
+    const id = _.get(note, 'id', '')
+    return path.join(site().notePrefix, id + ".html");
   });
 
   eleventyConfig.addLiquidFilter("toHTML", function (content) {
