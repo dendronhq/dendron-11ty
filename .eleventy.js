@@ -36,13 +36,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("sort", function (array, field) {
     return _.sortBy(array, field);
   });
-  // dendron specific
-  eleventyConfig.addLiquidFilter("noteURL", function (note) {
-    const site = require(`${__dirname}/_data/site.js`);
-    // TODO: only for proto
-    const id = _.get(note, 'id', '')
-    return path.join(site().notePrefix, id + ".html");
-  });
 
   eleventyConfig.addLiquidFilter("toHTML", function (content) {
     let processor = remark().use(remarkRehype).use(rehypeStringify);
@@ -54,6 +47,41 @@ module.exports = function (eleventyConfig) {
     //where_exp:"item", "item.nav_order != nil" -%}
     //return _.groupBy(collection, groupByKey)
     return collection;
+  });
+  // dendron specific
+  eleventyConfig.addLiquidFilter("noteURL", function (note) {
+    const site = require(`${__dirname}/_data/site.js`);
+    // TODO: only for proto
+    const id = _.get(note, 'id', '')
+    return path.join(site().notePrefix, id + ".html");
+  });
+  eleventyConfig.addLiquidFilter("toNote", function (id) {
+    const notes = require(`${__dirname}/_data/notes.js`);
+    // TODO: only for proto
+    const note = _.get(notes, id, '')
+    return note;
+  });
+  eleventyConfig.addLiquidFilter("urlToNote", function (url, notes) {
+    const noteId = removeExtension(url.split("/").slice(-1)[0], ".html")
+    const note = _.get(notes, noteId, '')
+    return note;
+  });
+  eleventyConfig.addLiquidFilter("toNotes", async function (ids) {
+    const notes = await require(`${__dirname}/_data/notes.js`)();
+    const out = _.map(ids, id => notes[id]);
+    return out;
+  });
+
+  eleventyConfig.addLiquidFilter("noteParents", function (note, notes) {
+    const out = [];
+    while (note.parent !== null) {
+      out.push(note);
+      note = notes[note.parent];
+    }
+    out.push(note);
+    let res = _.reverse(out).map(ent => ent.id).join(",")
+    console.log("bond5", res);
+    return res;
   });
 
   // --- shortcodes
@@ -73,3 +101,11 @@ module.exports = function (eleventyConfig) {
     },
   };
 };
+
+function removeExtension(nodePath, ext) {
+  const idx = nodePath.lastIndexOf(ext);
+  if (idx > 0) {
+    nodePath = nodePath.slice(0, idx);
+  }
+  return nodePath;
+}

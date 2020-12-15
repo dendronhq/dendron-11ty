@@ -7,7 +7,9 @@ const _ = require("lodash");
 async function getDomains() {
     const notes = await require("./notes.js")();
     const allChildren = _.filter(notes, {parent: null});
-    const domains = allChildren.map(note => (enhanceNodeForLiquid(note)));
+    const domains = allChildren.map(note => (note.id));
+    // const domains = allChildren.map(note => (enhanceNodeForLiquid(note)));
+    // return domains;
     return domains;
 }
 

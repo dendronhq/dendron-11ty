@@ -1,9 +1,7 @@
-{%- assign hierarchy = site.pages %}
-{%- assign top_nodes = domains %}
-
 <!DOCTYPE html>
 
 <html lang="{{ site.lang | default: 'en-US' }}">
+{%- assign nodeCurrent = page.url | urlToNote: notes -%}
 {% include includes/head.liquid %}
 
 <body>
@@ -42,14 +40,14 @@
   
     <div class="side-bar">
       <div class="site-header">
-        <a href="{{ '/' | absolute_url }}" class="site-title lh-tight">{% include includes/title.liquid %} </a>
+        <a href="{{ '/' }}" class="site-title lh-tight">{% include includes/title.liquid %} </a>
         <a href="#" id="menu-button" class="site-button">
           <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
         </a>
       </div>
 
       <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-        {%- include includes/nav.liquid, nodes: top_nodes -%}
+        {%- include includes/nav2.liquid -%}
       </nav>
       <footer class="site-footer">
         🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
@@ -86,10 +84,10 @@
     </div>
     <div id="main-content-wrap" class="main-content-wrap">
       {% unless page.url == "/" %}
-        {% if page.parent %}
+        {% if nodeCurrent.parent %}
           <nav aria-label="Breadcrumb" class="breadcrumb-nav">
             <ol class="breadcrumb-nav-list">
-              {%- include crumbs.html nodes=top_nodes -%}
+              {%- include includes/crumbs.liquid  -%}
             </ol>
           </nav>
         {% endif %}

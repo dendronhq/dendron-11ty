@@ -1,8 +1,8 @@
-{%- assign groups = nodes | sort:"name" -%}
+{%- assign nodeCurrent = page.url | urlToNote: notes -%}
 
 
 <ul class="nav-list">
-    {%- for id in groups -%}
+    {%- for id in nodeCurrent.children -%}
 
       {%- assign node = notes[id]  -%}
       {% comment %}
@@ -12,18 +12,16 @@
 
       {%- if node.children.size > 0 and node.permalink != '/' -%}
       {%- unless node.expand_exclude -%}
-      {% comment %}
       <a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
-      {% endcomment %}
       {%- endunless -%}
       {%- endif -%}
 
-      <a href="{{ node | noteURL }}" class="nav-list-link{% if active %} active{% endif %}">{{ node.title }}</a>
+
+      <a href="{{ node | noteURL }}" class="nav-list-link active">{{ node.title }}</a>
       {%- assign active = false -%}
 
       {%- assign children = node.children -%}
       {%- if children -%}
-      found children
       {% comment %}
           {%- include includes/nav.liquid, nodes=children -%}
       {% endcomment %}
