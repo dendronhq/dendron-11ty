@@ -72,6 +72,13 @@ module.exports = function (eleventyConfig) {
     return out;
   });
 
+  eleventyConfig.addLiquidFilter("noteParent", function (note, notes) {
+    if (_.isNull(note.parent) || _.isUndefined(note.parent)) {
+      return;
+    } else {
+      return notes[note.parent]
+    }
+  });
   eleventyConfig.addLiquidFilter("noteParents", function (note, notes) {
     const out = [];
     while (note.parent !== null) {

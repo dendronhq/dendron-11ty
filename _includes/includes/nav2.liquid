@@ -1,32 +1,45 @@
-{%- assign nodeCurrent = page.url | urlToNote: notes -%}
+{%- assign nodeParent = nodeCurrent | noteParent: notes -%}
 
+{% unless nodeParent %}
+{%- assign nodeParent = nodeCurrent -%}
+{% endunless %}
 
 <ul class="nav-list">
-    {%- for id in nodeCurrent.children -%}
+      <li class="nav-list-item active">
+      <a href="{{ nodeParent | noteURL }}" class="nav-list-link active">{{ nodeParent.title }}</a>
 
-      {%- assign node = notes[id]  -%}
-      {% comment %}
-      {%- include includes/active.liquid, node: node -%}
-      {% endcomment %}
-      <li class="nav-list-item{% if active %} active{% endif %}"></li>
+      <ul class="nav-list">
+        {%- for id in nodeParent.children -%}
+          {%- assign node = notes[id]  -%}
+          {%- if nodeCurrent.id == id -%}
+            {%- assign active = true -%}
+          {% else %}
+            {%- assign active = false -%}
+          {% endif %}
 
-      {%- if node.children.size > 0 and node.permalink != '/' -%}
-      {%- unless node.expand_exclude -%}
-      <a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
-      {%- endunless -%}
-      {%- endif -%}
+          {% if node.custom.nav_exclude %}
+          {% else %}
+          <li class="nav-list-item{% if active %} active{% endif %}"></li>
+          <a href="{{ node | noteURL }}" data="{{id}}" class="nav-list-link {% if active %} active {% endif %}">{{ node.title }}</a>
 
+          {% if id == nodeCurrent.id and nodeParent.id != nodeCurrent.id and nodeCurrent.children.size > 0 %}
+            <ul class="nav-list" style="padding-left: 1rem; padding-right: 2rem; line-height: 1.5rem, min-height: 2rem;">
+              {%- for id2 in nodeCurrent.children -%}
+                {%- assign node = notes[id2]  -%}
+                {% if node.custom.nav_exclude %}
+                {% else %}
+                <li class="nav-list-item"></li>
+                <a href="{{ node | noteURL }}" data="{{id2}}" class="nav-list-link ">{{ node.title }}</a>
+                </li>
+                {% endif %}
+              {%- endfor -%}
+            </ul>
+          {% endif %}
 
-      <a href="{{ node | noteURL }}" class="nav-list-link active">{{ node.title }}</a>
-      {%- assign active = false -%}
-
-      {%- assign children = node.children -%}
-      {%- if children -%}
-      {% comment %}
-          {%- include includes/nav.liquid, nodes=children -%}
-      {% endcomment %}
-      {%- endif -%}
-
-      </li>
-    {%- endfor -%}
+          </li>
+          {% endif %}
+        {%- endfor -%}
+      </ul>
+    </li>
 </ul>
+
