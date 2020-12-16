@@ -1,34 +1,63 @@
-{%- assign groups = nodes | sort:"name" -%}
-
+{%- assign nodeCurrent = page.url | urlToNote: notes -%}
+{%- assign nodeParents = nodeCurrent | noteParents: notes | split: ','  -%}
 
 <ul class="nav-list">
-    {%- for id in groups -%}
+    {%- for noteId in navNotes -%}
+        {%- assign node = notes[noteId]  -%}
+        {% if nodeCurrent.id == node.id or node.custom.permalink == "/" or nodeParents contains node.id%}
+        {%- assign active = true -%}
+        {%- endif -%}
 
-      {%- assign node = notes[id]  -%}
-      {% comment %}
-      {%- include includes/active.liquid, node: node -%}
-      {% endcomment %}
-      <li class="nav-list-item{% if active %} active{% endif %}"></li>
+        <li class="nav-list-item{% if active %} active{% endif %}">
+          {%- if node.children.size > 0 and node.custom.permalink != '/' -%}
+          {%- unless node.expand_exclude -%}
+          <a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
+          {%- endunless -%}
+          {%- endif -%}
 
-      {%- if node.children.size > 0 and node.permalink != '/' -%}
-      {%- unless node.expand_exclude -%}
-      {% comment %}
-      <a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
-      {% endcomment %}
-      {%- endunless -%}
-      {%- endif -%}
+          <a href="{{ node | noteURL }}" data="{{id}}" class="nav-list-link {% if active %} active {% endif %}">{{ node.title }}</a>
+          {%- assign active = false -%}
 
-      <a href="{{ node | noteURL }}" class="nav-list-link{% if active %} active{% endif %}">{{ node.title }}</a>
-      {%- assign active = false -%}
-
-      {%- assign children = node.children -%}
-      {%- if children -%}
-      found children
-      {% comment %}
-          {%- include includes/nav.liquid, nodes=children -%}
-      {% endcomment %}
-      {%- endif -%}
-
-      </li>
+          {%- if node.children.size > 0 -%}
+            {%- assign children = node.children | join: "," | split: "," -%}
+            {%- include includes/nav.liquid navNotes:children -%}
+          {%- endif -%}
+        </li>
     {%- endfor -%}
 </ul>
+{% comment %}
+      {%- assign ordered_pages_list = group.items | where_exp:"item", "item.nav_order != nil" -%}
+      {%- assign unordered_pages_list = group.items| where_exp:"item", "item.nav_order == nil" -%}
+      {%- if site.nav_sort == 'case_insensitive' -%}
+        {%- assign sorted_ordered_pages_list = ordered_pages_list | sort_natural:"nav_order" -%}
+        {%- assign sorted_unordered_pages_list = unordered_pages_list | sort_natural:"title" -%}
+      {%- else -%}
+        {%- assign sorted_ordered_pages_list = ordered_pages_list | sort:"nav_order" -%}
+        {%- assign sorted_unordered_pages_list = unordered_pages_list | sort:"title" -%}
+      {%- endif -%}
+      {%- assign pages_list = sorted_ordered_pages_list | concat: sorted_unordered_pages_list -%}
+
+      {%- for node in pages_list -%}
+
+        {%- include active.html node=node -%}
+
+        <li class="nav-list-item{% if active %} active{% endif %}">
+          {%- if node.children.size > 0 and node.permalink != '/' -%}
+          {%- unless node.expand_exclude -%}
+          <a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>
+          {%- endunless -%}
+          {%- endif -%}
+        <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if active %} active{% endif %}">{{ node.title }}</a>
+            {%- assign active = false -%}
+            {%- assign children = hierarchy | where_exp:"item", "item.name == node.id" | map: "items" | first -%}
+            {%- if children -%}
+              {%- if node.has_collection -%}
+              {%- else -%}
+                {%- include nav.html nodes=children -%}
+              {%- endif -%}
+            {%- endif -%}
+        </li>
+      {%- endfor -%}
+
+
+{% endcomment %}

@@ -1,4 +1,5 @@
 const path = require("path");
+const fs = require("fs-extra");
 const _ = require("lodash");
 const { SiteUtils } = require("@dendronhq/engine-server");
 const { env, getEngine, getDendronConfig } = require(path.join(
@@ -9,18 +10,14 @@ const { env, getEngine, getDendronConfig } = require(path.join(
 ));
 
 async function getNotes() {
+  if (env.proto) {
+    const notes = fs.readJSONSync(path.join(__dirname, "notes-proto.json"))
+    return notes;
+  }
   const engine = await getEngine();
   const config = getDendronConfig();
   let notes = await SiteUtils.filterByConfig({ engine, config: config.site });
-  if (env.proto) {
-    const _notes = {};
-    _.keys(notes)
-      .slice(0, 10)
-      .forEach((k) => {
-        _notes[k] = notes[k];
-      });
-    notes = _notes;
-  }
+
   return notes;
 }
 

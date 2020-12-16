@@ -51,7 +51,7 @@ module.exports = function (eleventyConfig) {
   });
   // dendron specific
   eleventyConfig.addLiquidFilter("noteURL", function (note) {
-    const out = _.get(note, "custom.permalink", `${site.notePrefix}/${note.id}.html`)
+    const out = _.get(note, "custom.permalink", `${site.notePrefix}${note.id}.html`)
     return out;
   });
   eleventyConfig.addLiquidFilter("toNote", function (id) {
@@ -80,13 +80,13 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addLiquidFilter("noteParents", function (note, notes) {
     const out = [];
+    if (!note) { return []}
     while (note.parent !== null) {
       out.push(note);
       note = notes[note.parent];
     }
     out.push(note);
     let res = _.reverse(out).map(ent => ent.id).join(",")
-    console.log("bond5", res);
     return res;
   });
 
