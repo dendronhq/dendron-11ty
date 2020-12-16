@@ -2,6 +2,7 @@ const path = require("path");
 const { createLogger, resolvePath } = require("@dendronhq/common-server");
 const _env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 const { EngineConnector, DConfig } = require("@dendronhq/engine-server");
+const fs = require("fs-extra");
 
 const getEngine = async () => {
   const engineConnector = EngineConnector.getOrCreate({
@@ -21,6 +22,10 @@ const getDendronConfig = () => {
   return config;
 };
 
+const getSiteConfig= () => {
+  return getDendronConfig().site
+};
+
 const logger = () => {
   const logger = createLogger();
   return logger;
@@ -29,7 +34,13 @@ const logger = () => {
 const getSiteOutputPath = () => {
   const wsRoot = env.wsRoot;
   const config = getDendronConfig();
-  const siteRootPath = resolvePath(config.site.siteRootDir, wsRoot);
+  let siteRootPath;
+  if (env.stage === "dev") {
+    siteRootPath = path.join(wsRoot, "build", "site")
+    fs.ensureDirSync(siteRootPath);
+  } else {
+    siteRootPath = resolvePath(config.site.siteRootDir, wsRoot);
+  }
   return siteRootPath;
 };
 
@@ -41,6 +52,7 @@ module.exports = {
   getEngine,
   env,
   getDendronConfig,
+  getSiteConfig,
   logger,
   resolvePath,
   getSiteOutputPath,

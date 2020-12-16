@@ -8,7 +8,7 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { copyAssets } = require("./bin/copy-assets.js");
 const site = require("./_data/site")();
-const {getSiteOutputPath} = require("./libs/utils");
+const {getSiteOutputPath, getSiteConfig, env} = require("./libs/utils");
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
@@ -21,11 +21,14 @@ module.exports = function (eleventyConfig) {
   });
 
   // --- filters
-  eleventyConfig.addFilter("absolute_url", async function (variable) {
-    const site = require(`${__dirname}/_data/site.js`);
-    // TODO: this isn't right
-    const out = _.join([site.url, variable], "/");
-    return out;
+  eleventyConfig.addLiquidFilter("absolute_url", function (variable) {
+    const siteUrl = getSiteConfig().siteUrl;
+    if (siteUrl && env.stage !== "dev" ) {
+      const out = path.join(siteUrl, variable);
+      console.log("bond", out);
+      return out;
+    }
+    return variable;
   });
 
   eleventyConfig.addLiquidFilter("group_by", function (collection, groupByKey) {
@@ -65,11 +68,6 @@ module.exports = function (eleventyConfig) {
     const noteId = removeExtension(url.split("/").slice(-1)[0], ".html")
     const note = _.get(notes, noteId, '')
     return note;
-  });
-  eleventyConfig.addLiquidFilter("toNotes", async function (ids) {
-    const notes = await require(`${__dirname}/_data/notes.js`)();
-    const out = _.map(ids, id => notes[id]);
-    return out;
   });
 
   eleventyConfig.addLiquidFilter("noteParent", function (note, notes) {
