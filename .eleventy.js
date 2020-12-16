@@ -99,6 +99,17 @@ module.exports = function (eleventyConfig) {
     buildSearch();
     copyAssets();
   });
+  // console.log("bond", __dirname)
+  // const prefix = path.join(__dirname);
+  // console.log("bond2", prefix)
+  // return {
+  //   dir: {
+  //     input: path.join(prefix, "*"),
+  //     includes: path.join(prefix, "_includes"),
+  //     data: path.join(prefix, "_data"),
+  //     output: "_site",
+  //   },
+  // };
 
   return {
     dir: {

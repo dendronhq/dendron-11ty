@@ -1,0 +1,10 @@
+version: 1
+vaults:
+    -
+        fsPath: vault
+site:
+    copyAssets: true
+    siteHierarchies:
+        - dendron
+    siteRootDir: _site
+    usePrettyRefs: true
