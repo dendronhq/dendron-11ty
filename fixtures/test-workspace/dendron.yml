@@ -6,5 +6,5 @@ site:
     copyAssets: true
     siteHierarchies:
         - dendron
-    siteRootDir: _site
+    siteRootDir: docs
     usePrettyRefs: true
