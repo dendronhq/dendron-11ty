@@ -3,7 +3,9 @@ module.exports = function () {
     title: "Dendron",
     url: "",
     logo: "/assets/images/logo.png",
+    // TODO: deprecate
     notePrefix: "/notes/",
+    search_enabled: true,
     pages: [
       {
         children: "",

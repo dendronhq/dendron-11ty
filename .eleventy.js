@@ -8,7 +8,7 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { copyAssets } = require("./bin/copy-assets.js");
 const site = require("./_data/site")();
-const { getSiteOutputPath, getSiteConfig, env } = require("./libs/utils");
+const { getSiteOutputPath,  NOTE_UTILS } = require("./libs/utils");
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
@@ -19,17 +19,11 @@ module.exports = function (eleventyConfig) {
     root: ["_includes"],
     extname: ".liquid",
   });
+  eleventyConfig.addPassthroughCopy("assets/js/vendor");
 
   // --- filters
   eleventyConfig.addLiquidFilter("absolute_url", function (variable) {
-    const siteUrl = getSiteConfig().siteUrl;
-    if (siteUrl && env.stage !== "dev") {
-      const out = getSiteConfig().siteProtocol + "://" + path.join(siteUrl, variable);
-      return out;
-    } else {
-      // TODO: don't hardcode
-      return "http://" + path.join("localhost:8080", variable);
-    }
+    return NOTE_UTILS.getAbsUrl(variable)
   });
 
   eleventyConfig.addLiquidFilter("group_by", function (collection, groupByKey) {
@@ -56,12 +50,7 @@ module.exports = function (eleventyConfig) {
   });
   // dendron specific
   eleventyConfig.addLiquidFilter("noteURL", function (note) {
-    const out = _.get(
-      note,
-      "custom.permalink",
-      `${site.notePrefix}${note.id}.html`
-    );
-    return out;
+    return NOTE_UTILS.getUrl(note)
   });
   eleventyConfig.addLiquidFilter("toNote", function (id) {
     const notes = require(`${__dirname}/_data/notes.js`);

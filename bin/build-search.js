@@ -1,36 +1,29 @@
 const fs = require('fs-extra');
 const path = require("path");
+const { env, getDendronConfig, NOTE_UTILS, logger, getSiteOutputPath, getSiteConfig } = require("../libs/utils");
 
 async function buildSearch() {
   // Inside the function for async/await functionality.
-  const site = await require('../_data/site.js')();
   const notes = await require("../_data/notes.js")();
 
   const search_data = Object.values(notes).map((note, idx) => {
-    const noteUrl = `/docs/${note.id}.html`
+    const siteUrl = getSiteConfig().siteUrl;
+    // const noteUrl = `/docs/${note.id}.html`
+    const noteUrl = NOTE_UTILS.getUrl(note);
+    const absUrl = NOTE_UTILS.getAbsUrl(noteUrl);
+
     return {
       doc: note.title,
       title: note.title,
       hpath: note.fname,
       content: note.body,
-      url: `${site.url}${noteUrl}`,
+      url: absUrl,
       relUrl: noteUrl
     }
   })
-
-  const searchDataPath = path.join(__dirname, "..", "_site", "assets", "js", "search-data.json");
+  const searchDataPath = path.join(getSiteOutputPath(), "assets", "js", "search-data.json")
   fs.ensureDirSync(path.dirname(searchDataPath));
   fs.writeJSONSync(searchDataPath, search_data);
-
-  // Create the assets/js directory if it hasn't already been created.
-  if (!fs.existsSync(path.join(__dirname, "../_site/assets/js/"))) {
-    fs.mkdirSync(path.join(__dirname, "../_site/assets/js/"), 0744)
-  }
-
-  // Copies over the lunr library.
-  if (!fs.existsSync(path.join(__dirname, "../_site/assets/js/lunr.min.js"))) {
-    fs.copyFileSync(path.join(__dirname, "../assets/js/vendor/lunr.min.js"), path.join(__dirname, "../_site/assets/js/lunr.min.js"))
-  }
 }
 
 module.exports = { buildSearch }
