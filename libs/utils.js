@@ -1,4 +1,5 @@
 const path = require("path");
+const { createLogger } = require('@dendronhq/common-server');
 const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 const {
     EngineConnector,
@@ -22,4 +23,11 @@ const getDendronConfig = () => {
     const wsRoot = env.wsRoot
     return DConfig.getOrCreate(wsRoot)
 }
-module.exports = { getEngine, env, getDendronConfig };
+
+const logger = () => {
+  const logger = createLogger();
+  return logger;
+}
+
+
+module.exports = { getEngine, env, getDendronConfig, logger };
