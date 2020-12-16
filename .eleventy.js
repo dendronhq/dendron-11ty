@@ -7,8 +7,8 @@ const rehypeStringify = require("rehype-stringify");
 const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { copyAssets } = require("./bin/copy-assets.js");
-const env = require("./_data/processEnv");
 const site = require("./_data/site")();
+const {getSiteOutputPath} = require("./libs/utils");
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
@@ -99,24 +99,13 @@ module.exports = function (eleventyConfig) {
     buildSearch();
     copyAssets();
   });
-  // console.log("bond", __dirname)
-  // const prefix = path.join(__dirname);
-  // console.log("bond2", prefix)
-  // return {
-  //   dir: {
-  //     input: path.join(prefix, "*"),
-  //     includes: path.join(prefix, "_includes"),
-  //     data: path.join(prefix, "_data"),
-  //     output: "_site",
-  //   },
-  // };
 
   return {
     dir: {
       input: ".",
       includes: "_includes",
       data: "_data",
-      output: "_site",
+      output: getSiteOutputPath(),
     },
   };
 };

@@ -1,18 +1,14 @@
 const path = require("path");
-const { createLogger } = require('@dendronhq/common-server');
-const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
-const {
-    EngineConnector,
-    DConfig
-} = require("@dendronhq/engine-server");
-
+const { createLogger, resolvePath } = require("@dendronhq/common-server");
+const _env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
+const { EngineConnector, DConfig } = require("@dendronhq/engine-server");
 
 const getEngine = async () => {
   const engineConnector = EngineConnector.getOrCreate({
     wsRoot: env.wsRoot,
   });
   if (!engineConnector.initialized) {
-    console.log("init engine")
+    console.log("init engine");
     await engineConnector.init({ portOverride: env.enginePort });
   }
   const engine = engineConnector.engine;
@@ -20,17 +16,32 @@ const getEngine = async () => {
 };
 
 const getDendronConfig = () => {
-    const wsRoot = env.wsRoot
-    const config = DConfig.getOrCreate(wsRoot)
-    // TODO: for testing
-    config.site.siteRootDir = "_site";
-    return config;
-}
+  const wsRoot = env.wsRoot;
+  const config = DConfig.getOrCreate(wsRoot);
+  return config;
+};
 
 const logger = () => {
   const logger = createLogger();
   return logger;
-}
+};
 
+const getSiteOutputPath = () => {
+  const wsRoot = env.wsRoot;
+  const config = getDendronConfig();
+  const siteRootPath = resolvePath(config.site.siteRootDir, wsRoot);
+  return siteRootPath;
+};
 
-module.exports = { getEngine, env, getDendronConfig, logger };
+const env = {
+  ..._env,
+};
+
+module.exports = {
+  getEngine,
+  env,
+  getDendronConfig,
+  logger,
+  resolvePath,
+  getSiteOutputPath,
+};

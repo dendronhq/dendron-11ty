@@ -1,7 +1,7 @@
 const { SiteUtils } = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const path = require("path");
-const { env, getDendronConfig, logger } = require("../libs/utils");
+const { env, getDendronConfig, logger, getSiteOutputPath } = require("../libs/utils");
 
 async function copyAssets() {
   const ctx = "copyAssets";
@@ -9,7 +9,7 @@ async function copyAssets() {
   const wsRoot = env.wsRoot;
   const config = getDendronConfig();
   const vaults = config.vaults;
-  const siteAssetsDir = path.join(config.site.siteRootDir, "assets");
+  const siteAssetsDir = path.join(getSiteOutputPath(), "assets");
   if (!config.site.copyAssets) {
     logger().info({ ctx, msg: "skip copying" });
     return;

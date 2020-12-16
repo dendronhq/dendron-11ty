@@ -3,12 +3,12 @@
 const sass = require('node-sass');
 const fs = require('fs-extra');
 const util = require('util');
+const {getSiteOutputPath} = require("../libs/utils");
+const path = require("path");
 
 const renderSass = util.promisify(sass.render);
-// const inputFile = './assets/css/just-the-docs-default.scss';
-// const inputFile = './src/assets/css/styles.scss';
-const inputFile = '_site/raw-assets/sass/just-the-docs-default.scss';
-const outputFile = './_site/assets/css/just-the-docs-default.css';
+const inputFile = path.join(getSiteOutputPath(), "raw-assets", "sass", "just-the-docs-default.scss")
+const outputFile = path.join(getSiteOutputPath(), "assets", "css", "just-the-docs-default.css")
 const isProduction = process.env.ELEVENTY_ENV;
 
 const buildSass = async function () {
