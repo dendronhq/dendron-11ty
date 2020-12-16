@@ -21,7 +21,10 @@ const getEngine = async () => {
 
 const getDendronConfig = () => {
     const wsRoot = env.wsRoot
-    return DConfig.getOrCreate(wsRoot)
+    const config = DConfig.getOrCreate(wsRoot)
+    // TODO: for testing
+    config.site.siteRootDir = "_site";
+    return config;
 }
 
 const logger = () => {
