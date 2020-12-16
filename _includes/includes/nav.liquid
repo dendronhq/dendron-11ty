@@ -15,7 +15,7 @@
           {%- endunless -%}
           {%- endif -%}
 
-          <a href="{{ node | noteURL }}" data="{{id}}" class="nav-list-link {% if active %} active {% endif %}">{{ node.title }}</a>
+          <a href="{{ node | noteURL| absolute_url }}" data="{{id}}" class="nav-list-link {% if active %} active {% endif %}">{{ node.title }}</a>
           {%- assign active = false -%}
 
           {%- if node.children.size > 0 -%}

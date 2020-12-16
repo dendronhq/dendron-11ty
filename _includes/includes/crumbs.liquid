@@ -6,7 +6,7 @@
       {%- if id == nodeCurrent.id -%}
         {{ notes[id].title }}
       {%- else -%}
-        <a href="{{ notes[id] | noteURL }}">{{ notes[id].title }}</a>
+        <a href="{{ notes[id] | noteURL | absolute_url }}">{{ notes[id].title }}</a>
       {%- endif -%}
     </li>
 {%- endfor -%}

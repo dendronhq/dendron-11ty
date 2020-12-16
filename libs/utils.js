@@ -19,11 +19,12 @@ const getEngine = async () => {
 const getDendronConfig = () => {
   const wsRoot = env.wsRoot;
   const config = DConfig.getOrCreate(wsRoot);
+  config.site = DConfig.cleanSiteConfig(config.site)
   return config;
 };
 
 const getSiteConfig= () => {
-  return getDendronConfig().site
+  return getDendronConfig().site;
 };
 
 const logger = () => {

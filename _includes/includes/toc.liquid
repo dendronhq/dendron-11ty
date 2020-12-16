@@ -7,7 +7,7 @@
   <ul>
     {%- for tocNode in sorted_nodes -%}
       <li>
-        <a href="{{ notes[tocNode] | noteURL }}">{{ notes[tocNode].title }}</a>
+        <a href="{{ notes[tocNode] | noteURL | absolute_url }}">{{ notes[tocNode].title }}</a>
         {%- if notes[tocNode].summary -%}
           -
           {{ notes[tocNode].summary }}

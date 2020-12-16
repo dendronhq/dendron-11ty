@@ -8,7 +8,7 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { copyAssets } = require("./bin/copy-assets.js");
 const site = require("./_data/site")();
-const {getSiteOutputPath, getSiteConfig, env} = require("./libs/utils");
+const { getSiteOutputPath, getSiteConfig, env } = require("./libs/utils");
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
@@ -23,12 +23,13 @@ module.exports = function (eleventyConfig) {
   // --- filters
   eleventyConfig.addLiquidFilter("absolute_url", function (variable) {
     const siteUrl = getSiteConfig().siteUrl;
-    if (siteUrl && env.stage !== "dev" ) {
-      const out = path.join(siteUrl, variable);
-      console.log("bond", out);
+    if (siteUrl && env.stage !== "dev") {
+      const out = getSiteConfig().siteProtocol + "://" + path.join(siteUrl, variable);
       return out;
+    } else {
+      // TODO: don't hardcode
+      return "http://" + path.join("localhost:8080", variable);
     }
-    return variable;
   });
 
   eleventyConfig.addLiquidFilter("group_by", function (collection, groupByKey) {
@@ -55,18 +56,22 @@ module.exports = function (eleventyConfig) {
   });
   // dendron specific
   eleventyConfig.addLiquidFilter("noteURL", function (note) {
-    const out = _.get(note, "custom.permalink", `${site.notePrefix}${note.id}.html`)
+    const out = _.get(
+      note,
+      "custom.permalink",
+      `${site.notePrefix}${note.id}.html`
+    );
     return out;
   });
   eleventyConfig.addLiquidFilter("toNote", function (id) {
     const notes = require(`${__dirname}/_data/notes.js`);
     // TODO: only for proto
-    const note = _.get(notes, id, '')
+    const note = _.get(notes, id, "");
     return note;
   });
   eleventyConfig.addLiquidFilter("urlToNote", function (url, notes) {
-    const noteId = removeExtension(url.split("/").slice(-1)[0], ".html")
-    const note = _.get(notes, noteId, '')
+    const noteId = removeExtension(url.split("/").slice(-1)[0], ".html");
+    const note = _.get(notes, noteId, "");
     return note;
   });
 
@@ -74,25 +79,29 @@ module.exports = function (eleventyConfig) {
     if (_.isNull(note.parent) || _.isUndefined(note.parent)) {
       return;
     } else {
-      return notes[note.parent]
+      return notes[note.parent];
     }
   });
   eleventyConfig.addLiquidFilter("noteParents", function (note, notes) {
     const out = [];
-    if (!note) { return []}
+    if (!note) {
+      return [];
+    }
     while (note.parent !== null) {
       out.push(note);
       note = notes[note.parent];
     }
     out.push(note);
-    let res = _.reverse(out).map(ent => ent.id).join(",")
+    let res = _.reverse(out)
+      .map((ent) => ent.id)
+      .join(",");
     return res;
   });
 
   // --- shortcodes
   eleventyConfig.addPlugin(shortcodes);
 
-  eleventyConfig.on('afterBuild', () => {
+  eleventyConfig.on("afterBuild", () => {
     buildStyles();
     buildSearch();
     copyAssets();
