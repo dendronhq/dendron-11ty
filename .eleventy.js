@@ -7,6 +7,7 @@ const rehypeStringify = require("rehype-stringify");
 const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const env = require("./_data/processEnv");
+const site = require("./_data/site")();
 
 module.exports = function (eleventyConfig) {
   // --- tempaltes
@@ -50,10 +51,8 @@ module.exports = function (eleventyConfig) {
   });
   // dendron specific
   eleventyConfig.addLiquidFilter("noteURL", function (note) {
-    const site = require(`${__dirname}/_data/site.js`);
-    // TODO: only for proto
-    const id = _.get(note, 'id', '')
-    return path.join(site().notePrefix, id + ".html");
+    const out = _.get(note, "custom.permalink", `${site.notePrefix}/${note.id}.html`)
+    return out;
   });
   eleventyConfig.addLiquidFilter("toNote", function (id) {
     const notes = require(`${__dirname}/_data/notes.js`);
