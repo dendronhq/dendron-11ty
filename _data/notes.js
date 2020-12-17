@@ -17,7 +17,6 @@ async function getNotes() {
   const engine = await getEngine();
   const config = getDendronConfig();
   let notes = await SiteUtils.filterByConfig({ engine, config: config.site });
-
   return notes;
 }
 

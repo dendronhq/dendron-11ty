@@ -9,7 +9,7 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { copyAssets } = require("./bin/copy-assets.js");
 const site = require("./_data/site")();
-const { getSiteOutputPath,  NOTE_UTILS } = require("./libs/utils");
+const { getSiteOutputPath, NOTE_UTILS } = require("./libs/utils");
 
 module.exports = function (eleventyConfig) {
   // --- libraries
@@ -25,10 +25,9 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPassthroughCopy("assets/js/vendor");
 
-
   // --- filters
   eleventyConfig.addLiquidFilter("absolute_url", function (variable) {
-    return NOTE_UTILS.getAbsUrl(variable)
+    return NOTE_UTILS.getAbsUrl(variable);
   });
 
   eleventyConfig.addLiquidFilter("group_by", function (collection, groupByKey) {
@@ -55,7 +54,7 @@ module.exports = function (eleventyConfig) {
   });
   // dendron specific
   eleventyConfig.addLiquidFilter("noteURL", function (note) {
-    return NOTE_UTILS.getUrl(note)
+    return NOTE_UTILS.getUrl(note);
   });
   eleventyConfig.addLiquidFilter("toNote", function (id) {
     const notes = require(`${__dirname}/_data/notes.js`);
@@ -103,7 +102,6 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      input: ".",
       includes: "_includes",
       data: "_data",
       output: getSiteOutputPath(),
