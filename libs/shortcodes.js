@@ -1,29 +1,34 @@
 const remark = require("remark");
 const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
-const {
-  MDUtilsV4,
-  DendronASTDest,
-} = require("@dendronhq/engine-server");
+const raw = require("rehype-raw");
+const { MDUtilsV4, DendronASTDest } = require("@dendronhq/engine-server");
 const path = require("path");
-const { getEngine } = require("./utils");
+const { getEngine, getSiteConfig, NOTE_UTILS } = require("./utils");
 const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 
 async function toMarkdown2(contents, vault) {
-  const linkPrefix = "/notes/";
+  const absUrl = NOTE_UTILS.getAbsUrl();
+  const siteNotesDir = getSiteConfig().siteNotesDir;
+  const linkPrefix = absUrl + "/" + siteNotesDir + "/";
   const engine = await getEngine();
+  const wikiLinksOpts = { useId: true, prefix: linkPrefix };
   const proc = MDUtilsV4.procFull({
     engine,
     dest: DendronASTDest.HTML,
     vault,
-    wikiLinksOpts: { dest: DendronASTDest.HTML, useId: true, prefix: linkPrefix },
+    wikiLinksOpts,
+    noteRefOpts: { wikiLinkOpts: wikiLinksOpts, prettyRefs: true },
   });
   return proc.process(contents);
 }
 
 async function toHTML(contents) {
   const engine = await getEngine();
-  let processor = MDUtilsV4.proc(engine).use(remarkRehype).use(rehypeStringify);
+  let processor = MDUtilsV4.proc(engine)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(raw)
+    .use(rehypeStringify);
   return processor.process(contents);
 }
 

@@ -1,6 +1,7 @@
 const _ = require("lodash");
 const path = require("path");
 const shortcodes = require("./libs/shortcodes");
+const markdown = require("./libs/markdown");
 const remark = require("remark");
 const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
@@ -11,6 +12,9 @@ const site = require("./_data/site")();
 const { getSiteOutputPath,  NOTE_UTILS } = require("./libs/utils");
 
 module.exports = function (eleventyConfig) {
+  // --- libraries
+  eleventyConfig.addPlugin(markdown);
+
   // --- tempaltes
   eleventyConfig.setTemplateFormats(["scss", "css", "liquid", "md"]);
   eleventyConfig.setLiquidOptions({
@@ -20,6 +24,7 @@ module.exports = function (eleventyConfig) {
     extname: ".liquid",
   });
   eleventyConfig.addPassthroughCopy("assets/js/vendor");
+
 
   // --- filters
   eleventyConfig.addLiquidFilter("absolute_url", function (variable) {

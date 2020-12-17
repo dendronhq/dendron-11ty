@@ -60,6 +60,7 @@ class NOTE_UTILS {
   };
 
   static getAbsUrl= (suffix) => {
+    suffix = suffix || "";
     const siteUrl = getSiteConfig().siteUrl;
     if (siteUrl && env.stage !== "dev") {
       const out = getSiteConfig().siteProtocol + "://" + path.join(siteUrl, suffix);
