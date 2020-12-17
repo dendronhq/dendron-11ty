@@ -13,12 +13,12 @@
     "raw-assets"
   ],
   "devDependencies": {
+  },
+  "dependencies": {
     "@11ty/eleventy": "^0.11.1",
     "@dendronhq/common-server": "0.20.1-alpha.0",
     "@dendronhq/engine-server": "0.20.1-alpha.0",
-    "@fec/eleventy-plugin-remark": "^2.1.0"
-  },
-  "dependencies": {
+    "@fec/eleventy-plugin-remark": "^2.1.0",
     "fs-extra": "^9.0.1",
     "liquidjs": "^9.16.1",
     "lodash": "^4.17.20",
