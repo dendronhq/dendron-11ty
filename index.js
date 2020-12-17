@@ -25,6 +25,24 @@ async function compile(env, overrides) {
   elev.setPassthroughAll(argv.passthroughall);
   elev.setFormats(argv.formats);
 
+//   elev
+//   .init()
+//   .then(function () {
+//     if (argv.version) {
+//       console.log(elev.getVersion());
+//     } else if (argv.help) {
+//       console.log(elev.getHelp());
+//     } else if (argv.serve) {
+//       elev.watch().then(function () {
+//         elev.serve(argv.port);
+//       });
+//     } else if (argv.watch) {
+//       elev.watch();
+//     } else {
+//       elev.write();
+//     }
+//   })
+
   // careful, we can’t use async/await here to error properly
   // with old node versions in `please-upgrade-node` above.
   await elev.init();
@@ -41,6 +59,7 @@ async function compile(env, overrides) {
   } else {
     return elev.write();
   }
+
 }
 
 module.exports = {
