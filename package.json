@@ -1,7 +1,7 @@
 {
   "name": "@dendronhq/dendron-11ty",
   "version": "1.0.1",
-  "main": ".eleventy.js",
+  "main": "index.js",
   "license": "AGPLv3",
   "files": [
     "_data",
@@ -10,7 +10,9 @@
     "assets",
     "bin",
     "libs",
-    "raw-assets"
+    "raw-assets",
+    ".eleventy.js",
+    "index.js"
   ],
   "devDependencies": {
   },
