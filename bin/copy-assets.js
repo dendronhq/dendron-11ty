@@ -1,7 +1,13 @@
 const { SiteUtils } = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const path = require("path");
-const { env, getDendronConfig, logger, getSiteOutputPath, getSiteConfig } = require("../libs/utils");
+const {
+  env,
+  getDendronConfig,
+  logger,
+  getSiteOutputPath,
+  getSiteConfig,
+} = require("../libs/utils");
 
 async function copyAssets() {
   const ctx = "copyAssets";
@@ -23,7 +29,15 @@ async function copyAssets() {
   // get favicon
   const faviconPath = path.join(wsRoot, getSiteConfig().siteFaviconPath);
   if (fs.existsSync(faviconPath)) {
-    fs.copySync(faviconPath, path.join(getSiteOutputPath(), "favicon.ico"))
+    fs.copySync(faviconPath, path.join(getSiteOutputPath(), "favicon.ico"));
+  }
+  // check for cname
+  if (getSiteConfig().githubCname) {
+    fs.writeFileSync(
+      path.join(getSiteOutputPath(), "CNAME"),
+      getSiteConfig().githubCname,
+      { encoding: "utf8" }
+    );
   }
 }
 

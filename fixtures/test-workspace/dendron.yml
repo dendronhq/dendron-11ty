@@ -7,5 +7,6 @@ site:
     siteHierarchies:
         - dendron
     siteRootDir: docs
-    siteUrl: "kevinslin.github.io/dendron-11ty-test"
+    siteUrl: "11ty.dendron.so"
     usePrettyRefs: true
+    githubCname: "11ty.dendron.so"
