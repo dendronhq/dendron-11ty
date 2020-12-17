@@ -10,7 +10,6 @@ const getEngine = async () => {
     wsRoot: env.wsRoot,
   });
   if (!engineConnector.initialized) {
-    console.log("init engine");
     await engineConnector.init({ portOverride: env.enginePort });
   }
   const engine = engineConnector.engine;

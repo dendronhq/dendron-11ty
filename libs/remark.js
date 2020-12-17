@@ -13,7 +13,6 @@ function eleventyRemark(options) {
   return {
     set: () => {},
     render: async (str) => {
-      console.log("bond!!");
       const { contents } = await processor.process(str);
       return contents;
     },
