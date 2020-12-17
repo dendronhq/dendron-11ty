@@ -12,6 +12,8 @@ const site = require("./_data/site")();
 const { getSiteOutputPath, NOTE_UTILS } = require("./libs/utils");
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.setUseGitIgnore(false);
+
   // --- libraries
   eleventyConfig.addPlugin(markdown);
 
