@@ -5,14 +5,16 @@ pagination:
     alias: note
     resolve: values
 permalink: "{% if note.custom.permalink == '/' %}index.html{% else %}notes/{{ note.id }}.html{% endif %}"
-templateEngineOverride: liquid,md
+templateEngineOverride: liquid
 layout: layouts/default.liquid
 #templateEngineOverride: liquid
 ---
 {%- assign vault = {{note.vault}} -%}
 
+{% html %}
 {% markdown vault %}
 {{note.body}}
 {% endmarkdown %}
+{% endhtml %}
 
 {%- include includes/toc.liquid note: note-%}

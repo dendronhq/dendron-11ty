@@ -21,8 +21,9 @@ async function toMarkdown2(contents, vault) {
   return proc.process(contents);
 }
 
-function toHTML(contents) {
-  let processor = remark().use(remarkRehype).use(rehypeStringify);
+async function toHTML(contents) {
+  const engine = await getEngine();
+  let processor = MDUtilsV4.proc(engine).use(remarkRehype).use(rehypeStringify);
   return processor.process(contents);
 }
 
