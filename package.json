@@ -1,5 +1,5 @@
 {
-  "name": "dendron-11ty",
+  "name": "@dendronhq/dendron-11ty",
   "version": "1.0.0",
   "main": "index.js",
   "license": "AGPLv3",
