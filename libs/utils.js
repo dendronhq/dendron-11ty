@@ -1,6 +1,6 @@
 const path = require("path");
 const { createLogger, resolvePath } = require("@dendronhq/common-server");
-const _env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
+const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 const { EngineConnector, DConfig } = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const _ = require("lodash");
@@ -43,10 +43,6 @@ const getSiteOutputPath = () => {
     siteRootPath = resolvePath(config.site.siteRootDir, wsRoot);
   }
   return siteRootPath;
-};
-
-const env = {
-  ..._env,
 };
 
 class NOTE_UTILS {
