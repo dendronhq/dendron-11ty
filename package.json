@@ -12,7 +12,8 @@
     "libs",
     "raw-assets",
     ".eleventy.js",
-    "index.js"
+    "index.js",
+    "docs"
   ],
   "devDependencies": {},
   "dependencies": {
