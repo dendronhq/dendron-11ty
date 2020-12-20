@@ -17,6 +17,8 @@ async function getNotes() {
   const engine = await getEngine();
   const config = getDendronConfig();
   let notes = await SiteUtils.filterByConfig({ engine, config: config.site });
+  // // TODO: DEBUG
+  // fs.writeJSONSync("/tmp/notes-debug.txt", notes, {spaces: 4});
   return notes;
 }
 

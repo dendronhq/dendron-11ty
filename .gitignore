@@ -5,3 +5,4 @@ stdout.old
 fixtures/test-workspace/.dendron.port
 fixtures/test-workspace/.dendron.ws
 local
+dist
