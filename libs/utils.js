@@ -70,7 +70,7 @@ class NOTE_UTILS {
         getSiteConfig().siteProtocol + "://" + path.join(siteUrl, suffix);
       return out;
     } else {
-      return "http://" + path.join("localhost:8080", suffix);
+      return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);
     }
   };
 

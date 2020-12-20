@@ -8,5 +8,3 @@ created: 1608147795766
 
 
 This is the logo image 
-
-{% include includes/figure image_path:"/assets/images/logo.jpg" alt:"Human with information overload" %}

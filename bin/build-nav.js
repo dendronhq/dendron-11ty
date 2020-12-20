@@ -6,13 +6,15 @@ function createNav(noteIdsAtLevel, notesDict) {
   let out = [`<ul class="nav-list">`];
   let notesAtLevel = noteIdsAtLevel.map((ent) => notesDict[ent]);
   notesAtLevel = _.filter(notesAtLevel, (ent) => {
-    return !_.get(ent, "custon.nav_exclude", false);
+    return !_.get(ent, "custom.nav_exclude", false);
   });
+  notesAtLevel = _.sortBy(notesAtLevel, ["custom.nav_order", "title"]);
   console.log(JSON.stringify({ctx: "createNav:enter", noteIdsAtLevel}))
   const allLevels = _.map(notesAtLevel, (node) => {
     let level = [];
     let permalink = _.get(node, "custom.permalink", "");
-    level.push(`<li class="nav-list-item" id="${(permalink === "/" ? "root" : node.id)}">`);
+    const elemId = (permalink === "/" ? "root" : node.id);
+    level.push(`<li class="nav-list-item" id="${elemId}">`);
     // $("ul").find(`[data-slide='${current}']`)
     if (node.children.length > 0 && permalink != "/") {
       level.push(
@@ -20,7 +22,7 @@ function createNav(noteIdsAtLevel, notesDict) {
       );
     }
     let href = NOTE_UTILS.getAbsUrl(NOTE_UTILS.getUrl(node));
-    level.push(`<a href="${href}" class="nav-list-link">${node.title}</a>`);
+    level.push(`<a id="a-${elemId}" href="${href}" class="nav-list-link">${node.title}</a>`);
     if (node.children.length > 0) {
       level.push(_.flatMap(createNav(node.children, notesDict)));
     } 

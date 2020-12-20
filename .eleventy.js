@@ -101,9 +101,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(shortcodes);
 
   eleventyConfig.on("beforeBuild", async () => {
-    console.log("build nav")
     await buildNav();
-    console.log("build nav done")
   });
 
   eleventyConfig.on("afterBuild", () => {

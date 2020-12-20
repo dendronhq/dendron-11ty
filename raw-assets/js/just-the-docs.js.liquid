@@ -474,6 +474,8 @@ jtd.onReady(function(){
     node.setAttribute('class', node.getAttribute('class')+' active');
     node = node.parentElement.parentElement;
   } 
+  var linkElem = document.getElementById("a-" + homeOrId);
+  linkElem.setAttribute('class', linkElem.getAttribute('class')+' active');
   initNav();
   {%- if site.search_enabled != false %}
   initSearch();

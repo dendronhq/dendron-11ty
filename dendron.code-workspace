@@ -1,13 +1,7 @@
 {
     "folders": [
         {
-            "path": "../proto/extension-workshop"
-        },
-        {
             "path": "."
-        },
-        {
-            "path": "../ref/eleventy-base-blog"
         },
         {
             "path": "_site/"
