@@ -9,6 +9,7 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { buildNav } = require("./bin/build-nav.js");
 const { copyAssets } = require("./bin/copy-assets.js");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const site = require("./_data/site")();
 const { getSiteOutputPath, NOTE_UTILS } = require("./libs/utils");
 
@@ -97,9 +98,11 @@ module.exports = function (eleventyConfig) {
     return res;
   });
 
-  // --- shortcodes
+  // --- plugins
   eleventyConfig.addPlugin(shortcodes);
+  eleventyConfig.addPlugin(syntaxHighlight);
 
+  // --- events
   eleventyConfig.on("beforeBuild", async () => {
     await buildNav();
   });

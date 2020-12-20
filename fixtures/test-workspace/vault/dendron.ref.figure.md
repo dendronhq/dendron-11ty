@@ -7,4 +7,18 @@ created: 1608147795766
 ---
 
 
-This is the logo image 
+
+Syntax highlighting
+
+```bash
+ls foo
+cd foobar
+tar foobar
+dig foo
+```
+
+```ts
+function foo() {
+    return "bar"
+}
+```
