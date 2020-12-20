@@ -4,6 +4,9 @@
 <ul class="nav-list">
     {%- for noteId in navNotes -%}
         {%- assign node = notes[noteId]  -%}
+        {%- if node.custom.nav_exclude -%}
+        {%- continue -%}
+        {%- endif -%}
         {% if nodeCurrent.id == node.id or node.custom.permalink == "/" or nodeParents contains node.id%}
         {%- assign active = true -%}
         {%- endif -%}

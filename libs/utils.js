@@ -5,6 +5,14 @@ const { EngineConnector, DConfig } = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const _ = require("lodash");
 
+function removeExtension(nodePath, ext) {
+  const idx = nodePath.lastIndexOf(ext);
+  if (idx > 0) {
+    nodePath = nodePath.slice(0, idx);
+  }
+  return nodePath;
+}
+
 const getEngine = async () => {
   const engineConnector = EngineConnector.getOrCreate({
     wsRoot: env.wsRoot,
@@ -54,18 +62,24 @@ class NOTE_UTILS {
     );
   };
 
-  static getAbsUrl= (suffix) => {
+  static getAbsUrl = (suffix) => {
     suffix = suffix || "";
     const siteUrl = getSiteConfig().siteUrl;
     if (siteUrl && env.stage !== "dev") {
-      const out = getSiteConfig().siteProtocol + "://" + path.join(siteUrl, suffix);
+      const out =
+        getSiteConfig().siteProtocol + "://" + path.join(siteUrl, suffix);
       return out;
     } else {
       return "http://" + path.join("localhost:8080", suffix);
     }
   };
-}
 
+  static notes2Id = (url, notes) => {
+    const noteId = removeExtension(url.split("/").slice(-1)[0], ".html");
+    const note = _.get(notes, noteId, "");
+    return note;
+  };
+}
 
 module.exports = {
   getEngine,

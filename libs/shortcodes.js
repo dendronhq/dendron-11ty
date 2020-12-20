@@ -6,6 +6,7 @@ const { MDUtilsV4, DendronASTDest } = require("@dendronhq/engine-server");
 const path = require("path");
 const { getEngine, getSiteConfig, NOTE_UTILS } = require("./utils");
 const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
+const fs = require("fs");
 
 async function toMarkdown2(contents, vault) {
   const absUrl = NOTE_UTILS.getAbsUrl();
@@ -32,9 +33,15 @@ async function toHTML(contents) {
   return processor.process(contents);
 }
 
+function toNav(note) {
+  const navTemplate = fs.readFileSync("/tmp/nav.html");
+  return navTemplate;
+}
+
 module.exports = {
   configFunction: function (eleventyConfig, options = {}) {
     eleventyConfig.addPairedShortcode("html", toHTML);
     eleventyConfig.addPairedShortcode("markdown", toMarkdown2);
+    eleventyConfig.addLiquidFilter("toNav", toNav); 
   },
 };

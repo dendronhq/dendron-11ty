@@ -7,6 +7,7 @@ const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
 const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
+const { buildNav } = require("./bin/build-nav.js");
 const { copyAssets } = require("./bin/copy-assets.js");
 const site = require("./_data/site")();
 const { getSiteOutputPath, NOTE_UTILS } = require("./libs/utils");
@@ -58,6 +59,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("noteURL", function (note) {
     return NOTE_UTILS.getUrl(note);
   });
+  eleventyConfig.addLiquidFilter("noteIdsToNotes", function (noteIds, notes) {
+    return noteIds.map(id => notes[id]);
+  });
   eleventyConfig.addLiquidFilter("toNote", function (id) {
     const notes = require(`${__dirname}/_data/notes.js`);
     // TODO: only for proto
@@ -95,6 +99,12 @@ module.exports = function (eleventyConfig) {
 
   // --- shortcodes
   eleventyConfig.addPlugin(shortcodes);
+
+  eleventyConfig.on("beforeBuild", async () => {
+    console.log("build nav")
+    await buildNav();
+    console.log("build nav done")
+  });
 
   eleventyConfig.on("afterBuild", () => {
     buildStyles();

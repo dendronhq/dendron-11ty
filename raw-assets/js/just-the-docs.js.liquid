@@ -463,6 +463,17 @@ jtd.setTheme = function(theme) {
 // Document ready
 
 jtd.onReady(function(){
+  let homeOrId = window.location.pathname.split("/").slice(-1)[0].replace(/.html$/, '');
+
+  if (homeOrId === "") {
+    homeOrId = "root";
+  } 
+  var node = document.getElementById(homeOrId);
+  while (node.id !== "site-nav") {
+    let active = document.createAttribute("active"); 
+    node.setAttribute('class', node.getAttribute('class')+' active');
+    node = node.parentElement.parentElement;
+  } 
   initNav();
   {%- if site.search_enabled != false %}
   initSearch();
