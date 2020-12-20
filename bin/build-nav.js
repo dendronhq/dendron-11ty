@@ -1,4 +1,4 @@
-const { getSiteOutputPath, NOTE_UTILS } = require("../libs/utils");
+const { NOTE_UTILS } = require("../libs/utils");
 const _ = require("lodash");
 const fs = require("fs");
 
@@ -8,8 +8,8 @@ function createNav(noteIdsAtLevel, notesDict) {
   notesAtLevel = _.filter(notesAtLevel, (ent) => {
     return !_.get(ent, "custom.nav_exclude", false);
   });
+  // copied at libs/shortcodes.js
   notesAtLevel = _.sortBy(notesAtLevel, ["custom.nav_order", "title"]);
-  console.log(JSON.stringify({ctx: "createNav:enter", noteIdsAtLevel}))
   const allLevels = _.map(notesAtLevel, (node) => {
     let level = [];
     let permalink = _.get(node, "custom.permalink", "");
@@ -29,7 +29,6 @@ function createNav(noteIdsAtLevel, notesDict) {
     level.push(`</li>`);
     return _.flatMap(level);
   });
-  console.log(JSON.stringify({ctx: "createNav:exit", noteIdsAtLevel, allLevels}))
   return out.concat(_.flatMap(allLevels)).concat(['</ul>'])
 }
 
@@ -40,7 +39,6 @@ async function buildNav() {
     domains,
     notes
   );
-  console.log({ctx: "buildNav", nav})
   fs.writeFileSync("/tmp/nav.html", nav.join("\n"), {encoding: "utf8"});
 }
 

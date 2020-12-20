@@ -14,4 +14,4 @@ layout: layouts/default.liquid
 {{note.body}}
 {%- endmarkdown -%}
 
-{%- include includes/toc.liquid note: note-%}
+{{ note | toToc: notes}}
