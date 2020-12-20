@@ -53,6 +53,10 @@ const getSiteOutputPath = () => {
   return siteRootPath;
 };
 
+const getNavOutput = () => {
+  return path.join(getSiteOutputPath(), "nav.html")
+}
+
 class NOTE_UTILS {
   static getUrl = (note) => {
     return _.get(
@@ -90,4 +94,5 @@ module.exports = {
   resolvePath,
   getSiteOutputPath,
   NOTE_UTILS,
+  getNavOutput
 };

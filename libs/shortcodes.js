@@ -3,7 +3,7 @@ const rehypeStringify = require("rehype-stringify");
 const raw = require("rehype-raw");
 const { MDUtilsV4, DendronASTDest } = require("@dendronhq/engine-server");
 const path = require("path");
-const { getEngine, getSiteConfig, NOTE_UTILS } = require("./utils");
+const { getEngine, getSiteConfig, NOTE_UTILS, getNavOutput } = require("./utils");
 const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 const fs = require("fs");
 const _ = require("lodash");
@@ -33,9 +33,9 @@ async function toHTML(contents) {
   return processor.process(contents);
 }
 
+
 function toNav(note) {
-  const navTemplate = fs.readFileSync("/tmp/nav.html");
-  return navTemplate;
+  return fs.readFileSync(getNavOutput())
 }
 
 function toToc(note, notesDict) {
