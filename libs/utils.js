@@ -57,6 +57,10 @@ const getNavOutput = () => {
   return path.join(getSiteOutputPath(), "nav.html")
 }
 
+const getMetaPath = () => {
+  return path.join(getSiteOutputPath(), ".meta")
+}
+
 class NOTE_UTILS {
   static getUrl = (note) => {
     return _.get(
@@ -94,5 +98,6 @@ module.exports = {
   resolvePath,
   getSiteOutputPath,
   NOTE_UTILS,
-  getNavOutput
+  getNavOutput,
+  getMetaPath
 };

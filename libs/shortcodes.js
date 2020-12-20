@@ -3,7 +3,13 @@ const rehypeStringify = require("rehype-stringify");
 const raw = require("rehype-raw");
 const { MDUtilsV4, DendronASTDest } = require("@dendronhq/engine-server");
 const path = require("path");
-const { getEngine, getSiteConfig, NOTE_UTILS, getNavOutput } = require("./utils");
+const {
+  getEngine,
+  getSiteConfig,
+  NOTE_UTILS,
+  getNavOutput,
+  getMetaPath
+} = require("./utils");
 const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 const fs = require("fs");
 const _ = require("lodash");
@@ -33,9 +39,14 @@ async function toHTML(contents) {
   return processor.process(contents);
 }
 
+let _NAV_CACHE = undefined;
 
 function toNav(note) {
-  return fs.readFileSync(getNavOutput())
+  const ts = fs.readFileSync(getMetaPath(), {encoding: "utf-8"})
+  if (!_NAV_CACHE || _NAV_CACHE[0] !== ts) {
+    _NAV_CACHE = [ts, fs.readFileSync(getNavOutput(), {encoding: "utf-8"})];
+  }
+  return _NAV_CACHE[1];
 }
 
 function toToc(note, notesDict) {
@@ -53,13 +64,11 @@ function toToc(note, notesDict) {
     let level = [`<li>`];
     let href = NOTE_UTILS.getAbsUrl(NOTE_UTILS.getUrl(node));
 
-    level.push(
-      `<a href="${href}">${node.title}</a>`
-    );
-    level.push(`</li>`)
+    level.push(`<a href="${href}">${node.title}</a>`);
+    level.push(`</li>`);
     return level;
   });
-  return _.flatMap(out.concat(allLevels).concat(['</ul>'])).join("\n")
+  return _.flatMap(out.concat(allLevels).concat(["</ul>"])).join("\n");
 }
 
 module.exports = {

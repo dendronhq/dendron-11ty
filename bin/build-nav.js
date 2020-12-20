@@ -1,4 +1,4 @@
-const { NOTE_UTILS, getNavOutput} = require("../libs/utils");
+const { NOTE_UTILS, getNavOutput, getMetaPath} = require("../libs/utils");
 const _ = require("lodash");
 const fs = require("fs");
 
@@ -41,6 +41,7 @@ async function buildNav() {
   );
   const navPath = getNavOutput();
   fs.writeFileSync(navPath, nav.join("\n"), {encoding: "utf8"});
+  fs.writeFileSync(getMetaPath(), _.now());
 }
 
 module.exports = { buildNav };
