@@ -4,11 +4,9 @@ const { env, NOTE_UTILS, getSiteOutputPath, getSiteConfig } = require("../libs/u
 
 async function buildSearch() {
   // Inside the function for async/await functionality.
-  const notes = await require("../_data/notes.js")();
+  const {notes} = await require("../_data/notes.js")();
 
   const search_data = Object.values(notes).map((note, idx) => {
-    const siteUrl = getSiteConfig().siteUrl;
-    // const noteUrl = `/docs/${note.id}.html`
     const noteUrl = NOTE_UTILS.getUrl(note);
     const absUrl = NOTE_UTILS.getAbsUrl(noteUrl);
 

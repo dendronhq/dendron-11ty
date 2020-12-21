@@ -6,3 +6,4 @@ fixtures/test-workspace/.dendron.port
 fixtures/test-workspace/.dendron.ws
 local
 dist
+yarn-error.log

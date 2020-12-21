@@ -63,12 +63,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidFilter("noteIdsToNotes", function (noteIds, notes) {
     return noteIds.map(id => notes[id]);
   });
-  eleventyConfig.addLiquidFilter("toNote", function (id) {
-    const notes = require(`${__dirname}/_data/notes.js`);
-    // TODO: only for proto
-    const note = _.get(notes, id, "");
-    return note;
-  });
   eleventyConfig.addLiquidFilter("urlToNote", function (url, notes) {
     const noteId = removeExtension(url.split("/").slice(-1)[0], ".html");
     const note = _.get(notes, noteId, "");

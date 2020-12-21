@@ -30,7 +30,7 @@
     "node-sass": "^5.0.0",
     "rehype-raw": "^5.0.0",
     "rehype-stringify": "^8.0.0",
-    "remark": "^13.0.0",
+    "remark": "12.0.1",
     "remark-rehype": "^8.0.0"
   }
 }

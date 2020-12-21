@@ -33,10 +33,9 @@ function createNav(noteIdsAtLevel, notesDict) {
 }
 
 async function buildNav() {
-  const notes = await require("../_data/notes.js")();
-  const domains = await require("../_data/domains.js")();
+  const {notes, domains} = await require("../_data/notes.js")();
   const nav = createNav(
-    domains,
+    domains.map(ent => ent.id),
     notes
   );
   const navPath = getNavOutput();
