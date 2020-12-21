@@ -1,10 +1,13 @@
-const { NOTE_UTILS, getNavOutput, getMetaPath} = require("../libs/utils");
+const { NOTE_UTILS, getNavOutput, getMetaPath } = require("../libs/utils");
 const _ = require("lodash");
 const fs = require("fs");
 
 function createNav(noteIdsAtLevel, notesDict) {
   let out = [`<ul class="nav-list">`];
-  let notesAtLevel = noteIdsAtLevel.map((ent) => notesDict[ent]);
+  // since some notes won't be avaible due to published = false, filter out undefined
+  let notesAtLevel = noteIdsAtLevel
+    .map((ent) => notesDict[ent])
+    .filter((ent) => !_.isUndefined(ent));
   notesAtLevel = _.filter(notesAtLevel, (ent) => {
     return !_.get(ent, "custom.nav_exclude", false);
   });
@@ -13,7 +16,7 @@ function createNav(noteIdsAtLevel, notesDict) {
   const allLevels = _.map(notesAtLevel, (node) => {
     let level = [];
     let permalink = _.get(node, "custom.permalink", "");
-    const elemId = (permalink === "/" ? "root" : node.id);
+    const elemId = permalink === "/" ? "root" : node.id;
     level.push(`<li class="nav-list-item" id="${elemId}">`);
     // $("ul").find(`[data-slide='${current}']`)
     if (node.children.length > 0 && permalink != "/") {
@@ -22,24 +25,26 @@ function createNav(noteIdsAtLevel, notesDict) {
       );
     }
     let href = NOTE_UTILS.getAbsUrl(NOTE_UTILS.getUrl(node));
-    level.push(`<a id="a-${elemId}" href="${href}" class="nav-list-link">${node.title}</a>`);
+    level.push(
+      `<a id="a-${elemId}" href="${href}" class="nav-list-link">${node.title}</a>`
+    );
     if (node.children.length > 0 && permalink !== "/") {
       level.push(_.flatMap(createNav(node.children, notesDict)));
-    } 
+    }
     level.push(`</li>`);
     return _.flatMap(level);
   });
-  return out.concat(_.flatMap(allLevels)).concat(['</ul>'])
+  return out.concat(_.flatMap(allLevels)).concat(["</ul>"]);
 }
 
 async function buildNav() {
-  const {notes, domains} = await require("../_data/notes.js")();
+  const { notes, domains } = await require("../_data/notes.js")();
   const nav = createNav(
-    domains.map(ent => ent.id),
+    domains.map((ent) => ent.id),
     notes
   );
   const navPath = getNavOutput();
-  fs.writeFileSync(navPath, nav.join("\n"), {encoding: "utf8"});
+  fs.writeFileSync(navPath, nav.join("\n"), { encoding: "utf8" });
   fs.writeFileSync(getMetaPath(), _.now());
 }
 

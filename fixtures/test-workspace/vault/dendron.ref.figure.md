@@ -22,7 +22,3 @@ function foo() {
     return "bar"
 }
 ```
-
-```badlang
-This is a bad lang
-```

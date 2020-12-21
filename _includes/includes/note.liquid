@@ -1,6 +1,6 @@
 ---
 pagination:
-    data: notes
+    data: notesOnly
     size: 1
     alias: note
     resolve: values
@@ -14,4 +14,4 @@ layout: layouts/default.liquid
 {{note.body}}
 {%- endmarkdown -%}
 
-{{ note | toToc: notes}}
+{{ note | toToc: notesOnly}}
