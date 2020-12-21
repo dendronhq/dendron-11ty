@@ -8,24 +8,29 @@ const {
   getSiteConfig,
   NOTE_UTILS,
   getNavOutput,
-  getMetaPath
+  getMetaPath,
+  env
 } = require("./utils");
-const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 const fs = require("fs");
 const _ = require("lodash");
 
 async function toMarkdown2(contents, vault) {
   const absUrl = NOTE_UTILS.getAbsUrl();
-  const siteNotesDir = getSiteConfig().siteNotesDir;
+  const sconfig = getSiteConfig();
+  const siteNotesDir = sconfig.siteNotesDir;
   const linkPrefix = absUrl + "/" + siteNotesDir + "/";
   const engine = await getEngine();
   const wikiLinksOpts = { useId: true, prefix: linkPrefix };
+  (env.stage === "prod") 
   const proc = MDUtilsV4.procFull({
     engine,
     dest: DendronASTDest.HTML,
     vault,
     wikiLinksOpts,
     noteRefOpts: { wikiLinkOpts: wikiLinksOpts, prettyRefs: true },
+    publishOpts: {
+      assetsPrefix: (env.stage === "prod") ? sconfig.assetsPrefix : undefined
+    },
   });
   return proc.process(contents);
 }
