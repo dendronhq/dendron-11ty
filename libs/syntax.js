@@ -11,10 +11,8 @@ module.exports = function(eleventyConfig) {
 
     // init callback lets you customize Prism
     init: function({ Prism }) {
-        console.log("init prism");
-      const textLanguage = Prism.languages['text'];
-      Prism.languages.badlang = textLanguage;
-        console.log("textLanguage", textLanguage);
+    //   const textLanguage = Prism.languages['text'];
+    //   Prism.languages.badlang = textLanguage;
     },
 
     // Added in 3.0, set to true to always wrap lines in `<span class="highlight-line">`
