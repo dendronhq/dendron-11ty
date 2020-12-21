@@ -20,7 +20,7 @@
     "@11ty/eleventy": "^0.11.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
     "@dendronhq/common-server": "0.20.1-alpha.13",
-    "@dendronhq/engine-server": "0.20.1-alpha.13",
+    "@dendronhq/engine-server": "0.20.1-alpha.14",
     "@fec/eleventy-plugin-remark": "^2.1.0",
     "fs-extra": "^9.0.1",
     "liquidjs": "^9.16.1",

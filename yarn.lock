@@ -153,10 +153,10 @@
     lodash "^4.17.20"
     sinon "^9.2.1"
 
-"@dendronhq/engine-server@0.20.1-alpha.13":
-  version "0.20.1-alpha.13"
-  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.20.1-alpha.13.tgz#d589dafaa00d2321338b3d2ae99988684b11d9ba"
-  integrity sha512-npKmFnAIb65XhxSZ7i6q8TJirDDn+iRPkhSQc5B1g0oFYntxcL5oaIGZUcPfCshB7D233nG2vO3CSA2vQSQNkw==
+"@dendronhq/engine-server@0.20.1-alpha.14":
+  version "0.20.1-alpha.14"
+  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.20.1-alpha.14.tgz#74f84f8bcb36d1583b824b16533c4de03a02de4a"
+  integrity sha512-xMH3K4tfK9LjeEhvNEVZvGI2NjOktZ6r1zrjPH7/amSjY02aD5eUyAxN9DDbi98jFyV1YzbhnDB1k7q0jSWjNA==
   dependencies:
     "@dendronhq/common-all" "^0.20.1-alpha.13"
     "@dendronhq/common-server" "^0.20.1-alpha.13"
