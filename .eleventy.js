@@ -2,6 +2,7 @@ const _ = require("lodash");
 const path = require("path");
 const shortcodes = require("./libs/shortcodes");
 const markdown = require("./libs/markdown");
+const syntax = require("./libs/syntax");
 const remark = require("remark");
 const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
@@ -9,7 +10,6 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { buildNav } = require("./bin/build-nav.js");
 const { copyAssets } = require("./bin/copy-assets.js");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const site = require("./_data/site")();
 const { getSiteOutputPath, NOTE_UTILS } = require("./libs/utils");
 
@@ -100,7 +100,7 @@ module.exports = function (eleventyConfig) {
 
   // --- plugins
   eleventyConfig.addPlugin(shortcodes);
-  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPlugin(syntax);
 
   // --- events
   eleventyConfig.on("beforeBuild", async () => {

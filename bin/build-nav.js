@@ -23,7 +23,7 @@ function createNav(noteIdsAtLevel, notesDict) {
     }
     let href = NOTE_UTILS.getAbsUrl(NOTE_UTILS.getUrl(node));
     level.push(`<a id="a-${elemId}" href="${href}" class="nav-list-link">${node.title}</a>`);
-    if (node.children.length > 0) {
+    if (node.children.length > 0 && permalink !== "/") {
       level.push(_.flatMap(createNav(node.children, notesDict)));
     } 
     level.push(`</li>`);

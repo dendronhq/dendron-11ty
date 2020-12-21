@@ -1,12 +1,12 @@
 version: 1
 vaults:
-    -
-        fsPath: vault
+    - fsPath: vault
 site:
     copyAssets: true
     siteHierarchies:
-        - dendron
+        - root
     siteRootDir: docs
+    gh_edit_repository: "https://github.com/pmarsceill/just-the-docs" # the github URL for your repo
     # siteUrl: "11ty.dendron.so"
     siteUrl: "kevinslin.github.io/dendron-11ty-test"
     usePrettyRefs: true

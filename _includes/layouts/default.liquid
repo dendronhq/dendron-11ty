@@ -142,7 +142,7 @@
         {%- endif -%}
         {% endcomment %}
 
-        {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
+        {% if site.footer_content != nil or site.last_edit_timestamp or dendronConfig.site.gh_edit_link %}
           <hr>
           <footer>
             {% if site.back_to_top %}
@@ -152,7 +152,7 @@
               <p class="text-small text-grey-dk-000 mb-0">{{ site.footer_content }}</p>
             {% endif %}
 
-            {% if site.last_edit_timestamp or site.gh_edit_link %}
+            {% if site.last_edit_timestamp or dendronConfig.site.gh_edit_link %}
               <div class="d-flex mt-2">
                 {% if site.last_edit_timestamp and site.last_edit_time_format and page.last_modified_date %}
                   <p class="text-small text-grey-dk-000 mb-0 mr-2">
@@ -160,14 +160,14 @@
                   </p>
                 {% endif %}
                 {% if
-                  site.gh_edit_link and
-                  site.gh_edit_link_text and
-                  site.gh_edit_repository and
-                  site.gh_edit_branch and
-                  site.gh_edit_view_mode
+                  dendronConfig.site.gh_edit_link and
+                  dendronConfig.site.gh_edit_link_text and
+                  dendronConfig.site.gh_edit_repository and
+                  dendronConfig.site.gh_edit_branch and
+                  dendronConfig.site.gh_edit_view_mode
                 %}
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="{{ site.gh_edit_repository }}/{{ site.gh_edit_view_mode }}/{{ site.gh_edit_branch }}/{{ site.dendron_vault_path }}/{{ page.fname }}.md" id="edit-this-page">{{ site.gh_edit_link_text }}</a>
+                    <a href="{{ dendronConfig.site.gh_edit_repository }}/{{ dendronConfig.site.gh_edit_view_mode }}/{{ dendronConfig.site.gh_edit_branch }}/{{ dendronConfig.site.dendron_vault_path }}/{{ page.fname }}.md" id="edit-this-page">{{ dendronConfig.site.gh_edit_link_text }}</a>
                   </p>
                 {% endif %}
               </div>

@@ -11,7 +11,7 @@ const { env, getEngine, getDendronConfig } = require(path.join(
 
 async function getNotes() {
   if (env.proto) {
-    const notes = fs.readJSONSync(path.join(__dirname, "notes-proto.json"))
+    const notes = fs.readJSONSync(path.join(__dirname, "notes-proto.json"));
     return notes;
   }
   const engine = await getEngine();
@@ -23,5 +23,5 @@ async function getNotes() {
 }
 
 module.exports = async function () {
-  notes: return getNotes();
+  return getNotes();
 };

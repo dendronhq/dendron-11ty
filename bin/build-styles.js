@@ -30,7 +30,6 @@ const buildSass = async function () {
   try {
     await fs.ensureFile(outputFile);
     await fs.writeFile(outputFile, css);
-    console.log("writing", outputFile)
   } catch (error) {
     console.error(`Error writing generated CSS: ${error}`);
   }
