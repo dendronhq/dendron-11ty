@@ -29,17 +29,22 @@ LOG_DST=/tmp/server.txt LOG_LEVEL=debug dendron-cli launchEngineServer --port 30
 
 4. run eleventy with the engine options
 ```sh
-env WS_ROOT=/Users/kevinlin/projects/dendronv2/dendron-site ENGINE_PORT=3006 npx eleventy --watch --serve
+env WS_ROOT=/Users/kevinlin/projects/dendronv2/dendron-site ENGINE_PORT=3006 STAGE=dev npx eleventy --watch --serve
 ```
 
 - open `http://localhost:8080/notes/b0fe6ef7-1553-4280-bc45-a71824c2ce36.html`
 
-# Prototyping
+# Testing New Features
 
-In order to test with less data, you can the following command. It will use only the first 10 notes as part of the data, allowing for quicker compile cycles
+Dendron 11ty comes with a sample 
+
+In order to test with a sample workspace to test out new syntax
 
 ```sh
-env PROTO=1 WS_ROOT=/Users/kevinlin/projects/dendronv2/dendron-site ENGINE_PORT=3006 npx eleventy --watch --serve
+cd {dendron-11ty}
+env LOG_LEVEL=info dendron-cli launchEngineServer --port 3008 --wsRoot fixtures/test-workspace/
+
+env WS_ROOT={dendron-11ty}/fixtures/test-workspace/ ENGINE_PORT=3008 STAGE=dev npx eleventy  --serve
 ```
 
 # Tasks
