@@ -45,7 +45,7 @@ async function buildNav() {
   );
   const navPath = getNavOutput();
   fs.writeFileSync(navPath, nav.join("\n"), { encoding: "utf8" });
-  fs.writeFileSync(getMetaPath(), _.now());
+  fs.writeFileSync(getMetaPath(), _.toString(_.now()));
 }
 
 module.exports = { buildNav };
