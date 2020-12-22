@@ -22,3 +22,15 @@ function foo() {
     return "bar"
 }
 ```
+
+## Math
+
+### Inline
+
+$ sin(x) $
+
+### Block
+
+$$
+sin(x)
+$$

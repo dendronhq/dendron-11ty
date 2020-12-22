@@ -115,7 +115,41 @@
     vscode-uri "^2.1.2"
     yamljs "^0.3.0"
 
-"@dendronhq/common-server@0.20.1-alpha.13", "@dendronhq/common-server@^0.20.1-alpha.13":
+"@dendronhq/common-all@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-all/-/common-all-0.21.0.tgz#2e509b7956c21502fb8e3172733923f50e2100af"
+  integrity sha512-U1Glry8AJAZ13G0/H1x972LxFixmM0uWFIXnpqpeBfixWuOpxV+0kJbIaxhoZgvw01WBlXtyEotzODDs7GVQhQ==
+  dependencies:
+    "@types/github-slugger" "^1.3.0"
+    "@types/jest" "^23.3.3"
+    "@types/lodash" "^4.14.152"
+    "@types/luxon" "^1.25.0"
+    "@types/minimatch" "^3.0.3"
+    "@types/moment" "^2.13.0"
+    "@types/node" "13.11.0"
+    "@types/pino" "^6.0.1"
+    "@types/semver" "^7.3.4"
+    "@types/unist" "^2.0.3"
+    "@types/uuid" "^8.0.0"
+    "@types/yamljs" "^0.2.31"
+    dropbox "^4.0.30"
+    github-slugger "^1.3.0"
+    gray-matter "^4.0.2"
+    isomorphic-fetch "^2.2.1"
+    js-yaml "^3.14.0"
+    lodash "^4.17.15"
+    luxon "^1.25.0"
+    minimatch "^3.0.4"
+    moment "^2.27.0"
+    pino "^6.3.1"
+    request "^2.88.2"
+    request-promise "^4.2.6"
+    semver "^7.3.2"
+    uuid "^8.1.0"
+    vscode-uri "^2.1.2"
+    yamljs "^0.3.0"
+
+"@dendronhq/common-server@0.20.1-alpha.13":
   version "0.20.1-alpha.13"
   resolved "https://registry.yarnpkg.com/@dendronhq/common-server/-/common-server-0.20.1-alpha.13.tgz#47147c6ef81fd767004e610b049826257b8e0cb3"
   integrity sha512-zqCaNpOigQVkwPjfp+oyWtDgAkJkWkLtbLFZxTWLuaOe7WJE5QqZ9zrSYk+vIyQmjHN2JRpmUFXCk91kZDikaw==
@@ -141,26 +175,52 @@
     tmp "^0.2.1"
     vscode-uri "^2.1.2"
 
-"@dendronhq/common-test-utils@^0.20.1-alpha.13":
-  version "0.20.1-alpha.13"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-test-utils/-/common-test-utils-0.20.1-alpha.13.tgz#5a77da37c93215387763011d677a228463f6f964"
-  integrity sha512-rP5BPrvm2JrRuutccnn/NSSMifp8DhIin3wDZwu8lqKZcjRuP+RQwLlcR0TMT2sJ+aTKWdWuKrw/EpF7x/XKxQ==
+"@dendronhq/common-server@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-server/-/common-server-0.21.0.tgz#b518149c7119cc0e09e649695e7238b2165a26f1"
+  integrity sha512-4Cwugybh1nUU3tRzhdR1/oD2wTlKP82eQ6yPPotZrOec0Q9L3VnWtnUNcAQSzMHUZa39eUZchicFzEUdqX7PLw==
   dependencies:
-    "@dendronhq/common-all" "^0.20.1-alpha.13"
-    "@dendronhq/common-server" "^0.20.1-alpha.13"
+    "@dendronhq/common-all" "^0.21.0"
+    "@types/fs-extra" "^9.0.1"
+    "@types/jest" "^23.3.3"
+    "@types/js-yaml" "^3.12.5"
+    "@types/lodash" "^4.14.154"
+    "@types/minimatch" "^3.0.3"
+    "@types/node" "13.11.0"
+    "@types/pino" "^6.3.0"
+    "@types/tmp" "^0.2.0"
+    comment-json "^4.1.0"
+    fs-extra "^9.0.1"
+    gray-matter "^4.0.2"
+    js-yaml "^3.14.0"
+    lodash "^4.17.15"
+    minimatch "^3.0.4"
+    pino "^6.3.2"
+    request-promise "^4.2.6"
+    simple-git "^2.24.0"
+    tmp "^0.2.1"
+    vscode-uri "^2.1.2"
+
+"@dendronhq/common-test-utils@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-test-utils/-/common-test-utils-0.21.0.tgz#5a308b5d4eb6ddf79bd8834989b9a984e256b885"
+  integrity sha512-Z0ZcXnTH6a99XaXHxP8sq+Rp7yUpDY5K8YFEZowE7AC8HwtisAoXfd1R6ffPUqaJTZ4b3dOeaILQZDlPiagidQ==
+  dependencies:
+    "@dendronhq/common-all" "^0.21.0"
+    "@dendronhq/common-server" "^0.21.0"
     "@types/sinon" "^9.0.9"
     fs-extra "^9.0.1"
     lodash "^4.17.20"
     sinon "^9.2.1"
 
-"@dendronhq/engine-server@0.20.1-alpha.14":
-  version "0.20.1-alpha.14"
-  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.20.1-alpha.14.tgz#74f84f8bcb36d1583b824b16533c4de03a02de4a"
-  integrity sha512-xMH3K4tfK9LjeEhvNEVZvGI2NjOktZ6r1zrjPH7/amSjY02aD5eUyAxN9DDbi98jFyV1YzbhnDB1k7q0jSWjNA==
+"@dendronhq/engine-server@0.21.1-alpha.0":
+  version "0.21.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.21.1-alpha.0.tgz#c2970b66d4f61312e9aeb5a3c1e05d9ba818bb4c"
+  integrity sha512-ry/9d/symfA9sEc1EQciY4kYtWV/8gC+pHaqpwi8YxLXKPVSDxyhthK86Pgey2A9fNPP6AdeuAMPhsUCtDIvow==
   dependencies:
-    "@dendronhq/common-all" "^0.20.1-alpha.13"
-    "@dendronhq/common-server" "^0.20.1-alpha.13"
-    "@dendronhq/common-test-utils" "^0.20.1-alpha.13"
+    "@dendronhq/common-all" "^0.21.0"
+    "@dendronhq/common-server" "^0.21.0"
+    "@dendronhq/common-test-utils" "^0.21.0"
     "@types/fs-extra" "^9.0.1"
     "@types/jest" "^23.3.3"
     "@types/klaw" "^3.0.1"
