@@ -21,6 +21,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(markdown);
   eleventyConfig.addPlugin(pluginSEO, {
     ...sconfig,
+    image: ((sconfig.logo ? `/` + path.basename(sconfig.logo) : undefined)),
     url: sconfig.siteUrl,
     options: {
       imageWithBaseUrl: true,
