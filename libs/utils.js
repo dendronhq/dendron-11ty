@@ -74,8 +74,7 @@ class NOTE_UTILS {
     suffix = suffix || "";
     const siteUrl = getSiteConfig().siteUrl;
     if (siteUrl && env.stage !== "dev") {
-      const out =
-        getSiteConfig().siteProtocol + "://" + path.join(siteUrl, suffix);
+      const out = _.trimEnd(_.join([siteUrl, suffix], "/"), "/");
       return out;
     } else {
       return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);

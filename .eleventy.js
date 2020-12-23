@@ -11,12 +11,22 @@ const { buildStyles } = require("./bin/build-styles.js");
 const { buildNav } = require("./bin/build-nav.js");
 const { copyAssets } = require("./bin/copy-assets.js");
 const site = require("./_data/site")();
-const { getSiteOutputPath, NOTE_UTILS } = require("./libs/utils");
+const { getSiteOutputPath, getSiteConfig, NOTE_UTILS } = require("./libs/utils");
+const pluginSEO = require("eleventy-plugin-seo");
 
 module.exports = function (eleventyConfig) {
 
+  const sconfig = getSiteConfig();
+
   // --- libraries
   eleventyConfig.addPlugin(markdown);
+  eleventyConfig.addPlugin(pluginSEO, {
+    ...(sconfig.seo ? sconfig.seo : {}),
+    url: sconfig.siteUrl,
+    options: {
+      imageWithBaseUrl: true,
+    }
+  });
 
   // --- tempaltes
   eleventyConfig.setTemplateFormats(["scss", "css", "liquid", "md"]);
