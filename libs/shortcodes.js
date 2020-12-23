@@ -46,7 +46,7 @@ async function toHTML(contents) {
 
 let _NAV_CACHE = undefined;
 
-function toNav(note) {
+function toNav() {
   let ts;
   if (!fs.existsSync(getMetaPath)) {
     ts = -1;

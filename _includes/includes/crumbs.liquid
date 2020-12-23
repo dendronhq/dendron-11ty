@@ -1,12 +1,12 @@
-{%- assign nodeCurrent = page.url | urlToNote: notes -%}
-{%- assign crumbs = nodeCurrent | noteParents: notes | split: ','  -%}
+{%- assign nodeCurrent = page.url | urlToNote: notesOnly -%}
+{%- assign crumbs = nodeCurrent | noteParents: notesOnly | split: ','  -%}
 
 {%- for id in crumbs -%}
     <li class="breadcrumb-nav-list-item">
       {%- if id == nodeCurrent.id -%}
-        {{ notes[id].title }}
+        {{ notesOnly[id].title }}
       {%- else -%}
-        <a href="{{ notes[id] | noteURL | absolute_url }}">{{ notes[id].title }}</a>
+        <a href="{{ notesOnly[id] | noteURL | absolute_url }}">{{ notesOnly[id].title }}</a>
       {%- endif -%}
     </li>
 {%- endfor -%}
