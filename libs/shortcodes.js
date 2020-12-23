@@ -47,7 +47,12 @@ async function toHTML(contents) {
 let _NAV_CACHE = undefined;
 
 function toNav(note) {
-  const ts = fs.readFileSync(getMetaPath(), {encoding: "utf-8"})
+  let ts;
+  if (!fs.existsSync(getMetaPath)) {
+    ts = -1;
+  } else {
+    ts = fs.readFileSync(getMetaPath(), {encoding: "utf-8"})
+  }
   if (!_NAV_CACHE || _NAV_CACHE[0] !== ts) {
     _NAV_CACHE = [ts, fs.readFileSync(getNavOutput(), {encoding: "utf-8"})];
   }

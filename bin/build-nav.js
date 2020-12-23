@@ -1,6 +1,6 @@
 const { NOTE_UTILS, getNavOutput, getMetaPath } = require("../libs/utils");
 const _ = require("lodash");
-const fs = require("fs");
+const fs = require("fs-extra");
 
 function createNav(noteIdsAtLevel, notesDict) {
   let out = [`<ul class="nav-list">`];
@@ -44,6 +44,7 @@ async function buildNav() {
     notes
   );
   const navPath = getNavOutput();
+  fs.ensureFileSync(navPath);
   fs.writeFileSync(navPath, nav.join("\n"), { encoding: "utf8" });
   fs.writeFileSync(getMetaPath(), _.toString(_.now()));
 }
