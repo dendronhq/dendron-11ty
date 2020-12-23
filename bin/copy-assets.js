@@ -11,7 +11,6 @@ const {
 
 async function copyAssets() {
   const ctx = "copyAssets";
-  const site = await require("../_data/site.js")();
   const wsRoot = env.wsRoot;
   const config = getDendronConfig();
   const vaults = config.vaults;
@@ -28,8 +27,12 @@ async function copyAssets() {
   );
   // get favicon
   const faviconPath = path.join(wsRoot, getSiteConfig().siteFaviconPath);
+  const logoPath = path.join(wsRoot, getSiteConfig().logo);
   if (fs.existsSync(faviconPath)) {
     fs.copySync(faviconPath, path.join(getSiteOutputPath(), "favicon.ico"));
+  }
+  if (fs.existsSync(logoPath)) {
+    fs.copySync(logoPath, path.join(getSiteOutputPath(), path.basename(logoPath)));
   }
   // check for cname
   if (getSiteConfig().githubCname) {

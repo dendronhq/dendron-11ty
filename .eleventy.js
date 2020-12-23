@@ -10,7 +10,6 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { buildNav } = require("./bin/build-nav.js");
 const { copyAssets } = require("./bin/copy-assets.js");
-const site = require("./_data/site")();
 const { getSiteOutputPath, getSiteConfig, NOTE_UTILS } = require("./libs/utils");
 const pluginSEO = require("eleventy-plugin-seo");
 
@@ -21,7 +20,7 @@ module.exports = function (eleventyConfig) {
   // --- libraries
   eleventyConfig.addPlugin(markdown);
   eleventyConfig.addPlugin(pluginSEO, {
-    ...(sconfig.seo ? sconfig.seo : {}),
+    ...sconfig,
     url: sconfig.siteUrl,
     options: {
       imageWithBaseUrl: true,
@@ -84,6 +83,10 @@ module.exports = function (eleventyConfig) {
     } else {
       return notes[note.parent];
     }
+  });
+
+  eleventyConfig.addLiquidFilter("basename", function (url) {
+    return path.basename(url)
   });
   eleventyConfig.addLiquidFilter("noteParents", function (note, notes) {
     const out = [];
