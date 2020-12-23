@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="{{ site.lang | default: 'en-US' }}">
-{%- assign nodeCurrent = page.url | urlToNote: notes -%}
+{%- assign nodeCurrent = page.url | urlToNote: notesOnly -%}
 {% include includes/head.liquid %}
 
 <body>
@@ -47,7 +47,7 @@
       </div>
 
       <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
-        {{ nodeCurrent | toNav}}
+        {{ "" | toNav}}
       </nav>
       <footer class="site-footer">
         🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
@@ -167,7 +167,7 @@
                   dendronConfig.site.gh_edit_view_mode
                 %}
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="{{ dendronConfig.site.gh_edit_repository }}/{{ dendronConfig.site.gh_edit_view_mode }}/{{ dendronConfig.site.gh_edit_branch }}/{{ dendronConfig.site.dendron_vault_path }}/{{ page.fname }}.md" id="edit-this-page">{{ dendronConfig.site.gh_edit_link_text }}</a>
+                    <a href="{{ dendronConfig.site.gh_edit_repository }}/{{ dendronConfig.site.gh_edit_view_mode }}/{{ dendronConfig.site.gh_edit_branch }}/{{ nodeCurrent.vault.fsPath | basename }}/{{ nodeCurrent.fname }}.md" id="edit-this-page">{{ dendronConfig.site.gh_edit_link_text }}</a>
                   </p>
                 {% endif %}
               </div>

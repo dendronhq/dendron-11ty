@@ -74,6 +74,10 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addLiquidFilter("urlToNote", function (url, notes) {
     const noteId = removeExtension(url.split("/").slice(-1)[0], ".html");
+    if (url === "/") {
+      const note = _.find(notes, ent => _.get(ent, "custom.permalink", "") === "/")
+      return note;
+    }
     const note = _.get(notes, noteId, "");
     return note;
   });
@@ -87,7 +91,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addLiquidFilter("basename", function (url) {
-    return path.basename(url)
+      return path.basename(url)
   });
   eleventyConfig.addLiquidFilter("noteParents", function (note, notes) {
     const out = [];

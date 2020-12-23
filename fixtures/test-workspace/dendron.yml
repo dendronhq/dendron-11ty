@@ -9,9 +9,7 @@ site:
     siteRootDir: docs
     logo: "vault/assets/images/logo.png"
     siteFaviconPath: "vault/assets/images/favicon.ico"
-    gh_edit_repository: "https://github.com/pmarsceill/just-the-docs" # the github URL for your repo
     siteUrl: "https://11ty.dendron.so"
-    #siteUrl: "https://kevinslin.github.io/dendron-11ty-test"
     usePrettyRefs: true
     githubCname: "11ty.dendron.so"
 
@@ -20,4 +18,13 @@ site:
     description: "Dendron is a local-first, markdown based, hierarchical note taking tool. It is meant to help you create, organize, and collaborate on knowledge bases of any size."
     author: "Kevin"
     twitter: "kevins8"
+
+    # git stub
+    gh_edit_link: true
+    gh_edit_link_text: "Edit this page on Github"
+    gh_edit_repository: "https://github.com/kevinslin/dendron-11ty-test"
+    gh_edit_branch: "main"
+    gh_edit_view_mode: "edit"
+    gh_root: "docs/"
+    dendron_vault_path: "vault"
 
