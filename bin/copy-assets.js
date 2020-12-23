@@ -27,12 +27,15 @@ async function copyAssets() {
   );
   // get favicon
   const faviconPath = path.join(wsRoot, getSiteConfig().siteFaviconPath);
-  const logoPath = path.join(wsRoot, getSiteConfig().logo);
   if (fs.existsSync(faviconPath)) {
     fs.copySync(faviconPath, path.join(getSiteOutputPath(), "favicon.ico"));
   }
-  if (fs.existsSync(logoPath)) {
-    fs.copySync(logoPath, path.join(getSiteOutputPath(), path.basename(logoPath)));
+  if (getSiteConfig().logo) {
+    const logoPath = path.join(wsRoot, getSiteConfig().logo);
+    fs.copySync(
+      logoPath,
+      path.join(getSiteOutputPath(), path.basename(logoPath))
+    );
   }
   // check for cname
   if (getSiteConfig().githubCname) {
