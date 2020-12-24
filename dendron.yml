@@ -1,0 +1,9 @@
+version: 1
+vaults: []
+site:
+    copyAssets: true
+    siteHierarchies:
+        - root
+    siteRootDir: docs
+    siteProtocol: https
+    usePrettyRefs: true

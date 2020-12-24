@@ -4,6 +4,6 @@ title: Ref
 desc: ''
 updated: 1608518909864
 created: 1608518909864
-stub: true
+has_collection: true
 ---
 

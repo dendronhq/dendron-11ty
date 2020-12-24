@@ -14,6 +14,16 @@ const {
 const fs = require("fs");
 const _ = require("lodash");
 
+async function formatNote(note) {
+  const layout = _.get(note, "custom.layout", false);
+  if (layout === "single") {
+    note.title
+    return "single"
+  } else {
+    return toMarkdown2(note.body, note.vault);
+  }
+}
+
 async function toMarkdown2(contents, vault) {
   const absUrl = NOTE_UTILS.getAbsUrl();
   const sconfig = getSiteConfig();
@@ -81,12 +91,90 @@ function toToc(note, notesDict) {
   return _.flatMap(out.concat(allLevels).concat(["</ul>"])).join("\n");
 }
 
+function genTemplate(node) {
+  let out = [];
+  
+  /*
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+*/
+let include = {};
+out.push(`<div class="${include.type || "list"}__item">`);
+out.push(`<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">`);
+/*
+    {% if include.type == "grid" and teaser %}
+      <div class="archive__item-teaser">
+        <img src="{{ teaser | relative_url }}" alt="">
+      </div>
+    {% endif %}
+  */
+ out.push(`<h2 class="archive__item-title no_toc" itemprop="headline">`);
+
+      // {% if post.link %}
+      //   <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+      // {% else %}
+    let href = NOTE_UTILS.getAbsUrl(NOTE_UTILS.getUrl(node));
+  out.push(`<a href="${href}" rel="permalink">${ node.title }</a>`);
+      // {% endif %}
+  out.push(`</h2>`);
+  out.push(`<p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> ${node.custom.date}</p>`);
+  /*
+    {% if post.read_time %}
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
+    {% endif %}
+    */
+   if (_.get(node, "custom.excerpt", false)) {
+    out.push(`<p class="archive__item-excerpt" itemprop="description">${node.custom.excerpt}</p>`);
+   }
+  out.push(`</article></div>`);
+  return out.join("\n");
+}
+
+
+function toCollection(note, notesDict) {
+  if (note.children.length <= 0) {
+    return [];
+  }
+  const children = note.children.map(id => notesDict[id])
+  return children.map(ch => genTemplate(ch)).join("\n");
+  // if (note.children.length <= 0) {
+  //   return "";
+  // }
+  // const out = [`<hr>`, `<h2 class="text-delta">Table of contents</h2>`, `<ul>`];
+  // // copied from bin/build-nav.js
+  // let notesAtLevel = note.children.map((ent) => notesDict[ent]);
+  // notesAtLevel = _.filter(notesAtLevel, (ent) => {
+  //   return !_.get(ent, "custom.nav_exclude", false);
+  // });
+  // notesAtLevel = _.sortBy(notesAtLevel, ["custom.nav_order", "title"]);
+  // const allLevels = _.map(notesAtLevel, (node) => {
+  //   let level = [`<li>`];
+  //   let href = NOTE_UTILS.getAbsUrl(NOTE_UTILS.getUrl(node));
+
+  //   level.push(`<a href="${href}">${node.title}</a>`);
+  //   level.push(`</li>`);
+  //   return level;
+  // });
+  // return _.flatMap(out.concat(allLevels).concat(["</ul>"])).join("\n");
+}
+
 
 module.exports = {
   configFunction: function (eleventyConfig, options = {}) {
     eleventyConfig.addPairedShortcode("html", toHTML);
     eleventyConfig.addPairedShortcode("markdown", toMarkdown2);
+    eleventyConfig.addLiquidShortcode("dendronMd", formatNote);
     eleventyConfig.addLiquidShortcode("nav", toNav);
     eleventyConfig.addLiquidFilter("toToc", toToc);
+    eleventyConfig.addLiquidFilter("toCollection", toCollection);
   },
 };

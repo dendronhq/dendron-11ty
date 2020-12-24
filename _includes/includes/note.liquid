@@ -7,11 +7,12 @@ pagination:
 permalink: "{% if note.custom.permalink == '/' %}index.html{% else %}notes/{{ note.id }}.html{% endif %}"
 templateEngineOverride: liquid,md
 layout: layouts/default.liquid
-#templateEngineOverride: liquid
 ---
 {%- assign vault = {{note.vault}} -%}
-{%- markdown vault -%}
-{{note.body}}
-{%- endmarkdown -%}
+{%- dendronMd note -%}
 
+{% if note.custom.has_collection %}
+{{ note | toCollection: notesOnly}}
+{% else %}
 {{ note | toToc: notesOnly}}
+{% endif %}

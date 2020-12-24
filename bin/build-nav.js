@@ -18,8 +18,9 @@ function createNav(noteIdsAtLevel, notesDict) {
     let permalink = _.get(node, "custom.permalink", "");
     const elemId = permalink === "/" ? "root" : node.id;
     level.push(`<li class="nav-list-item" id="${elemId}">`);
+    let hasChildren = (node.children.length > 0 && permalink != "/" && !_.get(node, "custom.has_collection", false));
     // $("ul").find(`[data-slide='${current}']`)
-    if (node.children.length > 0 && permalink != "/") {
+    if (hasChildren) {
       level.push(
         `<a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>`
       );
@@ -28,7 +29,7 @@ function createNav(noteIdsAtLevel, notesDict) {
     level.push(
       `<a id="a-${elemId}" href="${href}" class="nav-list-link">${node.title}</a>`
     );
-    if (node.children.length > 0 && permalink !== "/") {
+    if (hasChildren) {
       level.push(_.flatMap(createNav(node.children, notesDict)));
     }
     level.push(`</li>`);
