@@ -26,5 +26,4 @@ site:
     gh_edit_branch: "main"
     gh_edit_view_mode: "edit"
     gh_root: "docs/"
-    dendron_vault_path: "vault"
 

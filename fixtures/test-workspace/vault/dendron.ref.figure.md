@@ -7,7 +7,6 @@ created: 1608147795766
 ---
 
 
-
 Syntax highlighting
 
 ```bash

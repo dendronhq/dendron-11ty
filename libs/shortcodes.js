@@ -81,11 +81,12 @@ function toToc(note, notesDict) {
   return _.flatMap(out.concat(allLevels).concat(["</ul>"])).join("\n");
 }
 
+
 module.exports = {
   configFunction: function (eleventyConfig, options = {}) {
     eleventyConfig.addPairedShortcode("html", toHTML);
     eleventyConfig.addPairedShortcode("markdown", toMarkdown2);
-    eleventyConfig.addLiquidFilter("toNav", toNav);
+    eleventyConfig.addLiquidShortcode("nav", toNav);
     eleventyConfig.addLiquidFilter("toToc", toToc);
   },
 };
