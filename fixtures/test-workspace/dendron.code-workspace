@@ -17,8 +17,7 @@
         "editor.snippetSuggestions": "inline",
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggest.showSnippets": true,
-        "editor.tabCompletion": "on",
-        "dendron.serverPort": 3008
+        "editor.tabCompletion": "on"
     },
     "extensions": {
         "recommendations": [
