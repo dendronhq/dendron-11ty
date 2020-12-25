@@ -1,8 +1,7 @@
 const _ = require("lodash");
 const path = require("path");
 const shortcodes = require("./libs/shortcodes");
-const markdown = require("./libs/markdown");
-const syntax = require("./libs/syntax");
+const markdown = require("./libs/remark");
 const remark = require("remark");
 const remarkRehype = require("remark-rehype");
 const rehypeStringify = require("rehype-stringify");
@@ -111,7 +110,6 @@ module.exports = function (eleventyConfig) {
 
   // --- plugins
   eleventyConfig.addPlugin(shortcodes);
-  eleventyConfig.addPlugin(syntax);
 
   // --- events
   eleventyConfig.on("beforeBuild", async () => {

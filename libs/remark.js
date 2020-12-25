@@ -1,14 +1,10 @@
 const remark = require("remark");
-const remarkRehype = require("remark-rehype");
-const rehypeStringify = require("rehype-stringify");
 const { MDUtilsV4 } = require("@dendronhq/engine-server");
-const raw = require("rehype-raw");
+const highlight = require('remark-highlight.js')
 
 function eleventyRemark(options) {
-  let processor = MDUtilsV4.proc({ engine: null })
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(raw)
-    .use(rehypeStringify);
+  
+  const processor = MDUtilsV4.procRehype({mdPlugins: [highlight], mathjax: true});
 
   return {
     set: () => {},
