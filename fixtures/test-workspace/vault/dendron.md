@@ -16,9 +16,12 @@ Welcome to Dendron! This guide will help get you started with your knowledge bas
 
 - a bullet
     - [ ] Go through Dendron's basic 
+- a relative link
+    - [[dendron.ref.figure#math]]
 - a wiki link
     - [[dendron.ref.figure]]
 
+---
 
 ## A Ref
 
