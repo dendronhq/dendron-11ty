@@ -41,8 +41,10 @@ async function toMarkdown2(contents, vault) {
     publishOpts: {
       assetsPrefix: (env.stage === "prod") ? sconfig.assetsPrefix : undefined
     },
+    mathOpts: {katex: true}
   });
-  return proc.process(contents);
+  return MDUtilsV4.procRehype({proc, mathjax: true}).process(contents);
+  //return proc.process(contents);
 }
 
 async function toHTML(contents) {

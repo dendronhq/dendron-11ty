@@ -1,10 +1,9 @@
 const remark = require("remark");
 const { MDUtilsV4 } = require("@dendronhq/engine-server");
-const highlight = require('remark-highlight.js')
 
 function eleventyRemark(options) {
   
-  const processor = MDUtilsV4.procRehype({mdPlugins: [highlight], mathjax: true});
+  const processor = MDUtilsV4.procRehype({mdPlugins: [], mathjax: true});
 
   return {
     set: () => {},
