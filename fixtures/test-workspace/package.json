@@ -2,5 +2,8 @@
   "name": "test-workspace",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@dendronhq/dendron-cli": "^0.21.1-alpha.8"
+  }
 }
