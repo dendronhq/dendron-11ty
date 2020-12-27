@@ -1,7 +1,7 @@
-VERSION="0.21.1-alpha.0"
-COMMON_SERVER_VERSION="0.20.1-alpha.13"
+ENGINE_SERVER_VERSION="0.21.1-alpha.8"
+COMMON_SERVER_VERSION="0.21.1-alpha.2"
 
-pkg1="@dendronhq/engine-server@$VERSION"
+pkg1="@dendronhq/engine-server@$ENGINE_SERVER_VERSION"
 pkg2="@dendronhq/common-server@$COMMON_SERVER_VERSION"
 
 yarn unlink @dendronhq/engine-server

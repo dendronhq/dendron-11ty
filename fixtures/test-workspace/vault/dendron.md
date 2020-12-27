@@ -1,6 +1,6 @@
 ---
 id: e86ac3ab-dbe1-47a1-bcd7-9df0d0490b40
-title: Quickstart
+title: Dendron
 desc: ''
 updated: 1608147429954
 created: 1595170096361
@@ -18,8 +18,9 @@ Welcome to Dendron! This guide will help get you started with your knowledge bas
     - [ ] Go through Dendron's basic 
 - a relative link
     - [[dendron.ref.figure#math]]
+    - [[figure with alias|dendron.ref.figure#math]]
 - a wiki link
-    - [[dendron.ref.figure]]
+    - [[normal alias|dendron.ref.figure]]
 
 ---
 
