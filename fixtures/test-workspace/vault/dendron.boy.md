@@ -5,5 +5,4 @@ desc: ''
 updated: 1598457956604
 created: 1598457956604
 ---
-
-((ref: [[dendron.cat]]))
+((ref:[[dendron.cat]]))

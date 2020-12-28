@@ -1,5 +1,5 @@
 ---
-id: "dendron-blog-two"
+id: dendron-blog-two
 title: Two
 desc: ''
 updated: 1608147429954
@@ -15,7 +15,6 @@ tags:
 excerpt: Second thing
 layout: single
 ---
-
 ## Summary
 
 Blog 2 Summary

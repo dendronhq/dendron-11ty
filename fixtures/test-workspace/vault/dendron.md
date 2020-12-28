@@ -7,27 +7,23 @@ created: 1595170096361
 stub: false
 nav_order: 1
 ---
-
-# Dendron
-
 Welcome to Dendron! This guide will help get you started with your knowledge base.
 
+## Summary
 ![](/assets/images/2020-12-16-11-37-05.png)
 
-
 - [ ] Not indented
-    - [ ] This should be indented
-    - [ ] This too
-        - [ ] Indented even more
+  - [ ] This should be indented
+  - [ ] This too
+    - [ ] Indented even more
 - a relative link
-    - [[dendron.ref.figure#math]]
-    - [[figure with alias|dendron.ref.figure#math]]
+  - [[dendron.ref.figure#math]]
+  - [[figure with alias|dendron.ref.figure#math]]
 - a wiki link
-    - [[normal alias|dendron.ref.figure]]
+  - [[normal alias|dendron.ref.figure]]
 
----
+* * *
 
 ## A Ref
 
-((ref: [[dendron]]#Dendron:#A Ref))
-
+((ref:[[dendron]]#Summary:#A Ref))

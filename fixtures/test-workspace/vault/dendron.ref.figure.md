@@ -5,8 +5,6 @@ desc: ''
 updated: 1608147857388
 created: 1608147795766
 ---
-
-
 Syntax highlighting
 
 ```bash
@@ -34,6 +32,6 @@ $$
 i \hbar \frac{\partial \Psi}{\partial t} = - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} + V \Psi
 $$
 
-
 ### Todos
+
 - [ ] this is a todo

@@ -1,5 +1,5 @@
 ---
-id: "dendron-blog-one"
+id: dendron-blog-one
 title: One
 desc: ''
 updated: 1608147429954
@@ -14,7 +14,6 @@ tags:
   - business
 excerpt: Thoughts and learnings from 1 year as an AWS consultant
 ---
-
 ## Summary
 
 Blog One Summary
