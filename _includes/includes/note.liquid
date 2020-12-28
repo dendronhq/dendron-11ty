@@ -6,7 +6,7 @@ pagination:
     resolve: values
 permalink: "{% if note.custom.permalink == '/' %}index.html{% else %}notes/{{ note.id }}.html{% endif %}"
 templateEngineOverride: liquid
-layout: layouts/default.liquid
+layout: layouts/single.liquid
 ---
 {%- assign vault = {{note.vault}} -%}
 {%- dendronMd note -%}

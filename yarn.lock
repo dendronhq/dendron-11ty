@@ -1573,6 +1573,13 @@ eleventy-plugin-seo@^0.5.1:
     html-entities "^1.2.1"
     lodash "^4.17.19"
 
+eleventy-xml-plugin@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/eleventy-xml-plugin/-/eleventy-xml-plugin-0.1.0.tgz#f117d4bbf22b3eaf16e1dddbf4cc02e275af39fc"
+  integrity sha512-hb8XF8GT0PkuNX99+878s4WqfCvtzSMDm3RHXvWRtK6VEyRQGewRigU6+tRhId7EGE9V6f2CFXb356XPAeQQTg==
+  dependencies:
+    html-entities "^1.2.1"
+
 emitter-component@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/emitter-component/-/emitter-component-1.1.1.tgz#065e2dbed6959bf470679edabeaf7981d1003ab6"

@@ -13,38 +13,43 @@ const {
 } = require("./utils");
 const fs = require("fs");
 const _ = require("lodash");
+const xmlFiltersPlugin = require('eleventy-xml-plugin')
 
 async function formatNote(note) {
   const layout = _.get(note, "custom.layout", false);
   if (layout === "single") {
-    note.title
     return "single"
   } else {
-    return toMarkdown2(note.body, note.vault);
+    return toMarkdown2(note.body, note.vault, note.fname);
   }
 }
 
-async function toMarkdown2(contents, vault) {
+async function markdownfy(contents) {
+  const proc = MDUtilsV4.remark();
+  return MDUtilsV4.procRehype({proc}).process(contents);
+}
+async function toMarkdown2(contents, vault, fname) {
   const absUrl = NOTE_UTILS.getAbsUrl();
   const sconfig = getSiteConfig();
   const siteNotesDir = sconfig.siteNotesDir;
   const linkPrefix = absUrl + "/" + siteNotesDir + "/";
   const engine = await getEngine();
   const wikiLinksOpts = { useId: true, prefix: linkPrefix };
-  (env.stage === "prod") 
   const proc = MDUtilsV4.procFull({
     engine,
     dest: DendronASTDest.HTML,
     vault,
+    fname,
     wikiLinksOpts,
     noteRefOpts: { wikiLinkOpts: wikiLinksOpts, prettyRefs: true },
     publishOpts: {
-      assetsPrefix: (env.stage === "prod") ? sconfig.assetsPrefix : undefined
+      assetsPrefix: (env.stage === "prod") ? sconfig.assetsPrefix : undefined,
+      // TODO
+      insertTitle: true
     },
     mathOpts: {katex: true}
   });
   return MDUtilsV4.procRehype({proc, mathjax: true}).process(contents);
-  //return proc.process(contents);
 }
 
 async function toHTML(contents) {
@@ -177,6 +182,8 @@ module.exports = {
     eleventyConfig.addLiquidShortcode("dendronMd", formatNote);
     eleventyConfig.addLiquidShortcode("nav", toNav);
     eleventyConfig.addLiquidFilter("toToc", toToc);
+    eleventyConfig.addLiquidFilter("markdownify", markdownfy);
     eleventyConfig.addLiquidFilter("toCollection", toCollection);
+    eleventyConfig.addPlugin(xmlFiltersPlugin)
   },
 };

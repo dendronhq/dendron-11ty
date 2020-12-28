@@ -14,8 +14,11 @@ Welcome to Dendron! This guide will help get you started with your knowledge bas
 
 ![](/assets/images/2020-12-16-11-37-05.png)
 
-- a bullet
-    - [ ] Go through Dendron's basic 
+
+- [ ] Not indented
+    - [ ] This should be indented
+    - [ ] This too
+        - [ ] Indented even more
 - a relative link
     - [[dendron.ref.figure#math]]
     - [[figure with alias|dendron.ref.figure#math]]

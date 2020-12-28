@@ -1,6 +1,6 @@
 ---
 id: cat
-title: cat
+title: Cats
 desc: ''
 updated: 1598457956604
 created: 1598457956604
