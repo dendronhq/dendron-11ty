@@ -44,22 +44,13 @@ async function toMarkdown2(contents, vault, fname) {
     noteRefOpts: { wikiLinkOpts: wikiLinksOpts, prettyRefs: true },
     publishOpts: {
       assetsPrefix: (env.stage === "prod") ? sconfig.assetsPrefix : undefined,
-      // TODO
-      insertTitle: true
+      insertTitle: false
     },
     mathOpts: {katex: true}
   });
   return MDUtilsV4.procRehype({proc, mathjax: true}).process(contents);
 }
 
-async function toHTML(contents) {
-  const engine = await getEngine();
-  let processor = MDUtilsV4.proc(engine)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(raw)
-    .use(rehypeStringify);
-  return processor.process(contents);
-}
 
 let _NAV_CACHE = undefined;
 
@@ -177,7 +168,6 @@ function toCollection(note, notesDict) {
 
 module.exports = {
   configFunction: function (eleventyConfig, options = {}) {
-    eleventyConfig.addPairedShortcode("html", toHTML);
     eleventyConfig.addPairedShortcode("markdown", toMarkdown2);
     eleventyConfig.addLiquidShortcode("dendronMd", formatNote);
     eleventyConfig.addLiquidShortcode("nav", toNav);

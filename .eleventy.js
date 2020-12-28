@@ -53,10 +53,6 @@ module.exports = function (eleventyConfig) {
     return _.sortBy(array, field);
   });
 
-  eleventyConfig.addLiquidFilter("toHTML", function (content) {
-    let processor = remark().use(remarkRehype).use(rehypeStringify);
-    return processor.process(content);
-  });
   eleventyConfig.addLiquidFilter("where_exp", function (collection, expr) {
     // TODO
     //{%- assign ordered_pages_list = group.items |
