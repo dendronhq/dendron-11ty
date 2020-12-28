@@ -81,10 +81,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@dendronhq/common-all@^0.21.1-alpha.2":
-  version "0.21.1-alpha.5"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-all/-/common-all-0.21.1-alpha.5.tgz#6035fb836a2c5f7cee9bfe459de30281c59e8329"
-  integrity sha512-iMUsphyDjaX+p3X3pg6whQvQvZfBn7Wo+R3JNYpyv7bjzlzP3eJXVYTwNVVzCYOJsM7npxmPaoGsWBrc5pPDqw==
+"@dendronhq/common-all@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-all/-/common-all-0.22.0.tgz#0a7445ceee4947012d466d1910872dfee5e0cdbc"
+  integrity sha512-w7nTs4SWYLIIs9YjW+ylxWL8h0Qt8rrQbTXO2/JbuArlopiZKw6Q91rEl4WzbfGE39GxAd96ATVFLTDrQlhFpQ==
   dependencies:
     "@types/github-slugger" "^1.3.0"
     "@types/jest" "^23.3.3"
@@ -115,46 +115,12 @@
     vscode-uri "^2.1.2"
     yamljs "^0.3.0"
 
-"@dendronhq/common-all@^0.21.1-alpha.8":
-  version "0.21.1-alpha.8"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-all/-/common-all-0.21.1-alpha.8.tgz#cd20470142edfb6f02e4b82e134305c3dc7ea662"
-  integrity sha512-t8MP19gL3CsYOVNIJ/9YXUYzjFvkB6SFN5LfVAM49wZSdT59FgjLX2g/yuTPjEKAU7xgBuhIhFeEaiH3e0K5AQ==
+"@dendronhq/common-server@0.22", "@dendronhq/common-server@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-server/-/common-server-0.22.0.tgz#e087d2a6fcfb274442d62f4aa03ab51321143cd1"
+  integrity sha512-2+u8G98LJ96XGmMUKg3iHhqYLoqcSh2j9tNExo4tn+5t8J52rHwIeg+OeQnK5VqGEIZpBWPtL/IK9CA5T8c5Wg==
   dependencies:
-    "@types/github-slugger" "^1.3.0"
-    "@types/jest" "^23.3.3"
-    "@types/lodash" "^4.14.152"
-    "@types/luxon" "^1.25.0"
-    "@types/minimatch" "^3.0.3"
-    "@types/moment" "^2.13.0"
-    "@types/node" "13.11.0"
-    "@types/pino" "^6.0.1"
-    "@types/semver" "^7.3.4"
-    "@types/unist" "^2.0.3"
-    "@types/uuid" "^8.0.0"
-    "@types/yamljs" "^0.2.31"
-    dropbox "^4.0.30"
-    github-slugger "^1.3.0"
-    gray-matter "^4.0.2"
-    isomorphic-fetch "^2.2.1"
-    js-yaml "^3.14.0"
-    lodash "^4.17.15"
-    luxon "^1.25.0"
-    minimatch "^3.0.4"
-    moment "^2.27.0"
-    pino "^6.3.1"
-    request "^2.88.2"
-    request-promise "^4.2.6"
-    semver "^7.3.2"
-    uuid "^8.1.0"
-    vscode-uri "^2.1.2"
-    yamljs "^0.3.0"
-
-"@dendronhq/common-server@^0.21.1-alpha.2":
-  version "0.21.1-alpha.2"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-server/-/common-server-0.21.1-alpha.2.tgz#b663f53b7710c313221fdc6673fdc3b4ac334c01"
-  integrity sha512-FwVf86Yv7072wVRhJKCifvbcRisOJ6NCD64f4thrgc0e/f7wV2C8KFJ7RBkkgSysdJTs5sshtjsI431cSPoHOA==
-  dependencies:
-    "@dendronhq/common-all" "^0.21.1-alpha.2"
+    "@dendronhq/common-all" "^0.22.0"
     "@types/fs-extra" "^9.0.1"
     "@types/jest" "^23.3.3"
     "@types/js-yaml" "^3.12.5"
@@ -175,26 +141,26 @@
     tmp "^0.2.1"
     vscode-uri "^2.1.2"
 
-"@dendronhq/common-test-utils@^0.21.1-alpha.8":
-  version "0.21.1-alpha.8"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-test-utils/-/common-test-utils-0.21.1-alpha.8.tgz#02c6ac03d2c6a3f6983b51186ca6a364df0b2a3f"
-  integrity sha512-90PL2a5JYSLsw1w1icyv58bsgzW/k7RwWTIB2Fxcfv6pYFdGHqhRXqSDtBS9T8adgoH8R1FWYjaQuUJi7g07gw==
+"@dendronhq/common-test-utils@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-test-utils/-/common-test-utils-0.22.0.tgz#57cae5b42fda9a0a38968f9079839b0155af7513"
+  integrity sha512-Tsq9UKU0wN4p/2+SRZkHehRirBfxFEwwXpICaMm76STKD4D5XK8UMirHMubUN1QGrarvYvgOmM/pFrpglj8jdw==
   dependencies:
-    "@dendronhq/common-all" "^0.21.1-alpha.8"
-    "@dendronhq/common-server" "^0.21.1-alpha.2"
+    "@dendronhq/common-all" "^0.22.0"
+    "@dendronhq/common-server" "^0.22.0"
     "@types/sinon" "^9.0.9"
     fs-extra "^9.0.1"
     lodash "^4.17.20"
     sinon "^9.2.1"
 
-"@dendronhq/engine-server@0.21.1-alpha.8":
-  version "0.21.1-alpha.8"
-  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.21.1-alpha.8.tgz#8b36d804109537eec837535503e6f3ba5632b9fe"
-  integrity sha512-zdRsDbguFFL9r9KIX4z7ogFPPL/YXRrkGClOm2MVwrgcC6qpqEKPQ8nUj8YE/8EfUEKOoN8KUGmjAbs6cj/rAw==
+"@dendronhq/engine-server@0.22":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.22.0.tgz#73a670a6be7ff76e03ddb91d9170d8952fcee492"
+  integrity sha512-7KuMfM+OsarpYgpg8Y/rUbw99y7ybgSg31TIkjPGgG6M51knbBG90mepGvdEpE3phl+FDhOZiSDjpPkuEFZ1AQ==
   dependencies:
-    "@dendronhq/common-all" "^0.21.1-alpha.8"
-    "@dendronhq/common-server" "^0.21.1-alpha.2"
-    "@dendronhq/common-test-utils" "^0.21.1-alpha.8"
+    "@dendronhq/common-all" "^0.22.0"
+    "@dendronhq/common-server" "^0.22.0"
+    "@dendronhq/common-test-utils" "^0.22.0"
     "@types/fs-extra" "^9.0.1"
     "@types/jest" "^23.3.3"
     "@types/klaw" "^3.0.1"
@@ -220,8 +186,10 @@
     mdast-builder "^1.1.1"
     mdast-util-compact "^2.0.1"
     mdast-util-inject "^1.1.0"
+    rehype-autolink-headings "^5.0.1"
     rehype-katex "3"
     rehype-raw "^5.0.0"
+    rehype-slug "^4.0.1"
     rehype-stringify "^8.0.0"
     remark "^12.0.1"
     remark-abbr "^1.4.0"
@@ -2052,7 +2020,7 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-github-slugger@^1.2.1, github-slugger@^1.3.0:
+github-slugger@^1.1.1, github-slugger@^1.2.1, github-slugger@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.3.0.tgz#9bd0a95c5efdfc46005e82a906ef8e2a059124c9"
   integrity sha512-gwJScWVNhFYSRDvURk/8yhcFBee6aFjye2a7Lhb2bUyRulpIoek9p0I9Kt7PT67d/nUlZbFu8L9RLiA0woQN8Q==
@@ -2243,6 +2211,16 @@ hast-util-from-parse5@^6.0.0:
     vfile-location "^3.2.0"
     web-namespaces "^1.0.0"
 
+hast-util-has-property@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/hast-util-has-property/-/hast-util-has-property-1.0.4.tgz#9f137565fad6082524b382c1e7d7d33ca5059f36"
+  integrity sha512-ghHup2voGfgFoHMGnaLHOjbYFACKrRh9KFttdCzMCbFoBMJXiNi2+XTrPP8+q6cDJM/RSqlCfVWrjp1H201rZg==
+
+hast-util-heading-rank@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-heading-rank/-/hast-util-heading-rank-1.0.1.tgz#28dfd8b0724cfb0da48308e2a794b1d9f24fd80d"
+  integrity sha512-P6Hq7RCky9syMevlrN90QWpqWDXCxwIVOfQR2rK6P4GpY4bqjKEuCzoWSRORZ7vz+VgRpLnXimh+mkwvVFjbyQ==
+
 hast-util-is-element@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hast-util-is-element/-/hast-util-is-element-1.1.0.tgz#3b3ed5159a2707c6137b48637fbfe068e175a425"
@@ -2295,6 +2273,11 @@ hast-util-to-parse5@^6.0.0:
     web-namespaces "^1.0.0"
     xtend "^4.0.0"
     zwitch "^1.0.0"
+
+hast-util-to-string@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/hast-util-to-string/-/hast-util-to-string-1.0.4.tgz#9b24c114866bdb9478927d7e9c36a485ac728378"
+  integrity sha512-eK0MxRX47AV2eZ+Lyr18DCpQgodvaS3fAQO2+b9Two9F5HEoRPhiUMNzoXArMJfZi2yieFzUBMRl3HNJ3Jus3w==
 
 hast-util-to-text@^2.0.0:
   version "2.0.1"
@@ -4154,6 +4137,16 @@ regenerator-runtime@^0.13.4:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
 
+rehype-autolink-headings@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-autolink-headings/-/rehype-autolink-headings-5.0.1.tgz#7482bd8ffdae522a1295d8df598028ff89f9111d"
+  integrity sha512-B6dmUVhtGdXLxJr3qynjRR10+f/iPJbSOtW5YyWieMvcwAm1XW5/yIYaW/9Qqr/Sd5h/Jym3dDCLJ4y6rPluWg==
+  dependencies:
+    extend "^3.0.0"
+    hast-util-has-property "^1.0.0"
+    hast-util-heading-rank "^1.0.0"
+    unist-util-visit "^2.0.0"
+
 rehype-katex@3:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/rehype-katex/-/rehype-katex-3.1.0.tgz#3a0bf6361b78074110da4c15c62f5d2255d2cc2b"
@@ -4180,6 +4173,17 @@ rehype-raw@^5.0.0:
   integrity sha512-q/MOBj4fs1WF/LSCh5uOtNhnm5OESuDcSvq1mDQP4/2t6Q52E9MHeVoLeMy9vOn93BEcgVBm4FCokcK2iXRDvA==
   dependencies:
     hast-util-raw "^6.0.0"
+
+rehype-slug@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-slug/-/rehype-slug-4.0.1.tgz#313274501cffa997bd52dd57bf2da5851959747a"
+  integrity sha512-KIlJALf9WfHFF21icwTd2yI2IP+RQRweaxH9ChVGQwRYy36+hiomG4ZSe0yQRyCt+D/vE39LbAcOI/h4O4GPhA==
+  dependencies:
+    github-slugger "^1.1.1"
+    hast-util-has-property "^1.0.0"
+    hast-util-heading-rank "^1.0.0"
+    hast-util-to-string "^1.0.0"
+    unist-util-visit "^2.0.0"
 
 rehype-stringify@^8.0.0:
   version "8.0.0"
