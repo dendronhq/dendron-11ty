@@ -1,7 +1,7 @@
 version: 1
 vaults:
     - fsPath: vault
-useFMTitle: false
+useFMTitle: true
 site:
     assetsPrefix: bond
     copyAssets: true

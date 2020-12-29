@@ -6,6 +6,7 @@ const path = require("path");
 const {
   getEngine,
   getSiteConfig,
+  getDendronConfig,
   NOTE_UTILS,
   getNavOutput,
   getMetaPath,
@@ -30,6 +31,7 @@ async function markdownfy(contents) {
 }
 async function toMarkdown2(contents, vault, fname) {
   const absUrl = NOTE_UTILS.getAbsUrl();
+  const config = getDendronConfig();
   const sconfig = getSiteConfig();
   const siteNotesDir = sconfig.siteNotesDir;
   const linkPrefix = absUrl + "/" + siteNotesDir + "/";
@@ -44,7 +46,7 @@ async function toMarkdown2(contents, vault, fname) {
     noteRefOpts: { wikiLinkOpts: wikiLinksOpts, prettyRefs: true },
     publishOpts: {
       assetsPrefix: (env.stage === "prod") ? sconfig.assetsPrefix : undefined,
-      insertTitle: false
+      insertTitle: config.useFMTitle
     },
     mathOpts: {katex: true}
   });
