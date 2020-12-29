@@ -3,6 +3,7 @@ const rehypeStringify = require("rehype-stringify");
 const raw = require("rehype-raw");
 const { MDUtilsV4, DendronASTDest } = require("@dendronhq/engine-server");
 const path = require("path");
+const { DateTime } = require("luxon");
 const {
   getEngine,
   getSiteConfig,
@@ -25,9 +26,15 @@ async function formatNote(note) {
   }
 }
 
+function ms2Date(ts) {
+  const dt = DateTime.fromMillis(ts);
+  //return dt.toLocaleString(DateTime.DATETIME_HUGE)
+  return dt.toJSDate();
+}
+
 async function markdownfy(contents) {
   const proc = MDUtilsV4.remark();
-  return MDUtilsV4.procRehype({proc}).process(contents);
+  return await MDUtilsV4.procRehype({proc}).process(contents);
 }
 async function toMarkdown2(contents, vault, fname) {
   const absUrl = NOTE_UTILS.getAbsUrl();
@@ -174,6 +181,7 @@ module.exports = {
     eleventyConfig.addLiquidShortcode("dendronMd", formatNote);
     eleventyConfig.addLiquidShortcode("nav", toNav);
     eleventyConfig.addLiquidFilter("toToc", toToc);
+    eleventyConfig.addLiquidFilter("ms2Date", ms2Date);
     eleventyConfig.addLiquidFilter("markdownify", markdownfy);
     eleventyConfig.addLiquidFilter("toCollection", toCollection);
     eleventyConfig.addPlugin(xmlFiltersPlugin)
