@@ -19,11 +19,11 @@ const xmlFiltersPlugin = require('eleventy-xml-plugin')
 
 async function formatNote(note) {
   const layout = _.get(note, "custom.layout", false);
-  if (layout === "single") {
-    return "single"
-  } else {
+  // if (layout === "single") {
+  //   return "single"
+  // } else {
     return toMarkdown2(note.body, note.vault, note.fname);
-  }
+  // }
 }
 
 function ms2Date(ts) {
@@ -151,7 +151,12 @@ function toCollection(note, notesDict) {
   if (note.children.length <= 0) {
     return [];
   }
-  const children = note.children.map(id => notesDict[id])
+  let children = note.children.map(id => notesDict[id])
+  children = _.sortBy(children, "created");
+  if (_.get(note, "custom.sort_order", "normal") === "reverse") {
+    children = _.reverse(children);
+  }
+
   return children.map(ch => genTemplate(ch)).join("\n");
   // if (note.children.length <= 0) {
   //   return "";

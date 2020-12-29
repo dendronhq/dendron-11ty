@@ -3,7 +3,7 @@ id: dendron-blog-one
 title: One
 desc: ''
 updated: 1608147429954
-created: 1595170096361
+created: 1595160096360
 date: '2020-01-06'
 categories: aws
 category: aws
