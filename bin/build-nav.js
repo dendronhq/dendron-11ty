@@ -20,10 +20,11 @@ function createNav(noteIdsAtLevel, notesDict) {
     const elemId = permalink === "/" ? "root" : node.id;
     level.push(`<li class="nav-list-item" id="${elemId}">`);
     let hasChildren =
-      (node.children.length > 0 &&
-        permalink != "/" &&
-        !_.get(node, "custom.has_collection", false)) ||
-      (permalink === "/" && notesAtLevel.length > 1);
+      node.children.length > 0 &&
+      // not root node and no collection
+      ((permalink != "/" && !_.get(node, "custom.has_collection", false)) ||
+      // if root node, must have more than one root
+        (permalink === "/" && notesAtLevel.length > 1));
     // console.log(`node: ${node.id}, children: ${hasChildren}`); // DEBUG
     if (hasChildren) {
       level.push(
