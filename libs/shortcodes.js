@@ -29,8 +29,17 @@ async function formatNote(note) {
 
 function ms2Date(ts) {
   const dt = DateTime.fromMillis(ts);
-  //return dt.toLocaleString(DateTime.DATETIME_HUGE)
   return dt.toJSDate();
+}
+
+function ms2ShortDate(ts) {
+  const dt = DateTime.fromMillis(ts);
+  return dt.toLocaleString(DateTime.DATE_SHORT);
+}
+
+function jekyllDate2ShortDate(time) {
+  const dt = DateTime.fromISO(time) 
+  return dt.toLocaleString(DateTime.DATE_SHORT);
 }
 
 async function markdownfy(contents) {
@@ -135,20 +144,6 @@ function toToc(note, notesDict) {
 
 function genTemplate(node) {
   let out = [];
-
-  /*
-{% if post.header.teaser %}
-  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
-{% else %}
-  {% assign teaser = site.teaser %}
-{% endif %}
-
-{% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
-{% else %}
-  {% assign title = post.title %}
-{% endif %}
-*/
   let include = {};
   out.push(`<div class="${include.type || "list"}__item">`);
   out.push(
@@ -170,15 +165,16 @@ function genTemplate(node) {
   out.push(`<a href="${href}" rel="permalink">${node.title}</a>`);
   // {% endif %}
   out.push(`</h2>`);
+  const publishedDate = (node.custom.date ? jekyllDate2ShortDate(node.custom.date) : ms2ShortDate(node.created) )
   out.push(
-    `<p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> ${node.custom.date}</p>`
+    `<p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> ${publishedDate} </p>`
   );
   /*
     {% if post.read_time %}
       <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
     */
-  if (_.get(node, "custom.excerpt", false)) {
+  if (_.has(node, "custom.excerpt")) {
     out.push(
       `<p class="archive__item-excerpt" itemprop="description">${node.custom.excerpt}</p>`
     );

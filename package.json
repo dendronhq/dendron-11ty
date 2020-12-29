@@ -19,8 +19,8 @@
   "dependencies": {
     "@11ty/eleventy": "^0.11.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
-    "@dendronhq/common-server": "0.22",
-    "@dendronhq/engine-server": "0.22",
+    "@dendronhq/common-server": "^0.22",
+    "@dendronhq/engine-server": "^0.22",
     "@fec/eleventy-plugin-remark": "^2.1.0",
     "@dendronhq/eleventy-plugin-seo": "^0.5.1",
     "eleventy-xml-plugin": "^0.1.0",
