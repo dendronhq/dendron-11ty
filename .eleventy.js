@@ -10,7 +10,7 @@ const { buildStyles } = require("./bin/build-styles.js");
 const { buildNav } = require("./bin/build-nav.js");
 const { copyAssets } = require("./bin/copy-assets.js");
 const { getSiteOutputPath, getSiteConfig, NOTE_UTILS } = require("./libs/utils");
-const pluginSEO = require("eleventy-plugin-seo");
+const pluginSEO = require("@dendronhq/eleventy-plugin-seo");
 
 module.exports = function (eleventyConfig) {
 

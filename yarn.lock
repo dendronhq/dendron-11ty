@@ -153,6 +153,14 @@
     lodash "^4.17.20"
     sinon "^9.2.1"
 
+"@dendronhq/eleventy-plugin-seo@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@dendronhq/eleventy-plugin-seo/-/eleventy-plugin-seo-0.5.1.tgz#80cd5587587b0f46e4a8fa8ea45aafbe2cb7cd27"
+  integrity sha512-W+AEX7SYBHRg+ydQ4tK865gklp6C2rISqv6NQdWP01vshUqZWiGwTxEkuxlCn3HeGc07IIFx4qZCboWwqw3znQ==
+  dependencies:
+    html-entities "^1.2.1"
+    lodash "^4.17.19"
+
 "@dendronhq/engine-server@0.22":
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.22.0.tgz#73a670a6be7ff76e03ddb91d9170d8952fcee492"
@@ -1532,14 +1540,6 @@ ejs@^2.7.4:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.7.4.tgz#48661287573dcc53e366c7a1ae52c3a120eec9ba"
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
-
-eleventy-plugin-seo@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/eleventy-plugin-seo/-/eleventy-plugin-seo-0.5.1.tgz#d7e44ff7e2944ff56a86e1c303eb50e1db4c507f"
-  integrity sha512-rNzVeGGsUWBOW74JaP/7po5EbYttF8+fMMXwYzhkV6gYFXOwouVnadrHoyTcHJLwh9kJXx5WAOPIBSyghYmXPA==
-  dependencies:
-    html-entities "^1.2.1"
-    lodash "^4.17.19"
 
 eleventy-xml-plugin@^0.1.0:
   version "0.1.0"

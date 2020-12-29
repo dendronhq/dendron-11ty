@@ -22,7 +22,7 @@
     "@dendronhq/common-server": "0.22",
     "@dendronhq/engine-server": "0.22",
     "@fec/eleventy-plugin-remark": "^2.1.0",
-    "@dendronhq/eleventy-plugin-seo@0.5.1": "^0.5.1",
+    "@dendronhq/eleventy-plugin-seo": "^0.5.1",
     "eleventy-xml-plugin": "^0.1.0",
     "fs-extra": "^9.0.1",
     "liquidjs": "^9.16.1",
