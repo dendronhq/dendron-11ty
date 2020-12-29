@@ -4,7 +4,6 @@ title: Dendron
 desc: ''
 updated: 1608147429954
 created: 1595170096361
-stub: false
 nav_order: 1
 ---
 Welcome to Dendron! This guide will help get you started with your knowledge base.

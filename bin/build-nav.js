@@ -11,6 +11,7 @@ function createNav(noteIdsAtLevel, notesDict) {
   notesAtLevel = _.filter(notesAtLevel, (ent) => {
     return !_.get(ent, "custom.nav_exclude", false);
   });
+  // console.log(`nodes at Level`, notesAtLevel); // DEBUG
   // copied at libs/shortcodes.js
   notesAtLevel = _.sortBy(notesAtLevel, ["custom.nav_order", "title"]);
   const allLevels = _.map(notesAtLevel, (node) => {
@@ -18,8 +19,12 @@ function createNav(noteIdsAtLevel, notesDict) {
     let permalink = _.get(node, "custom.permalink", "");
     const elemId = permalink === "/" ? "root" : node.id;
     level.push(`<li class="nav-list-item" id="${elemId}">`);
-    let hasChildren = (node.children.length > 0 && permalink != "/" && !_.get(node, "custom.has_collection", false));
-    // $("ul").find(`[data-slide='${current}']`)
+    let hasChildren =
+      (node.children.length > 0 &&
+        permalink != "/" &&
+        !_.get(node, "custom.has_collection", false)) ||
+      (permalink === "/" && notesAtLevel.length > 1);
+    // console.log(`node: ${node.id}, children: ${hasChildren}`); // DEBUG
     if (hasChildren) {
       level.push(
         `<a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>`

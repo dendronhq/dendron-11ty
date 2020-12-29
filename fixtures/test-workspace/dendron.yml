@@ -6,7 +6,8 @@ site:
     assetsPrefix: bond
     copyAssets: true
     siteHierarchies:
-        - root
+        - dendron
+        - foo
     siteRootDir: docs
     logo: "vault/assets/images/logo.png"
     siteFaviconPath: "vault/assets/images/favicon.ico"
@@ -27,4 +28,7 @@ site:
     gh_edit_branch: "main"
     gh_edit_view_mode: "edit"
     gh_root: "docs/"
+    config:
+        foo:
+            publishByDefault: false
 
