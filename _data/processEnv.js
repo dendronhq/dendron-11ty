@@ -4,4 +4,8 @@ module.exports = {
   proto: process.env.PROTO,
   stage: process.env.STAGE,
   elevPort: process.env.ELEV_PORT,
+  /**
+   * Override output of config.yml
+   */
+  output: process.env.OUTPUT
 };

@@ -43,7 +43,10 @@ const logger = () => {
 const getSiteOutputPath = () => {
   const wsRoot = env.wsRoot;
   const config = getDendronConfig();
-  let siteRootPath;
+  // custom override
+  if (env.output) {
+    return resolvePath(env.output, wsRoot);
+  }
   if (env.stage === "dev") {
     siteRootPath = path.join(wsRoot, "build", "site");
     fs.ensureDirSync(siteRootPath);
