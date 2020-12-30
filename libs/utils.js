@@ -65,7 +65,7 @@ const getMetaPath = () => {
 }
 
 class NOTE_UTILS {
-  static getUrl = (note) => {
+  static getUrl(note) {
     return _.get(
       note,
       "custom.permalink",
@@ -73,7 +73,7 @@ class NOTE_UTILS {
     );
   };
 
-  static getAbsUrl = (suffix) => {
+  static getAbsUrl(suffix) {
     suffix = suffix || "";
     const siteUrl = getSiteConfig().siteUrl;
     if (siteUrl && env.stage !== "dev") {
@@ -84,7 +84,7 @@ class NOTE_UTILS {
     }
   };
 
-  static notes2Id = (url, notes) => {
+  static notes2Id(url, notes) {
     const noteId = removeExtension(url.split("/").slice(-1)[0], ".html");
     const note = _.get(notes, noteId, "");
     return note;
