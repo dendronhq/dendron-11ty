@@ -1,23 +1,23 @@
 ---
-id: dendron-blog-one
-title: One
+id: dendron-blog-three
+title: Three
 desc: ''
 updated: 1608147429954
-created: 1595160096360
+created: 1595170096361
 categories: aws
 category: aws
-date: 2020-02-03
 header:
   teaser: /assets/images/20200106-splash.jpg
 tags:
   - consulting
   - business
-excerpt: Thoughts and learnings from 1 year as an AWS consultant
+excerpt: Second thing
+layout: single
 ---
 ## Summary
 
-Blog One Summary
+Blog 3 Summary
 
 ## Chap1
 
-Blog One Chap1
+Blog 3 Chap1

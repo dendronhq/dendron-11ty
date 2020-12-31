@@ -188,7 +188,13 @@ function toCollection(note, notesDict) {
     return [];
   }
   let children = note.children.map((id) => notesDict[id]);
-  children = _.sortBy(children, "created");
+  children = _.sortBy(children, ent => {
+    if (_.has(ent, "custom.date")) {
+      const dt = DateTime.fromISO(ent.custom.date)
+      return dt.toMillis();
+    }
+    return ent.created;
+  });
   if (_.get(note, "custom.sort_order", "normal") === "reverse") {
     children = _.reverse(children);
   }
