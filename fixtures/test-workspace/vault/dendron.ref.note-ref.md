@@ -1,6 +1,6 @@
 ---
 id: id-note-ref
-title: Simple Note Ref
+title: Simple Nste Reff
 desc: ''
 updated: 1608147857388
 created: 1608147795766
