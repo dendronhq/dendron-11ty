@@ -19,16 +19,13 @@ const _ = require("lodash");
 const xmlFiltersPlugin = require("eleventy-xml-plugin");
 
 async function formatNote(note) {
-  const layout = _.get(note, "custom.layout", false);
-  // if (layout === "single") {
-  //   return "single"
-  // } else {
-  return toMarkdown2(note.body, note.vault, note.fname);
-  // }
+  const out = [];
+  out.push(await toMarkdown2(note.body, note.vault, note.fname))
+  return out.join("\n")
 }
 
 function ms2Date(ts) {
-  const dt = DateTime.fromMillis(ts);
+  const dt = DateTime.fromMillis(_.toInteger(ts));
   return dt.toJSDate();
 }
 
@@ -76,6 +73,31 @@ function getClosetNavVisibleParent(opts) {
   }
 }
 
+const _frontMatterToTable = (arg) => {
+  if (arg instanceof Array) {
+    let tbody = "<tbody><tr>";
+    arg.forEach(
+      (item) => (tbody += `<td>${_frontMatterToTable(item)}</td>`),
+    );
+    tbody += "</tr></tbody>";
+    return `<table>${tbody}</table>`;
+  } else if (typeof arg === "object") {
+    let thead = "<thead><tr>";
+    let tbody = "<tbody><tr>";
+    for (const key in arg) {
+      if (arg.hasOwnProperty(key)) {
+        thead += `<th>${key}</th>`;
+        tbody += `<td>${_frontMatterToTable(arg[key])}</td>`;
+      }
+    }
+    thead += "</tr></thead>";
+    tbody += "</tr></tbody>";
+
+    return `<table>${thead}${tbody}</table>`;
+  } else {
+    return arg;
+  }
+}
 async function toMarkdown2(contents, vault, fname) {
   const absUrl = NOTE_UTILS.getAbsUrl();
   const config = getDendronConfig();
