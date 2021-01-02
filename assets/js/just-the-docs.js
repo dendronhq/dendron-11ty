@@ -67,25 +67,12 @@
   }
 
   function initNavBar() {
-    var request = new XMLHttpRequest();
-    request.open("GET", '{{ "nav.html" | absolute_url }}', true);
-    request.onload = function () {
-      if (request.status >= 200 && request.status < 400) {
-        console.log("got good response");
-        var navHtml = request.responseText;
-        replaceNav(navHtml);
-      } else {
-        console.log(
-          "Error loading ajax request. Request status:" + request.status
-        );
-      }
-    };
-
-    request.onerror = function () {
-      console.log("There was a connection error");
-    };
-
-    request.send();
+    return fetch("/nav.html").then(function (response) {
+      return response.text().then((content) => {
+        replaceNav(content);
+        return;
+      });
+    });
   }
 
   function replaceNav(navHtml) {
@@ -540,17 +527,21 @@
   // Document ready
 
   jtd.onReady(function () {
-    // initNavBar();
-    var homeOrId = document.getElementById("navId").getAttribute("data");
-    var node = document.getElementById(homeOrId);
-    while (node.id !== "site-nav") {
-      let active = document.createAttribute("active");
-      node.setAttribute("class", node.getAttribute("class") + " active");
-      node = node.parentElement.parentElement;
-    }
-    var linkElem = document.getElementById("a-" + homeOrId);
-    linkElem.setAttribute("class", linkElem.getAttribute("class") + " active");
-    initNav();
+    initNavBar().then((resp) => {
+      var homeOrId = document.getElementById("navId").getAttribute("data");
+      var node = document.getElementById(homeOrId);
+      while (node.id !== "site-nav") {
+        let active = document.createAttribute("active");
+        node.setAttribute("class", node.getAttribute("class") + " active");
+        node = node.parentElement.parentElement;
+      }
+      var linkElem = document.getElementById("a-" + homeOrId);
+      linkElem.setAttribute(
+        "class",
+        linkElem.getAttribute("class") + " active"
+      );
+      initNav();
+    });
     initSearch();
   });
 })((window.jtd = window.jtd || {}));
