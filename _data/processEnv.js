@@ -7,5 +7,6 @@ module.exports = {
   /**
    * Override output of config.yml
    */
-  output: process.env.OUTPUT
+  output: process.env.OUTPUT,
+  logLvl: process.env.LOG_LEVEL
 };
