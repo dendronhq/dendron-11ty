@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const sass = require('node-sass');
 const fs = require('fs-extra');
 const util = require('util');
