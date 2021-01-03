@@ -24,7 +24,7 @@
 
   // Show/hide mobile menu
 
-  function initNav() {
+  function initNav(activeId) {
     jtd.addEvent(document, "click", function (e) {
       var target = e.target;
       while (
@@ -58,6 +58,8 @@
     const searchInput = document.getElementById("search-input");
     const searchButton = document.getElementById("search-button");
 
+    document.getElementById(activeId).scrollIntoView(true);
+    //document.getElementById(activeId).scrollIntoView({ behavior: 'smooth' })
     // jtd.addEvent(searchButton, "click", function (e) {
     //   e.preventDefault();
 
@@ -540,7 +542,8 @@
         "class",
         linkElem.getAttribute("class") + " active"
       );
-      initNav();
+
+      initNav(homeOrId);
     });
     initSearch();
   });
