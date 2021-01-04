@@ -1,4 +1,4 @@
-ENGINE_SERVER_VERSION="0.22.2-alpha.0"
+ENGINE_SERVER_VERSION="0.23.1-alpha.0"
 COMMON_SERVER_VERSION="0.22.2-alpha.0"
 
 pkg1="@dendronhq/engine-server@$ENGINE_SERVER_VERSION"
