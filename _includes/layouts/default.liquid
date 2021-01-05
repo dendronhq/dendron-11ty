@@ -125,21 +125,6 @@
         {% endif %}
 
         {{ content }}
-        {% comment %}
-        {% include includes/anchor_headings.liquid, html:content beforeHeading:"true" anchorBody:"<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass:"anchor-heading" %}
-        {% if site.heading_anchors != false %}
-        {% else %}
-        {% endif %}
-        {{ content }}
-        {% endcomment %}
-
-        {% comment %}
-        {%- if page.has_collection -%}
-          {% include includes/documents-collection.liquid, sort_by:page.sort_by sort_order:page.sort_order type:page.entries_layout %}
-        {%- elsif page.has_toc != false -%}
-          {%- include includes/toc.liquid -%}
-        {%- endif -%}
-        {% endcomment %}
 
         {% if site.footer_content != nil or site.last_edit_timestamp or dendronConfig.site.gh_edit_link %}
           <hr>
