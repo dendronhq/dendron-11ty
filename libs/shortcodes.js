@@ -114,6 +114,7 @@ async function toMarkdown2(contents, vault, fname) {
     publishOpts: {
       assetsPrefix: env.stage === "prod" ? sconfig.assetsPrefix : undefined,
       insertTitle: config.useFMTitle,
+      transformNoPublish: true,
     },
     mathOpts: { katex: true },
   });

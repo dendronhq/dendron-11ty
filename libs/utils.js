@@ -1,7 +1,7 @@
 const path = require("path");
 const { createLogger, resolvePath } = require("@dendronhq/common-server");
 const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
-const { EngineConnector, DConfig } = require("@dendronhq/engine-server");
+const { EngineConnector, DConfig, SiteUtils } = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const _ = require("lodash");
 
@@ -19,6 +19,10 @@ const getEngine = async () => {
   });
   if (!engineConnector.initialized) {
     await engineConnector.init({ portOverride: env.enginePort });
+    const siteNotes = SiteUtils.addSiteOnlyNotes({engine: engineConnector.engine})
+    _.forEach(siteNotes, ent => {
+      engineConnector.engine.notes[ent.id] = ent;
+    });
   }
   const engine = engineConnector.engine;
   return engine;

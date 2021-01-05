@@ -17,6 +17,7 @@ async function getNotes() {
   const engine = await getEngine();
   const config = getDendronConfig();
   let {notes, domains} = await SiteUtils.filterByConfig({ engine, config: config.site });
+
   // // TODO
   // if (env.logLvl === "debug") {
   //   fs.writeJSONSync(path.join("/tmp/", "notes.log"), notes, {spaces: 4});
