@@ -9,3 +9,7 @@ nav_exclude: true
 ---
 
 Some text
+
+## Header1
+
+## Header (special chars)
