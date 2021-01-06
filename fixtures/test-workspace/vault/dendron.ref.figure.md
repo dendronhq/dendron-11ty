@@ -5,7 +5,13 @@ desc: ''
 updated: 1608147857388
 created: 1608147795766
 ---
-Syntax highlighting
+
+### Footnote
+
+This is a footnote [^1]
+
+
+### Syntax highlighting
 
 ```bash
 ls foo
@@ -35,3 +41,6 @@ $$
 ### Todos
 
 - [ ] this is a todo
+
+
+[^1]: dendron.so
