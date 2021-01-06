@@ -164,10 +164,10 @@
     html-entities "^1.2.1"
     lodash "^4.17.19"
 
-"@dendronhq/engine-server@0.23.1-alpha.1":
-  version "0.23.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.23.1-alpha.1.tgz#700fcf466249ff412a6fcf503f8c21138394be64"
-  integrity sha512-AMA9gc4pyJ1dpfpenvuTmGS+sBjkYp5UuxBWR2otaDD606ia3QQkS7qu+drXuhEuUgrlrCzpcLHVlWOyXS7kAg==
+"@dendronhq/engine-server@0.23.1-alpha.2":
+  version "0.23.1-alpha.2"
+  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.23.1-alpha.2.tgz#2ea0e1c57223648f07979dd5fbdafc1953e64b30"
+  integrity sha512-XyZsl2EVeSQcTJBKZbIqVa4tqB8+/HBJ9qGMJKBYvOyE+XPymsKrKfeN66ei7m2VBF5rIBYZre3axhKLrIDdbw==
   dependencies:
     "@dendronhq/common-all" "^0.23.0"
     "@dendronhq/common-server" "^0.23.0"
