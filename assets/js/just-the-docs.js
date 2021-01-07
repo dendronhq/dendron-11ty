@@ -59,13 +59,6 @@
     const searchButton = document.getElementById("search-button");
 
     document.getElementById(activeId).scrollIntoView(true);
-    //document.getElementById(activeId).scrollIntoView({ behavior: 'smooth' })
-    // jtd.addEvent(searchButton, "click", function (e) {
-    //   e.preventDefault();
-
-    //   mainHeader.classList.add("nav-open");
-    //   searchInput.focus();
-    // });
   }
 
   function initNavBar() {
@@ -542,8 +535,8 @@
         "class",
         linkElem.getAttribute("class") + " active"
       );
-
       initNav(homeOrId);
+      document.querySelector("body").setAttribute("style", "");
     });
     initSearch();
   });
