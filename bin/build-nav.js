@@ -1,4 +1,4 @@
-const { NOTE_UTILS, getNavOutput, getMetaPath } = require("../libs/utils");
+const { NOTE_UTILS, getNavOutput, getMetaPath, getSiteConfig } = require("../libs/utils");
 const _ = require("lodash");
 const fs = require("fs-extra");
 
@@ -20,12 +20,15 @@ function createNav(noteIdsAtLevel, notesDict) {
     const elemId = permalink === "/" ? "root" : node.id;
     level.push(`<li class="nav-list-item" id="${elemId}">`);
     let hasChildren =
+      // has children
       node.children.length > 0 &&
       // not root node and no collection
       ((permalink != "/" && !_.get(node, "custom.has_collection", false)) ||
-      // if root node, must have more than one root
-        (permalink === "/" && notesAtLevel.length > 1));
+        // if root node, must have more than one root
+        (permalink === "/" && getSiteConfig().siteHierarchies.length > 1));
+    //console.log("nodesAtLevel", notesAtLevel);
     // console.log(`node: ${node.id}, children: ${hasChildren}`); // DEBUG
+    // process.exit();
     if (hasChildren) {
       level.push(
         `<a href="" class="nav-list-expander"><svg viewBox="0 0 24 24"><use xlink:href="#svg-arrow-right"></use></svg></a>`
