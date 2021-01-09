@@ -1,6 +1,5 @@
 const { MDUtilsV4, DendronASTDest } = require("@dendronhq/engine-server");
-const {NoteUtilsV2} = require("@dendronhq/common-all");
-const path = require("path");
+const { NoteUtilsV2, VaultUtils } = require("@dendronhq/common-all");
 const { DateTime } = require("luxon");
 const {
   getEngine,
@@ -14,11 +13,12 @@ const {
 const fs = require("fs");
 const _ = require("lodash");
 const xmlFiltersPlugin = require("eleventy-xml-plugin");
+const path = require("path");
 
 async function formatNote(note) {
   const out = [];
-  out.push(await toMarkdown2(note.body, note.vault, note.fname))
-  return out.join("\n")
+  out.push(await toMarkdown2(note.body, note.vault, note.fname));
+  return out.join("\n");
 }
 
 function ms2Date(ts) {
@@ -32,7 +32,7 @@ function ms2ShortDate(ts) {
 }
 
 function jekyllDate2ShortDate(time) {
-  const dt = DateTime.fromISO(time) 
+  const dt = DateTime.fromISO(time);
   return dt.toLocaleString(DateTime.DATE_SHORT);
 }
 
@@ -55,8 +55,8 @@ function getClosetNavVisibleParent(opts) {
   let nparent = maybeNode.parent;
   let permalink = _.get(maybeNode, "custom.permalink", "");
   if (permalink === "/") {
-    return {id: "root"}
-  } 
+    return { id: "root" };
+  }
   if (
     _.some([
       nparent &&
@@ -64,7 +64,7 @@ function getClosetNavVisibleParent(opts) {
         _.get(notes[nparent], "custom.has_collection"),
     ])
   ) {
-    return notes[nparent]
+    return notes[nparent];
   } else {
     return maybeNode;
   }
@@ -73,9 +73,7 @@ function getClosetNavVisibleParent(opts) {
 const _frontMatterToTable = (arg) => {
   if (arg instanceof Array) {
     let tbody = "<tbody><tr>";
-    arg.forEach(
-      (item) => (tbody += `<td>${_frontMatterToTable(item)}</td>`),
-    );
+    arg.forEach((item) => (tbody += `<td>${_frontMatterToTable(item)}</td>`));
     tbody += "</tr></tbody>";
     return `<table>${tbody}</table>`;
   } else if (typeof arg === "object") {
@@ -94,7 +92,7 @@ const _frontMatterToTable = (arg) => {
   } else {
     return arg;
   }
-}
+};
 async function toMarkdown2(contents, vault, fname) {
   const absUrl = NOTE_UTILS.getAbsUrl();
   const config = getDendronConfig();
@@ -117,7 +115,7 @@ async function toMarkdown2(contents, vault, fname) {
       transformNoPublish: true,
     },
     mathOpts: { katex: true },
-    config: sconfig
+    config: sconfig,
   });
   const navHintElem = `<span id="navId" data="${navParent.id}"></span>`;
   return (
@@ -186,7 +184,9 @@ function genTemplate(node) {
   out.push(`<a href="${href}" rel="permalink">${node.title}</a>`);
   // {% endif %}
   out.push(`</h2>`);
-  const publishedDate = (node.custom.date ? jekyllDate2ShortDate(node.custom.date) : ms2ShortDate(node.created) )
+  const publishedDate = node.custom.date
+    ? jekyllDate2ShortDate(node.custom.date)
+    : ms2ShortDate(node.created);
   out.push(
     `<p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> ${publishedDate} </p>`
   );
@@ -209,9 +209,9 @@ function toCollection(note, notesDict) {
     return [];
   }
   let children = note.children.map((id) => notesDict[id]);
-  children = _.sortBy(children, ent => {
+  children = _.sortBy(children, (ent) => {
     if (_.has(ent, "custom.date")) {
-      const dt = DateTime.fromISO(ent.custom.date)
+      const dt = DateTime.fromISO(ent.custom.date);
       return dt.toMillis();
     }
     return ent.created;
@@ -223,11 +223,52 @@ function toCollection(note, notesDict) {
   return children.map((ch) => genTemplate(ch)).join("\n");
 }
 
+// gh_edit_repository: 'https://github.com/kevinslin/dendron-yc'
+// url: 'git@github.com:kevinslin/dendron-vault.git'
+function git2Github(gitUrl) {
+  // 'git@github.com:kevinslin/dendron-vault.git'
+  const [_, userAndRepo] = gitUrl.split(":");
+  const [user, repo] = userAndRepo.split("/");
+  return `https://github.com/${user}/${path.basename(repo, ".git")}`;
+}
+
+function githubUrl(node) {
+  const vault = node.vault;
+  const wsRoot = env.wsRoot;
+  const config = getDendronConfig();
+  const vaults = config.vaults;
+  const mvault = VaultUtils.matchVault({ wsRoot, vault, vaults });
+  const vaultUrl = _.get(mvault, "remote.url", false);
+  const gitRepoUrl = config.site.gh_edit_repository;
+  if (mvault && vaultUrl) {
+    return _.join(
+      [
+        git2Github(vaultUrl),
+        config.site.gh_edit_view_mode,
+        config.site.gh_edit_branch,
+        node.fname + ".md",
+      ],
+      "/"
+    );
+  }
+  return _.join(
+    [
+      gitRepoUrl,
+      config.site.gh_edit_view_mode,
+      config.site.gh_edit_branch,
+      path.basename(vault.fsPath),
+      node.fname + ".md",
+    ],
+    "/"
+  );
+}
+
 module.exports = {
   configFunction: function (eleventyConfig, options = {}) {
     eleventyConfig.addPairedShortcode("markdown", toMarkdown2);
     eleventyConfig.addLiquidShortcode("dendronMd", formatNote);
     eleventyConfig.addLiquidShortcode("nav", toNav);
+    eleventyConfig.addLiquidShortcode("githubUrl", githubUrl);
     eleventyConfig.addLiquidFilter("toToc", toToc);
     eleventyConfig.addLiquidFilter("ms2Date", ms2Date);
     eleventyConfig.addLiquidFilter("markdownify", markdownfy);

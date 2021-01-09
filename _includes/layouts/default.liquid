@@ -151,7 +151,7 @@
                   dendronConfig.site.gh_edit_view_mode
                 %}
                   <p class="text-small text-grey-dk-000 mb-0">
-                    <a href="{{ dendronConfig.site.gh_edit_repository }}/{{ dendronConfig.site.gh_edit_view_mode }}/{{ dendronConfig.site.gh_edit_branch }}/{{ nodeCurrent.vault.fsPath | basename }}/{{ nodeCurrent.fname }}.md" id="edit-this-page">{{ dendronConfig.site.gh_edit_link_text }}</a>
+                    <a href="{% githubUrl nodeCurrent %}" id="edit-this-page">{{ dendronConfig.site.gh_edit_link_text }}</a>
                   </p>
                 {% endif %}
               </div>
