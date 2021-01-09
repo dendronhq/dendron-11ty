@@ -19,9 +19,9 @@ async function getNotes() {
   let {notes, domains} = await SiteUtils.filterByConfig({ engine, config: config.site });
 
   // // TODO
-  // if (env.logLvl === "debug") {
-  //   fs.writeJSONSync(path.join("/tmp/", "notes.log"), notes, {spaces: 4});
-  // }
+  if (env.logLvl === "debug") {
+    fs.writeJSONSync(path.join("/tmp/", "notes.log"), notes, {spaces: 4});
+  }
   return {notes, domains};
 }
 
