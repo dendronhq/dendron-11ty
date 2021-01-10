@@ -11,6 +11,7 @@ pkg3="@dendronhq/common-all@$COMMON_ALL_VERSION"
 
 yarn unlink @dendronhq/engine-server
 yarn unlink @dendronhq/common-server
+yarn unlink @dendronhq/common-all
 
 echo "installing $pkg1"
 yarn add --force $pkg1

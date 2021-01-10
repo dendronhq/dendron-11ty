@@ -15,6 +15,7 @@ async function copyAssets() {
   const config = getDendronConfig();
   const vaults = config.vaults;
   const siteAssetsDir = path.join(getSiteOutputPath(), "assets");
+  // copy site assets
   if (!config.site.copyAssets) {
     logger().info({ ctx, msg: "skip copying" });
     return;
@@ -25,11 +26,16 @@ async function copyAssets() {
       return SiteUtils.copyAssets({ wsRoot, vault, siteAssetsDir });
     })
   );
+  // get javascript
+  // const jsPath = path.join(getSiteOutputPath(), "raw-assets", "js", "just-the-docs.js");
+  // fs.copySync(faviconPath, path.join(getSiteOutputPath(), "assets", "js", "just-the-docs.js"));
+
   // get favicon
   const faviconPath = path.join(wsRoot, getSiteConfig().siteFaviconPath);
   if (fs.existsSync(faviconPath)) {
     fs.copySync(faviconPath, path.join(getSiteOutputPath(), "favicon.ico"));
   }
+  // get logo
   if (getSiteConfig().logo) {
     const logoPath = path.join(wsRoot, getSiteConfig().logo);
     fs.copySync(
@@ -37,7 +43,7 @@ async function copyAssets() {
       path.join(getSiteOutputPath(), path.basename(logoPath))
     );
   }
-  // check for cname
+  // /get cname
   if (getSiteConfig().githubCname) {
     fs.writeFileSync(
       path.join(getSiteOutputPath(), "CNAME"),
