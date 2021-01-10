@@ -103,7 +103,6 @@ class NOTE_UTILS {
     let sitePrefix = _.trimEnd(siteUrl, "/");
     if (assetsPrefix) {
       sitePrefix = _.join([_.trimEnd(siteUrl, "/"), _.trim(assetsPrefix, "/")], "/")
-      console.log("BOND", sitePrefix)
     }
     if (siteUrl && env.stage !== "dev") {
       const out = _.trimEnd(
