@@ -84,17 +84,18 @@ class NOTE_UTILS {
   }
 
   static getAbsUrl(suffix) {
-    suffix = suffix || "";
-    const siteUrl = getSiteConfig().siteUrl;
-    if (siteUrl && env.stage !== "dev") {
-      const out = _.trimEnd(
-        _.join([_.trimEnd(siteUrl, "/"), _.trim(suffix, "/")], "/"),
-        "/"
-      );
-      return out;
-    } else {
-      return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);
-    }
+    return NOTE_UTILS.getAbsUrlForAsset(suffix)
+    // suffix = suffix || "";
+    // const siteUrl = getSiteConfig().siteUrl;
+    // if (siteUrl && env.stage !== "dev") {
+    //   const out = _.trimEnd(
+    //     _.join([_.trimEnd(siteUrl, "/"), _.trim(suffix, "/")], "/"),
+    //     "/"
+    //   );
+    //   return out;
+    // } else {
+    //   return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);
+    // }
   }
 
   static getAbsUrlForAsset(suffix) {
