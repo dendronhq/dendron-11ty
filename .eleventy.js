@@ -36,7 +36,7 @@ module.exports = function (eleventyConfig) {
 
   // --- filters
   eleventyConfig.addLiquidFilter("absolute_url", function (variable) {
-    return NOTE_UTILS.getAbsUrl(variable);
+    return NOTE_UTILS.getAbsUrlForAsset(variable);
   });
 
   eleventyConfig.addLiquidFilter("group_by", function (collection, groupByKey) {

@@ -1,7 +1,11 @@
 const path = require("path");
 const { createLogger, resolvePath } = require("@dendronhq/common-server");
 const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
-const { EngineConnector, DConfig, SiteUtils } = require("@dendronhq/engine-server");
+const {
+  EngineConnector,
+  DConfig,
+  SiteUtils,
+} = require("@dendronhq/engine-server");
 const fs = require("fs-extra");
 const _ = require("lodash");
 
@@ -19,8 +23,10 @@ const getEngine = async () => {
   });
   if (!engineConnector.initialized) {
     await engineConnector.init({ portOverride: env.enginePort });
-    const siteNotes = SiteUtils.addSiteOnlyNotes({engine: engineConnector.engine})
-    _.forEach(siteNotes, ent => {
+    const siteNotes = SiteUtils.addSiteOnlyNotes({
+      engine: engineConnector.engine,
+    });
+    _.forEach(siteNotes, (ent) => {
       engineConnector.engine.notes[ent.id] = ent;
     });
   }
@@ -61,12 +67,12 @@ const getSiteOutputPath = () => {
 };
 
 const getNavOutput = () => {
-  return path.join(getSiteOutputPath(), "nav.html")
-}
+  return path.join(getSiteOutputPath(), "nav.html");
+};
 
 const getMetaPath = () => {
-  return path.join(getSiteOutputPath(), ".meta")
-}
+  return path.join(getSiteOutputPath(), ".meta");
+};
 
 class NOTE_UTILS {
   static getUrl(note) {
@@ -75,24 +81,46 @@ class NOTE_UTILS {
       "custom.permalink",
       `${path.join(getSiteConfig().siteNotesDir, note.id)}.html`
     );
-  };
+  }
 
   static getAbsUrl(suffix) {
     suffix = suffix || "";
     const siteUrl = getSiteConfig().siteUrl;
     if (siteUrl && env.stage !== "dev") {
-      const out = _.trimEnd(_.join([_.trimEnd(siteUrl, "/"), _.trim(suffix, "/")], "/"), "/");
+      const out = _.trimEnd(
+        _.join([_.trimEnd(siteUrl, "/"), _.trim(suffix, "/")], "/"),
+        "/"
+      );
       return out;
     } else {
       return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);
     }
-  };
+  }
+
+  static getAbsUrlForAsset(suffix) {
+    suffix = suffix || "";
+    const {siteUrl, assetsPrefix} = getSiteConfig();
+    let sitePrefix = _.trimEnd(siteUrl, "/");
+    if (assetsPrefix) {
+      sitePrefix = _.join([_.trimEnd(siteUrl, "/"), _.trim(assetsPrefix, "/")], "/")
+      console.log("BOND", sitePrefix)
+    }
+    if (siteUrl && env.stage !== "dev") {
+      const out = _.trimEnd(
+        _.join([sitePrefix, _.trim(suffix, "/")], "/"),
+        "/"
+      );
+      return out;
+    } else {
+      return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);
+    }
+  }
 
   static notes2Id(url, notes) {
     const noteId = removeExtension(url.split("/").slice(-1)[0], ".html");
     const note = _.get(notes, noteId, "");
     return note;
-  };
+  }
 }
 
 module.exports = {
@@ -105,5 +133,5 @@ module.exports = {
   getSiteOutputPath,
   NOTE_UTILS,
   getNavOutput,
-  getMetaPath
+  getMetaPath,
 };
