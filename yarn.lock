@@ -81,19 +81,17 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@dendronhq/common-all@^0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-all/-/common-all-0.23.1.tgz#e235fe9dca1ba7807ddbad789b1e211f3069094f"
-  integrity sha512-mRw8Uo4fhoH9swb7kL8QrOBDCOZpVEKcYppIClV9TuVK4V94xFYT6HZtT+OJhDAOIp4vBEMvEwHGMVHH0SIbtQ==
+"@dendronhq/common-all@0.23.2-alpha.2", "@dendronhq/common-all@^0.23.2-alpha.2":
+  version "0.23.2-alpha.2"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-all/-/common-all-0.23.2-alpha.2.tgz#5e34f28e54c0eb5b9e0547e22a90fefc40db912a"
+  integrity sha512-F3AG2oE3joMFftgCYi60n9OyPU2TQnNBjCj3Q+6OwxEND4gQGcv9pHXVXsP3PIUjvZXRil+9ijVxpUa9dqgR5g==
   dependencies:
     "@types/github-slugger" "^1.3.0"
     "@types/jest" "^23.3.3"
     "@types/lodash" "^4.14.152"
     "@types/luxon" "^1.25.0"
     "@types/minimatch" "^3.0.3"
-    "@types/moment" "^2.13.0"
     "@types/node" "13.11.0"
-    "@types/pino" "^6.0.1"
     "@types/semver" "^7.3.4"
     "@types/title" "^1.0.5"
     "@types/unist" "^2.0.3"
@@ -107,8 +105,6 @@
     lodash "^4.17.15"
     luxon "^1.25.0"
     minimatch "^3.0.4"
-    moment "^2.27.0"
-    pino "^6.3.1"
     request "^2.88.2"
     request-promise "^4.2.6"
     semver "^7.3.2"
@@ -117,12 +113,12 @@
     vscode-uri "^2.1.2"
     yamljs "^0.3.0"
 
-"@dendronhq/common-server@0.23.1", "@dendronhq/common-server@^0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-server/-/common-server-0.23.1.tgz#a82abda4b233a5ac5297cdc3b8b7586889b98909"
-  integrity sha512-DIMWzKK4Tzwab/dwjeelGM2Pc0IBwrAShGJMGYEEE4sYkd/fvRldM11eoEjBWa8GkHBmg5gFpvOB9KhMY/trPw==
+"@dendronhq/common-server@0.23.2-alpha.2", "@dendronhq/common-server@^0.23.2-alpha.2":
+  version "0.23.2-alpha.2"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-server/-/common-server-0.23.2-alpha.2.tgz#1897e6566cb5718031ee84ccd3a9f6e793b0a566"
+  integrity sha512-e5vfofIEEqGOqTPoGoibT3a8zpKz7vjHSnd7LRFJfbRFvWmVkmQssfp39NwNYEr4pEi28dD+Pd0Gh8q835+nrg==
   dependencies:
-    "@dendronhq/common-all" "^0.23.1"
+    "@dendronhq/common-all" "^0.23.2-alpha.2"
     "@types/fs-extra" "^9.0.1"
     "@types/jest" "^23.3.3"
     "@types/js-yaml" "^3.12.5"
@@ -144,13 +140,13 @@
     tmp "^0.2.1"
     vscode-uri "^2.1.2"
 
-"@dendronhq/common-test-utils@^0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@dendronhq/common-test-utils/-/common-test-utils-0.23.1.tgz#c9944440d68930bcd9bc5235a4a565620637236a"
-  integrity sha512-cSnhrGs/pYHFIYjp9nHqsuYV4khNoYkYY87E7McHGRlYZM5uwu69SIfKdss6yqPb1BNPuJlazXDwmK9DQVxI1w==
+"@dendronhq/common-test-utils@^0.23.2-alpha.2":
+  version "0.23.2-alpha.2"
+  resolved "https://registry.yarnpkg.com/@dendronhq/common-test-utils/-/common-test-utils-0.23.2-alpha.2.tgz#510bb55ba95a6be0468ec546ce0727010698a3ec"
+  integrity sha512-MdZniGCjLZGSYv+3xu/Cgx64gBM5ZINW3Qdl3Y7C6Ry3G1fDjIF0rUCAYyxGQwHRMIkHGI8FgSYpPkpVx6pNyg==
   dependencies:
-    "@dendronhq/common-all" "^0.23.1"
-    "@dendronhq/common-server" "^0.23.1"
+    "@dendronhq/common-all" "^0.23.2-alpha.2"
+    "@dendronhq/common-server" "^0.23.2-alpha.2"
     "@types/sinon" "^9.0.9"
     fs-extra "^9.0.1"
     lodash "^4.17.20"
@@ -164,20 +160,19 @@
     html-entities "^1.2.1"
     lodash "^4.17.19"
 
-"@dendronhq/engine-server@0.23.1":
-  version "0.23.1"
-  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.23.1.tgz#a36eda375ab5e591120094ad4a239c496613f0e5"
-  integrity sha512-XLRkohWySOzdLe1flz3woXB9YwnMiXRk07ITlykma+NvKt/4IZhoY6XHUcv4xGT4blkzSA65W1LPGNz69P7igg==
+"@dendronhq/engine-server@0.23.2-alpha.2":
+  version "0.23.2-alpha.2"
+  resolved "https://registry.yarnpkg.com/@dendronhq/engine-server/-/engine-server-0.23.2-alpha.2.tgz#8d8206807937f184720c8be1add82647299c8116"
+  integrity sha512-ZGXouTw+r9Pbq1joh4a1dXIJA/4udmdIxXW1+7Spf7a3sNTy5eKzuadDV5JpJyrKsDTcE3JnumkpLsRiBnMe3w==
   dependencies:
-    "@dendronhq/common-all" "^0.23.1"
-    "@dendronhq/common-server" "^0.23.1"
-    "@dendronhq/common-test-utils" "^0.23.1"
+    "@dendronhq/common-all" "^0.23.2-alpha.2"
+    "@dendronhq/common-server" "^0.23.2-alpha.2"
+    "@dendronhq/common-test-utils" "^0.23.2-alpha.2"
     "@mapbox/rehype-prism" "^0.5.0"
     "@types/fs-extra" "^9.0.1"
     "@types/jest" "^23.3.3"
     "@types/klaw" "^3.0.1"
     "@types/lodash" "^4.14.156"
-    "@types/markdown-it" "^10.0.2"
     "@types/mdast" "^3.0.3"
     "@types/node" "13.11.0"
     "@types/pino" "^6.3.0"
@@ -192,9 +187,6 @@
     gray-matter "^4.0.2"
     klaw "^3.0.0"
     lodash "^4.17.15"
-    markdown-it "^11.0.0"
-    markdown-it-ast "^0.0.1"
-    markdown-it-regex "^0.2.0"
     mdast-builder "^1.1.1"
     mdast-util-compact "^2.0.1"
     mdast-util-inject "^1.1.0"
@@ -346,11 +338,6 @@
   dependencies:
     "@types/unist" "*"
 
-"@types/highlight.js@^9.7.0":
-  version "9.12.4"
-  resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.12.4.tgz#8c3496bd1b50cc04aeefd691140aa571d4dbfa34"
-  integrity sha512-t2szdkwmg2JJyuCM20e8kR2X59WCE5Zkl4bzm1u1Oukjm79zpbiAv+QjnwLnuuV0WHEcX2NgUItu0pAMKuOPww==
-
 "@types/jest@^23.3.3":
   version "23.3.14"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.14.tgz#37daaf78069e7948520474c87b80092ea912520a"
@@ -368,11 +355,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/linkify-it@*":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-3.0.0.tgz#c0ca4c253664492dbf47a646f31cfd483a6bbc95"
-  integrity sha512-x9OaQQTb1N2hPZ/LWJsqushexDvz7NgzuZxiRmZio44WPuolTZNHDBCrOxCzRVOMwamJRO2dWax5NbygOf1OTQ==
-
 "@types/lodash@^4.14.152", "@types/lodash@^4.14.154", "@types/lodash@^4.14.156":
   version "4.14.165"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.165.tgz#74d55d947452e2de0742bad65270433b63a8c30f"
@@ -383,16 +365,6 @@
   resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.25.0.tgz#3d6fe591fac874f48dd225cb5660b2b785a21a05"
   integrity sha512-iIJp2CP6C32gVqI08HIYnzqj55tlLnodIBMCcMf28q9ckqMfMzocCmIzd9JWI/ALLPMUiTkCu1JGv3FFtu6t3g==
 
-"@types/markdown-it@^10.0.2":
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/@types/markdown-it/-/markdown-it-10.0.3.tgz#a9800d14b112c17f1de76ec33eff864a4815eec7"
-  integrity sha512-daHJk22isOUvNssVGF2zDnnSyxHhFYhtjeX4oQaKD6QzL3ZR1QSgiD1g+Q6/WSWYVogNXYDXODtbgW/WiFCtyw==
-  dependencies:
-    "@types/highlight.js" "^9.7.0"
-    "@types/linkify-it" "*"
-    "@types/mdurl" "*"
-    highlight.js "^9.7.0"
-
 "@types/mdast@^3.0.0", "@types/mdast@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/mdast/-/mdast-3.0.3.tgz#2d7d671b1cd1ea3deb306ea75036c2a0407d2deb"
@@ -400,22 +372,10 @@
   dependencies:
     "@types/unist" "*"
 
-"@types/mdurl@*":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@types/mdurl/-/mdurl-1.0.2.tgz#e2ce9d83a613bacf284c7be7d491945e39e1f8e9"
-  integrity sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==
-
 "@types/minimatch@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
-
-"@types/moment@^2.13.0":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
-  integrity sha1-YE69GJvDvDShVIaJQE5hoqSqyJY=
-  dependencies:
-    moment "*"
 
 "@types/node@*":
   version "14.14.11"
@@ -439,7 +399,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/pino@^6.0.1", "@types/pino@^6.3.0":
+"@types/pino@^6.3.0":
   version "6.3.4"
   resolved "https://registry.yarnpkg.com/@types/pino/-/pino-6.3.4.tgz#f22524c33a7e21f45f5cc7fc2c570ccae0be98fa"
   integrity sha512-03MpZ/HP6GlG0oo5dcb8NBpI21zNESswTbaA0VB4uuigXfVy+XLmzh39CY6VCAahPMxCPtuqSEdhwGeA3AOYXg==
@@ -2425,11 +2385,6 @@ hastscript@^6.0.0:
     property-information "^5.0.0"
     space-separated-tokens "^1.0.0"
 
-highlight.js@^9.7.0:
-  version "9.18.5"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.5.tgz#d18a359867f378c138d6819edfc2a8acd5f29825"
-  integrity sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==
-
 hosted-git-info@^2.1.4:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
@@ -3198,16 +3153,6 @@ markdown-escapes@^1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.4.tgz#c95415ef451499d7602b91095f3c8e8975f78535"
   integrity sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==
 
-markdown-it-ast@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-it-ast/-/markdown-it-ast-0.0.1.tgz#8e8473837ab3b32fd1c23653ae6d47663f977538"
-  integrity sha1-joRzg3qzsy/RwjZTrm1HZj+XdTg=
-
-markdown-it-regex@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/markdown-it-regex/-/markdown-it-regex-0.2.0.tgz#e09ad2d75209720d591d3949e1142c75c0fbecf6"
-  integrity sha512-111UnMGJSt37gy+DlgcpQNwEfS2jvscOFSztzGhuXUHk7K1J5eAEj6C3jifmKb0cWtTuxdpHgIt4PyGQ+DtDjw==
-
 markdown-it-task-checkbox@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/markdown-it-task-checkbox/-/markdown-it-task-checkbox-1.0.6.tgz#9ebd7b6382e99162264605bc580f2ac118be4242"
@@ -3221,17 +3166,6 @@ markdown-it@^10.0.0:
     argparse "^1.0.7"
     entities "~2.0.0"
     linkify-it "^2.0.0"
-    mdurl "^1.0.1"
-    uc.micro "^1.0.5"
-
-markdown-it@^11.0.0:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-11.0.1.tgz#b54f15ec2a2193efa66dda1eb4173baea08993d6"
-  integrity sha512-aU1TzmBKcWNNYvH9pjq6u92BML+Hz3h5S/QpfTFwiQF852pLT+9qHsrhM9JYipkOXZxGn+sGH8oyJE9FD9WezQ==
-  dependencies:
-    argparse "^1.0.7"
-    entities "~2.0.0"
-    linkify-it "^3.0.1"
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
@@ -3487,7 +3421,7 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@*, moment@^2.19.3, moment@^2.27.0:
+moment@^2.19.3:
   version "2.29.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
@@ -3976,7 +3910,7 @@ pino-std-serializers@^2.4.2:
   resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-2.5.0.tgz#40ead781c65a0ce7ecd9c1c33f409d31fe712315"
   integrity sha512-wXqbqSrIhE58TdrxxlfLwU9eDhrzppQDvGhBEr1gYbzzM4KKo3Y63gSjiDXRKLVS2UOXdPNR2v+KnQgNrs+xUg==
 
-pino@^6.3.1, pino@^6.3.2:
+pino@^6.3.2:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/pino/-/pino-6.7.0.tgz#d5d96b7004fed78816b5694fda3eab02b5ca6d23"
   integrity sha512-vPXJ4P9rWCwzlTJt+f0Ni4THc3DWyt8iDDCO4edQ8narTu6hnpzdXu8FqeSJCGndl1W6lfbYQUQihUO54y66Lw==
