@@ -16,7 +16,7 @@ async function getNotes() {
   }
   const engine = await getEngine();
   const config = getDendronConfig();
-  let {notes, domains} = await SiteUtils.filterByConfig({ engine, config: config.site });
+  let {notes, domains} = await SiteUtils.filterByConfig({ engine, config: config });
 
   // // TODO
   if (env.logLvl === "debug") {

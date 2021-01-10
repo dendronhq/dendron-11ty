@@ -16,7 +16,7 @@ async function getNotes() {
   }
   const engine = await getEngine();
   const config = getDendronConfig();
-  let {notes} = await SiteUtils.filterByConfig({ engine, config: config.site });
+  let {notes} = await SiteUtils.filterByConfig({ engine, config });
   const siteNotes = SiteUtils.addSiteOnlyNotes({engine})
   _.forEach(siteNotes, ent => {
     notes[ent.id] = ent;
