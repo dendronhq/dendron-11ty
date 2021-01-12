@@ -7,6 +7,7 @@ const {
   logger,
   getSiteOutputPath,
   getSiteConfig,
+  getCustomHeaderOutput,
 } = require("../libs/utils");
 
 async function copyAssets() {
@@ -26,10 +27,13 @@ async function copyAssets() {
       return SiteUtils.copyAssets({ wsRoot, vault, siteAssetsDir });
     })
   );
-  // get javascript
-  // const jsPath = path.join(getSiteOutputPath(), "raw-assets", "js", "just-the-docs.js");
-  // fs.copySync(faviconPath, path.join(getSiteOutputPath(), "assets", "js", "just-the-docs.js"));
-
+  // get custom header
+  if (config.site.customHeaderPath) {
+    const headerPath = path.join(wsRoot, getSiteConfig().customHeaderPath);
+    if (fs.existsSync(headerPath)) {
+      fs.copySync(headerPath, getCustomHeaderOutput());
+    }
+  }
   // get favicon
   const faviconPath = path.join(wsRoot, getSiteConfig().siteFaviconPath);
   if (fs.existsSync(faviconPath)) {

@@ -19,6 +19,7 @@ site:
     description: "Dendron is a local-first, markdown based, hierarchical note taking tool. It is meant to help you create, organize, and collaborate on knowledge bases of any size."
     author: "Kevin"
     twitter: "kevins8"
+    customHeaderPath: "header.html"
 
     # git stub
     gh_edit_link: true

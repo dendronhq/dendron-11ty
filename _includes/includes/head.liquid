@@ -32,6 +32,10 @@
     crossorigin="anonymous"
   />
 
+  {%- if site.customHeaderPath -%}
+  {% addHeader %}
+  {%- endif -%}
+
   {% if site.search_enabled != false %}
   <script
     type="text/javascript"

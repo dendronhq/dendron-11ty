@@ -70,6 +70,10 @@ const getNavOutput = () => {
   return path.join(getSiteOutputPath(), "nav.html");
 };
 
+const getCustomHeaderOutput = () => {
+  return path.join(getSiteOutputPath(), "header.html");
+};
+
 const getMetaPath = () => {
   return path.join(getSiteOutputPath(), ".meta");
 };
@@ -132,6 +136,7 @@ module.exports = {
   resolvePath,
   getSiteOutputPath,
   NOTE_UTILS,
+  getCustomHeaderOutput,
   getNavOutput,
   getMetaPath,
 };

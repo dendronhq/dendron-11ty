@@ -6,22 +6,25 @@ const { buildSearch } = require("./bin/build-search.js");
 const { buildStyles } = require("./bin/build-styles.js");
 const { buildNav } = require("./bin/build-nav.js");
 const { copyAssets } = require("./bin/copy-assets.js");
-const { getSiteOutputPath, getSiteConfig, NOTE_UTILS } = require("./libs/utils");
+const {
+  getSiteOutputPath,
+  getSiteConfig,
+  NOTE_UTILS,
+} = require("./libs/utils");
 const pluginSEO = require("@dendronhq/eleventy-plugin-seo");
 
 module.exports = function (eleventyConfig) {
-
   const sconfig = getSiteConfig();
 
   // --- libraries
   eleventyConfig.addPlugin(markdown);
   eleventyConfig.addPlugin(pluginSEO, {
     ...sconfig,
-    image: ((sconfig.logo ? `/` + path.basename(sconfig.logo) : undefined)),
+    image: sconfig.logo ? `/` + path.basename(sconfig.logo) : undefined,
     url: sconfig.siteUrl,
     options: {
       imageWithBaseUrl: true,
-    }
+    },
   });
 
   // --- tempaltes
@@ -62,12 +65,15 @@ module.exports = function (eleventyConfig) {
     return NOTE_UTILS.getUrl(note);
   });
   eleventyConfig.addLiquidFilter("noteIdsToNotes", function (noteIds, notes) {
-    return noteIds.map(id => notes[id]);
+    return noteIds.map((id) => notes[id]);
   });
   eleventyConfig.addLiquidFilter("urlToNote", function (url, notes) {
     const noteId = removeExtension(url.split("/").slice(-1)[0], ".html");
     if (url === "/") {
-      const note = _.find(notes, ent => _.get(ent, "custom.permalink", "") === "/")
+      const note = _.find(
+        notes,
+        (ent) => _.get(ent, "custom.permalink", "") === "/"
+      );
       return note;
     }
     const note = _.get(notes, noteId, "");
@@ -83,16 +89,25 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addLiquidFilter("basename", function (url) {
-      return path.basename(url)
+    return path.basename(url);
   });
   eleventyConfig.addLiquidFilter("noteParents", function (note, notes) {
     const out = [];
-    if (!note) {
+    if (!note || _.isUndefined(note)) {
       return [];
     }
     while (note.parent !== null) {
       out.push(note);
-      note = notes[note.parent];
+      try {
+        tmp = notes[note.parent];
+        if (_.isUndefined(tmp)) {
+          throw "note is undefined"
+        }
+        note = tmp
+      } catch (err) {
+        console.log("issue with note", note.fname, note.id, note.parent);
+        process.exit(1);
+      }
     }
     out.push(note);
     let res = _.reverse(out)
@@ -107,12 +122,12 @@ module.exports = function (eleventyConfig) {
   // --- events
   eleventyConfig.on("beforeBuild", async () => {
     await buildNav();
+    await copyAssets();
   });
 
   eleventyConfig.on("afterBuild", () => {
     buildStyles();
     buildSearch();
-    copyAssets();
   });
 
   return {

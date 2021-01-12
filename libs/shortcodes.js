@@ -8,12 +8,18 @@ const {
   NOTE_UTILS,
   getNavOutput,
   getMetaPath,
+  getCustomHeaderOutput,
   env,
 } = require("./utils");
 const fs = require("fs");
 const _ = require("lodash");
 const xmlFiltersPlugin = require("eleventy-xml-plugin");
 const path = require("path");
+
+async function addHeader() {
+  const hpath = getCustomHeaderOutput()
+  return fs.readFileSync(hpath, {encoding: "utf8"})
+}
 
 async function formatNote(note) {
   const out = [];
@@ -269,6 +275,7 @@ module.exports = {
     eleventyConfig.addLiquidShortcode("dendronMd", formatNote);
     eleventyConfig.addLiquidShortcode("nav", toNav);
     eleventyConfig.addLiquidShortcode("githubUrl", githubUrl);
+    eleventyConfig.addLiquidShortcode("addHeader", addHeader);
     eleventyConfig.addLiquidFilter("toToc", toToc);
     eleventyConfig.addLiquidFilter("ms2Date", ms2Date);
     eleventyConfig.addLiquidFilter("markdownify", markdownfy);
