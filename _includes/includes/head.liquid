@@ -49,4 +49,15 @@
   {% seo %}
   <meta property="og:title" content="{{ pageTitle }}" />
   <meta name="twitter:title" content="{{ pageTitle }}" />
+  {% if site.ga_tracking != nil and processEnv.stage == "prod" %}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{site.ga_tracking}}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{site.ga_tracking}}');
+  </script>
+  {% endif %}
 </head>
