@@ -116,7 +116,7 @@ class NOTE_UTILS {
       );
       return out;
     } else {
-      return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);
+      return "http://" + path.posix.join(`localhost:${env.elevPort || 8080}`, suffix);
     }
   }
 

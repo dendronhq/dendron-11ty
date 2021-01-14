@@ -30,6 +30,8 @@ async function copyAssets() {
   // get raw-assets
   const rawAssetPath = path.join(__dirname, "..", "raw-assets");
   fs.copySync(rawAssetPath, path.join(getSiteOutputPath(), "raw-assets"));
+  const normalAssets = path.join(__dirname, "..", "assets");
+  fs.copySync(normalAssets, path.join(getSiteOutputPath(), "assets"));
   // get custom header
   if (config.site.customHeaderPath) {
     const headerPath = path.join(wsRoot, getSiteConfig().customHeaderPath);

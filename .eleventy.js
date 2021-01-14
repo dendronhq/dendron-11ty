@@ -35,7 +35,6 @@ module.exports = function (eleventyConfig) {
     root: ["_includes"],
     extname: ".liquid",
   });
-  eleventyConfig.addPassthroughCopy(path.join("assets", "js"));
 
   // --- filters
   eleventyConfig.addLiquidFilter("absolute_url", function (variable) {
