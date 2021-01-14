@@ -27,6 +27,9 @@ async function copyAssets() {
       return SiteUtils.copyAssets({ wsRoot, vault, siteAssetsDir });
     })
   );
+  // get raw-assets
+  const rawAssetPath = path.join(__dirname, "..", "raw-assets");
+  fs.copySync(rawAssetPath, path.join(getSiteOutputPath(), "raw-assets"));
   // get custom header
   if (config.site.customHeaderPath) {
     const headerPath = path.join(wsRoot, getSiteConfig().customHeaderPath);

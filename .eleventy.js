@@ -28,7 +28,7 @@ module.exports = function (eleventyConfig) {
   });
 
   // --- tempaltes
-  eleventyConfig.setTemplateFormats(["scss", "css", "liquid", "md"]);
+  eleventyConfig.setTemplateFormats(["css", "liquid", "md"]);
   eleventyConfig.setLiquidOptions({
     dynamicPartials: false,
     strict_filters: true,
