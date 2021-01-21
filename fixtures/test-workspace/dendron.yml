@@ -2,6 +2,7 @@ version: 1
 vaults:
     - fsPath: vault
 useFMTitle: true
+mermaid: true
 site:
     assetsPrefix: bond
     copyAssets: true

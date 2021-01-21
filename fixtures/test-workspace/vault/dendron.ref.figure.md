@@ -42,5 +42,11 @@ $$
 
 - [ ] this is a todo
 
+### Mermaid
+
+```mermaid
+graph LR
+    Start --> Stop
+```
 
 [^1]: dendron.so
