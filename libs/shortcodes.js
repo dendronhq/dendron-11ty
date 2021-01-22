@@ -121,7 +121,7 @@ async function toMarkdown2(contents, vault, fname) {
       transformNoPublish: true,
     },
     mathOpts: { katex: true },
-    config: sconfig,
+    config: config,
     mermaid: config.mermaid,
   });
   const navHintElem = `<span id="navId" data="${navParent.id}"></span>`;
