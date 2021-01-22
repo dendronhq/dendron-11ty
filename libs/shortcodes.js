@@ -56,7 +56,7 @@ function getClosetNavVisibleParent(opts) {
     vault,
   });
   if (!maybeNode) {
-    throw Error(`no node found for ${fname}, ${vault}`);
+    throw Error(`no node found for ${fname}, ${JSON.stringify(vault)}`);
   }
   let nparent = maybeNode.parent;
   let permalink = _.get(maybeNode, "custom.permalink", "");
