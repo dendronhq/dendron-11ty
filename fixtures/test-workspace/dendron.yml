@@ -2,16 +2,16 @@ version: 1
 vaults:
     - fsPath: vault
 useFMTitle: true
+useNoteTitleForLink: true
 mermaid: true
 site:
-    assetsPrefix: bond
     copyAssets: true
     siteHierarchies:
         - root
     siteRootDir: docs
     logo: "vault/assets/images/logo.png"
     siteFaviconPath: "vault/assets/images/favicon.ico"
-    siteUrl: "https://11ty.dendron.so"
+    siteUrl: "https://foo.dev.dendron.so"
     usePrettyRefs: true
     githubCname: "11ty.dendron.so"
 
@@ -29,7 +29,3 @@ site:
     gh_edit_branch: "main"
     gh_edit_view_mode: "edit"
     gh_root: "docs/"
-    config:
-        foo:
-            publishByDefault: false
-

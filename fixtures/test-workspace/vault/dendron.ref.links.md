@@ -8,6 +8,9 @@ created: 1608518909864
 
 - This is a link to a [[not published note|bar]]
 
+## Wiki Link
+- [[dendron.ref.figure]]
+
 ## Note Refs
 
 ### Basic
