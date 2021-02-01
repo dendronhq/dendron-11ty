@@ -7,7 +7,7 @@ mermaid: true
 site:
     copyAssets: true
     siteHierarchies:
-        - root
+        - dendron
     siteRootDir: docs
     logo: "vault/assets/images/logo.png"
     siteFaviconPath: "vault/assets/images/favicon.ico"

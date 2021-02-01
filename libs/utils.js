@@ -45,6 +45,11 @@ const getSiteConfig = () => {
   return getDendronConfig().site;
 };
 
+const getSiteUrl = () => {
+  const siteUrl = process.env["SITE_URL"] || getSiteConfig().siteUrl
+  return siteUrl;
+}
+
 const logger = () => {
   const logger = createLogger();
   return logger;
@@ -89,22 +94,12 @@ class NOTE_UTILS {
 
   static getAbsUrl(suffix) {
     return NOTE_UTILS.getAbsUrlForAsset(suffix)
-    // suffix = suffix || "";
-    // const siteUrl = getSiteConfig().siteUrl;
-    // if (siteUrl && env.stage !== "dev") {
-    //   const out = _.trimEnd(
-    //     _.join([_.trimEnd(siteUrl, "/"), _.trim(suffix, "/")], "/"),
-    //     "/"
-    //   );
-    //   return out;
-    // } else {
-    //   return "http://" + path.join(`localhost:${env.elevPort || 8080}`, suffix);
-    // }
   }
 
   static getAbsUrlForAsset(suffix) {
     suffix = suffix || "";
-    const {siteUrl, assetsPrefix} = getSiteConfig();
+    const {assetsPrefix} = getSiteConfig();
+    const siteUrl = getSiteUrl();
     let sitePrefix = _.trimEnd(siteUrl, "/");
     if (assetsPrefix) {
       sitePrefix = _.join([_.trimEnd(siteUrl, "/"), _.trim(assetsPrefix, "/")], "/")
@@ -129,6 +124,7 @@ class NOTE_UTILS {
 
 module.exports = {
   getEngine,
+  getSiteUrl,
   env,
   getDendronConfig,
   getSiteConfig,

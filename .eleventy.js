@@ -10,6 +10,7 @@ const {
   getSiteOutputPath,
   getSiteConfig,
   NOTE_UTILS,
+  getSiteUrl
 } = require("./libs/utils");
 const pluginSEO = require("@dendronhq/eleventy-plugin-seo");
 
@@ -21,7 +22,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginSEO, {
     ...sconfig,
     image: sconfig.logo ? `/` + path.basename(sconfig.logo) : undefined,
-    url: sconfig.siteUrl,
+    url: getSiteUrl(),
     options: {
       imageWithBaseUrl: true,
     },
