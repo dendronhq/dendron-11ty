@@ -2,7 +2,7 @@
 id: e86ac3ab-dbe1-47a1-bcd7-9df0d0490b40
 title: Dendron
 desc: ''
-updated: 1608147429954
+updated: 1611629302343
 created: 1595170096361
 nav_order: 1
 ---
@@ -20,9 +20,3 @@ Welcome to Dendron! This guide will help get you started with your knowledge bas
   - [[figure with alias|dendron.ref.figure#math]]
 - a wiki link
   - [[normal alias|dendron.ref.figure]]
-
-* * *
-
-## A Ref
-
-((ref:[[dendron]]#Summary:#A Ref))
