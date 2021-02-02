@@ -48,15 +48,15 @@ async function markdownfy(contents) {
 }
 
 function getClosetNavVisibleParent(opts) {
-  const { fname, engine, vault } = opts;
-  const notes = engine.notes;
+  const { fname, notes, vault, noteIndex } = opts;
   const maybeNode = NoteUtilsV2.getNoteByFnameV4({
     fname,
     notes,
     vault,
   });
   if (!maybeNode) {
-    throw Error(`no node found for ${fname}, ${JSON.stringify(vault)}`);
+    //const msg = `no node found for ${fname}, ${JSON.stringify(vault)}`;
+    return noteIndex;
   }
   let nparent = maybeNode.parent;
   let permalink = _.get(maybeNode, "custom.permalink", "");
@@ -100,6 +100,7 @@ const _frontMatterToTable = (arg) => {
   }
 };
 async function toMarkdown2(contents, vault, fname) {
+  const {notes, noteIndex} = await require(path.join(__dirname, "..", "_data", "notes.js"))();
   const absUrl = NOTE_UTILS.getAbsUrl();
   const config = getDendronConfig();
   const sconfig = getSiteConfig();
@@ -107,7 +108,7 @@ async function toMarkdown2(contents, vault, fname) {
   const linkPrefix = absUrl + "/" + siteNotesDir + "/";
   const engine = await getEngine();
   const wikiLinksOpts = { useId: true, prefix: linkPrefix };
-  const navParent = getClosetNavVisibleParent({ fname, vault, engine });
+  const navParent = getClosetNavVisibleParent({ fname, vault, notes, noteIndex});
   const proc = MDUtilsV4.procFull({
     engine,
     dest: DendronASTDest.HTML,
