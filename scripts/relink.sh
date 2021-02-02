@@ -9,16 +9,16 @@ pkg1="@dendronhq/engine-server@$ENGINE_VERSION"
 pkg2="@dendronhq/common-server@$COMMON_SERVER_VERSION"
 pkg3="@dendronhq/common-all@$COMMON_ALL_VERSION"
 
-npm unlink @dendronhq/engine-server
-npm unlink @dendronhq/common-server
-npm unlink @dendronhq/common-all
+yarn unlink @dendronhq/engine-server
+yarn unlink @dendronhq/common-server
+yarn unlink @dendronhq/common-all
 
 echo "installing $pkg1"
-npm add --force $pkg1
+yarn add --force $pkg1
 echo "installing $pkg2"
-npm add --force $pkg2
+yarn add --force $pkg2
 echo "installing $pkg3"
-npm add --force $pkg3
+yarn add --force $pkg3
 
 
 # VERSION="0.22.2-alpha.0"
