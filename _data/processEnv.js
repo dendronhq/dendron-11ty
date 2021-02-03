@@ -2,7 +2,7 @@ module.exports = {
   wsRoot: process.env.WS_ROOT,
   enginePort: process.env.ENGINE_PORT,
   proto: process.env.PROTO,
-  stage: process.env.STAGE || "dev",
+  stage: process.env.BUILD_STAGE || process.env.STAGE || "dev",
   elevPort: process.env.ELEV_PORT,
   /**
    * Override output of config.yml
