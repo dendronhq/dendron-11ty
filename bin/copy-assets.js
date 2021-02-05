@@ -21,12 +21,13 @@ async function copyAssets() {
     logger().info({ ctx, msg: "skip copying" });
     return;
   }
-  logger().info({ ctx, msg: "copying" });
+  logger().info({ ctx, msg: "copying", vaults });
   await Promise.all(
     vaults.map((vault) => {
       return SiteUtils.copyAssets({ wsRoot, vault, siteAssetsDir });
     })
   );
+  logger().info({ ctx, msg: "finish copying assets" });
   // get raw-assets
   const rawAssetPath = path.join(__dirname, "..", "raw-assets");
   fs.copySync(rawAssetPath, path.join(getSiteOutputPath(), "raw-assets"));

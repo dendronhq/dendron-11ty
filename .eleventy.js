@@ -10,7 +10,7 @@ const {
   getSiteOutputPath,
   getSiteConfig,
   NOTE_UTILS,
-  getSiteUrl
+  getSiteUrl,
 } = require("./libs/utils");
 const pluginSEO = require("@dendronhq/eleventy-plugin-seo");
 
@@ -101,9 +101,9 @@ module.exports = function (eleventyConfig) {
       try {
         tmp = notes[note.parent];
         if (_.isUndefined(tmp)) {
-          throw "note is undefined"
+          throw "note is undefined";
         }
-        note = tmp
+        note = tmp;
       } catch (err) {
         console.log("issue with note", note.fname, note.id, note.parent);
         process.exit(1);
@@ -119,15 +119,23 @@ module.exports = function (eleventyConfig) {
   // --- plugins
   eleventyConfig.addPlugin(shortcodes);
 
+  let run = false;
   // --- events
   eleventyConfig.on("beforeBuild", async () => {
-    await buildNav();
-    await copyAssets();
+    if (!run) {
+      await buildNav();
+      await copyAssets();
+      run = true;
+    }
   });
 
-  eleventyConfig.on("afterBuild", () => {
-    buildStyles();
-    buildSearch();
+  let run2 = false;
+  eleventyConfig.on("afterBuild", async () => {
+    if (!run2) {
+      await buildStyles();
+      await buildSearch();
+      run2 = true;
+    }
   });
 
   return {
