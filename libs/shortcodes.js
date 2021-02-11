@@ -117,7 +117,7 @@ async function toMarkdown2(contents, vault, fname) {
     wikiLinksOpts,
     noteRefOpts: { wikiLinkOpts: wikiLinksOpts, prettyRefs: true },
     publishOpts: {
-      assetsPrefix: env.stage === "prod" ? sconfig.assetsPrefix : undefined,
+      assetsPrefix: env().stage === "prod" ? sconfig.assetsPrefix : undefined,
       insertTitle: config.useFMTitle,
       transformNoPublish: true,
     },
@@ -242,7 +242,7 @@ function git2Github(gitUrl) {
 
 function githubUrl(node) {
   const vault = node.vault;
-  const wsRoot = env.wsRoot;
+  const wsRoot = env().wsRoot;
   const config = getDendronConfig();
   const vaults = config.vaults;
   const mvault = VaultUtils.matchVault({ wsRoot, vault, vaults });

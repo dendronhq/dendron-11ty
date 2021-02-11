@@ -1,6 +1,6 @@
 const path = require("path");
 const { createLogger, resolvePath } = require("@dendronhq/common-server");
-const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
+// const env = require(path.join(__dirname, "..", "_data", "processEnv.js"));
 const {
   EngineConnector,
   DConfig,
@@ -17,12 +17,28 @@ function removeExtension(nodePath, ext) {
   return nodePath;
 }
 
+const env = () => {
+  const out = {
+    wsRoot: process.env.WS_ROOT,
+    enginePort: process.env.ENGINE_PORT,
+    proto: process.env.PROTO,
+    stage: process.env.BUILD_STAGE || process.env.STAGE || "dev",
+    elevPort: process.env.ELEV_PORT,
+    /**
+     * Override output of config.yml
+     */
+    output: process.env.OUTPUT,
+    logLvl: process.env.LOG_LEVEL
+  };
+  return out;
+}
+
 const getEngine = async () => {
   const engineConnector = EngineConnector.getOrCreate({
-    wsRoot: env.wsRoot,
+    wsRoot: env().wsRoot,
   });
   if (!engineConnector.initialized) {
-    await engineConnector.init({ portOverride: env.enginePort });
+    await engineConnector.init({ portOverride: env().enginePort });
     const siteNotes = SiteUtils.addSiteOnlyNotes({
       engine: engineConnector.engine,
     });
@@ -35,7 +51,7 @@ const getEngine = async () => {
 };
 
 const getDendronConfig = () => {
-  const wsRoot = env.wsRoot;
+  const wsRoot = env().wsRoot;
   const config = DConfig.getOrCreate(wsRoot);
   config.site = DConfig.cleanSiteConfig(config.site);
   return config;
@@ -46,7 +62,7 @@ const getSiteConfig = () => {
 };
 
 const getSiteUrl = () => {
-  const siteUrl = process.env["SITE_URL"] || getSiteConfig().siteUrl
+  const siteUrl = env()["SITE_URL"] || getSiteConfig().siteUrl
   return siteUrl;
 }
 
@@ -56,13 +72,13 @@ const logger = () => {
 };
 
 const getSiteOutputPath = () => {
-  const wsRoot = env.wsRoot;
+  const wsRoot = env().wsRoot;
   const config = getDendronConfig();
   // custom override
-  if (env.output) {
-    return resolvePath(env.output, wsRoot);
+  if (env().output) {
+    return resolvePath(env().output, wsRoot);
   }
-  if (env.stage === "dev") {
+  if (env().stage === "dev") {
     siteRootPath = path.join(wsRoot, "build", "site");
     fs.ensureDirSync(siteRootPath);
   } else {
@@ -104,14 +120,14 @@ class NOTE_UTILS {
     if (assetsPrefix) {
       sitePrefix = _.join([_.trimEnd(siteUrl, "/"), _.trim(assetsPrefix, "/")], "/")
     }
-    if (siteUrl && env.stage !== "dev") {
+    if (siteUrl && env().stage !== "dev") {
       const out = _.trimEnd(
         _.join([sitePrefix, _.trim(suffix, "/")], "/"),
         "/"
       );
       return out;
     } else {
-      return "http://" + path.posix.join(`localhost:${env.elevPort || 8080}`, suffix);
+      return "http://" + path.posix.join(`localhost:${env().elevPort || 8080}`, suffix);
     }
   }
 

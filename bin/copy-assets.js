@@ -12,7 +12,7 @@ const {
 
 async function copyAssets() {
   const ctx = "copyAssets";
-  const wsRoot = env.wsRoot;
+  const wsRoot = env().wsRoot;
   const config = getDendronConfig();
   const vaults = config.vaults;
   const siteAssetsDir = path.join(getSiteOutputPath(), "assets");

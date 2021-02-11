@@ -10,7 +10,7 @@ const { env, getEngine, getDendronConfig } = require(path.join(
 ));
 
 async function getNotes() {
-  if (env.proto) {
+  if (env().proto) {
     const notes = fs.readJSONSync(path.join(__dirname, "notes-proto.json"));
     return notes;
   }

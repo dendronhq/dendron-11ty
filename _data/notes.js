@@ -15,7 +15,7 @@ async function getNotes() {
   if (!_.isEmpty(NOTES_CACHE)) {
     return NOTES_CACHE;
   }
-  if (env.proto) {
+  if (env().proto) {
     const notes = fs.readJSONSync(path.join(__dirname, "notes-proto.json"));
     return notes;
   }
@@ -33,7 +33,7 @@ async function getNotes() {
   });
 
   // // TODO
-  if (env.logLvl === "debug") {
+  if (env().logLvl === "debug") {
     fs.writeJSONSync(path.join("/tmp/", "notes.log"), notes, { spaces: 4 });
   }
   const noteIndex = _.find(domains, ent => ent.custom.permalink === "/");

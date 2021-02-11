@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require("path");
-const { env, NOTE_UTILS, getSiteOutputPath, getSiteConfig } = require("../libs/utils");
+const { NOTE_UTILS, getSiteOutputPath, getSiteConfig } = require("../libs/utils");
 
 async function buildSearch() {
   // Inside the function for async/await functionality.
