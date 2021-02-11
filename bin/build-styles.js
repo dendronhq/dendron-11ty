@@ -26,6 +26,7 @@ const buildSass = async function () {
   const fileExisted = await fs.pathExists(outputFile);
 
   try {
+    console.log("build style...", outputFile);
     await fs.ensureFile(outputFile);
     await fs.writeFile(outputFile, css);
   } catch (error) {
