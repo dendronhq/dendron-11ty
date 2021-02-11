@@ -4,12 +4,12 @@ const util = require('util');
 const {getSiteOutputPath} = require("../libs/utils");
 const path = require("path");
 
-const renderSass = util.promisify(sass.render);
-const inputFile = path.join(getSiteOutputPath(), "raw-assets", "sass", "just-the-docs-default.scss")
-const outputFile = path.join(getSiteOutputPath(), "assets", "css", "just-the-docs-default.css")
-const isProduction = process.env.ELEVENTY_ENV;
 
 const buildSass = async function () {
+  const renderSass = util.promisify(sass.render);
+  const inputFile = path.join(getSiteOutputPath(), "raw-assets", "sass", "just-the-docs-default.scss")
+  const outputFile = path.join(getSiteOutputPath(), "assets", "css", "just-the-docs-default.css")
+  const isProduction = process.env.ELEVENTY_ENV;
   const { css } = await renderSass({
     file: inputFile,
     includePaths: [

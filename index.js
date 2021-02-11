@@ -1,6 +1,10 @@
 const path = require("path");
 const Eleventy = require("@11ty/eleventy");
 const _ = require("lodash");
+const { buildSearch } = require("./bin/build-search.js");
+const { buildStyles } = require("./bin/build-styles.js");
+const { buildNav } = require("./bin/build-nav.js");
+const { copyAssets } = require("./bin/copy-assets.js");
 
 async function compile(env, overrides) {
   const argv = _.merge(
@@ -44,4 +48,8 @@ async function compile(env, overrides) {
 
 module.exports = {
   compile,
+  buildNav,
+  copyAssets,
+  buildStyles,
+  buildSearch,
 };
