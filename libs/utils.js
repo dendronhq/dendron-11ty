@@ -62,7 +62,7 @@ const getSiteConfig = () => {
 };
 
 const getSiteUrl = () => {
-  const siteUrl = env()["SITE_URL"] || getSiteConfig().siteUrl
+  const siteUrl = process.env["SITE_URL"] || getSiteConfig().siteUrl
   return siteUrl;
 }
 
