@@ -22,11 +22,14 @@ async function copyAssets() {
     return;
   }
   logger().info({ ctx, msg: "copying", vaults });
-  await Promise.all(
-    vaults.map((vault) => {
-      return SiteUtils.copyAssets({ wsRoot, vault, siteAssetsDir });
-    })
-  );
+  let deleteSiteAssetsDir = true;
+  await vaults.reduce(async (resp, vault) => {
+      let acc = await resp;
+      console.log("copying assets from...", vault)
+      await SiteUtils.copyAssets({ wsRoot, vault, siteAssetsDir, deleteSiteAssetsDir });
+      deleteSiteAssetsDir = false;
+    }, Promise.resolve({}));
+
   logger().info({ ctx, msg: "finish copying assets" });
   // get raw-assets
   const rawAssetPath = path.join(__dirname, "..", "raw-assets");
