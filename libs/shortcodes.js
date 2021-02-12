@@ -280,6 +280,7 @@ module.exports = {
     eleventyConfig.addLiquidShortcode("addHeader", addHeader);
     eleventyConfig.addLiquidFilter("toToc", toToc);
     eleventyConfig.addLiquidFilter("ms2Date", ms2Date);
+    eleventyConfig.addLiquidFilter("ms2ShortDate", ms2ShortDate);
     eleventyConfig.addLiquidFilter("markdownify", markdownfy);
     eleventyConfig.addLiquidFilter("toCollection", toCollection);
     eleventyConfig.addPlugin(xmlFiltersPlugin);

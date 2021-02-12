@@ -18,7 +18,7 @@ layout: layouts/default.liquid
     {% if note.updated %}<meta itemprop="dateModified" content="{{ note.updated | ms2Date | date_to_xmlschema }}">{% endif %}
 
     <div class="page__inner-wrap">
-      
+
       {% comment %}
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
