@@ -5,36 +5,36 @@ desc: ''
 updated: 1608147857388
 created: 1608147795766
 ---
-((ref:[[dendron.cat]]))
+![[dendron.cat]]
 
 # Note Ref At Header
 
-((ref:[[dendron.cat]]# Bananas))
+![[dendron.cat#bananas]]
 
 # Note Ref At Header Range
 
-((ref:[[dendron.cat]]# Bananas# Lions))
+![[dendron.cat#bananas:#lions]]
 
 # Complex Note Ref
 
-((ref:[[dendron.ref.figure]]))
+![[dendron.ref.figure]]
 
 # Note Ref At Header With Offset
 
-((ref:[[dendron.cat]]# Bananas,1))
+![[dendron.cat#bananas:#*]]
 
 # Recursive Note Ref
 
-((ref:[[dendron.boy]]))
+![[dendron.boy]]
 
 # Recursive Note Ref 2x
 
-((ref:[[dendron.apples]]))
+![[dendron.apples]]
 
 # Note Ref with wildcard link
 
-((ref:[[dendron.blog.*]]))
+![[dendron.blog.*]]
 
 # Note Ref with wildcard link and header offset
 
-((ref:[[dendron.blog.*]]# chap1))
+![[dendron.blog.*#chap1]]
