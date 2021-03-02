@@ -1,5 +1,5 @@
 - NOTE: dendron-11ty has been merged with the [dendron monorepo](https://github.com/dendronhq/dendron). Please post any issues or requests there
-- 
+
 # Overview
 
 dendron-11ty is a port of [dendron-jekyll](https://github.com/dendronhq/dendron-jekyll) from jekyll to eleventy.
